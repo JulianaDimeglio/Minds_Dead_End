@@ -27,7 +27,6 @@ namespace Game.Enemies.Mother.MotherStates
             mother.Mediator?.NotifyMotherHuntStarted(mother);
             mother.AppearOutsidePlayerView();
             mother.ResetHuntTimer();
-            mother.stopAgent();
             mother.StartCoroutine(BeginHuntAfterDelay(mother, 3f));
             Debug.Log("[Mother] aaaaaaaaaaaasd HUNTING STATE.");
         }
@@ -42,7 +41,6 @@ namespace Game.Enemies.Mother.MotherStates
             // Check for execution
             if (mother.IsPlayerInRange())
             {
-                mother.stopAgent();
                 mother.SwitchState(new KillState()); // Or any idle/passive state you define
                 mother.KillPlayer();
                 return;

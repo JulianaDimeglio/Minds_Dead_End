@@ -59,6 +59,7 @@ namespace Game.Enemies.Mother
         /// </summary>
         public void AppearOutsidePlayerView()
         {
+            Appear();
             if (spawnPoints == null || spawnPoints.Length == 0)
             {
                 Debug.LogWarning("[MotherEnemy] No spawn points assigned.");
@@ -75,7 +76,6 @@ namespace Game.Enemies.Mother
                 return;
             }
             Transform selectedSpawn = validSpawns[Random.Range(0, validSpawns.Length)];
-            Appear();
             m_Agent.Warp(selectedSpawn.position);
             Debug.Log($"[MotherEnemy] Spawned at {selectedSpawn.name} ({selectedSpawn.position}).");
         }

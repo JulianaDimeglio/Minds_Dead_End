@@ -100,14 +100,18 @@ public class HauntedLight : MonoBehaviour
     public void StopFlicker()
     {
         if (!_isFlickering) return;
-
+        Debug.Log($"Stopping flicker...{_isFlickering}");
         _isFlickering = false;
 
         if (_flickerRoutine != null)
+        {
+            Debug.Log("Stopping flicker routine... " + _flickerRoutine);
             StopCoroutine(_flickerRoutine);
+        }
 
         if (_externalFlashRoutine != null)
         {
+            Debug.Log("Stopping external flash routine... " + _externalFlashRoutine);
             StopCoroutine(_externalFlashRoutine);
             _externalFlashRoutine = null;
         }

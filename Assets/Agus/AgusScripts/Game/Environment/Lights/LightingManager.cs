@@ -109,6 +109,7 @@ namespace Game.Environment.Lights
 
         public void StopDynamicFlicker()
         {
+            Debug.Log($"Stopping dynamic flicker... {_flickerFollowRoutine}");
             if (_flickerFollowRoutine != null)
                 StopCoroutine(_flickerFollowRoutine);
 
