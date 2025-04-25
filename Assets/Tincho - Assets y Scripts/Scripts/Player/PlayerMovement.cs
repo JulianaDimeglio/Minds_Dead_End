@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -33,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canMove;
 
+    private Rigidbody _rb;
+
     private void Start()
     {
         _speed = _ogSpeed;
@@ -46,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         heavyBreathingFX.enabled = false;
 
         canMove = true;
+
+        _rb = GetComponent<Rigidbody>();
 
     }
 
@@ -70,7 +71,13 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetFloat("xMov", x);
         _animator.SetFloat("zMov", z);
 
-        transform.position += dir * _speed * Time.deltaTime;
+        _rb.velocity = dir * _speed;
+
+        if (dir.magnitude == 0)
+        {
+            _rb.velocity = Vector3.zero;
+        }
+            
 
         _isMoving = dir.magnitude > 0;
 
