@@ -670,8 +670,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Minds_Dead_End
-  metroPackageVersion: 
+  metroPackageName: MindsDeadEnd
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -679,7 +679,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Minds_Dead_End
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Mind's Dead End
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -752,11 +752,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 5443adb0-14ca-40eb-be05-4667d84e2e02
+  cloudProjectId: f1c861a6-0e58-40c2-84d5-240787191737
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Mind's Dead End
-  organizationId: martinbielenia
+  projectName: Minds_Dead_End
+  organizationId: agustinmolas97
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
