@@ -383,7 +383,11 @@ MonoBehaviour:
   _staminaRegenRate: 10
   _timerBase: 10
   _timerDelay: 0
+  _timerEarlyRecoverBase: 3
+  _timerEarlyRecover: 0
+  staminaIsBeingConsumed: 0
   canSprint: 1
+  staminaBar: {fileID: 0}
 --- !u!1 &6117340551806253772
 GameObject:
   m_ObjectHideFlags: 0
