@@ -10,6 +10,8 @@ public class MouseCamera : MonoBehaviour
     private Vector2 currentMouse;
     private Vector2 currentMouseSpeed;
 
+    public Rigidbody playerRigidbody;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -19,7 +21,7 @@ public class MouseCamera : MonoBehaviour
         if (xRotation > 180) xRotation -= 360;
     }
 
-    void Update()
+    void LateUpdate()
     {
         // Movimiento del mouse crudo
         float rawMouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -36,6 +38,7 @@ public class MouseCamera : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         // Rotación horizontal (cuerpo del jugador)
-        playerBody.Rotate(Vector3.up * currentMouse.x);
+        Quaternion deltaRotation = Quaternion.Euler(0f, currentMouse.x, 0f);
+        playerRigidbody.MoveRotation(playerRigidbody.rotation * deltaRotation);
     }
 }
