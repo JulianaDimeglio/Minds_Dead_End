@@ -118,6 +118,7 @@ public class HauntedLight : MonoBehaviour
 
         if (_currentState != LightState.Broken)
         {
+            Debug.Log($"Turning light on...{_currentState}");
             _light.intensity = _originalIntensity;
             _light.enabled = (_currentState == LightState.On);
         }
