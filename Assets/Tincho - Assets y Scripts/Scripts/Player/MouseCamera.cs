@@ -3,7 +3,6 @@ using UnityEngine;
 public class MouseCamera : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
-    public Transform playerBody;
     public float smoothTime = 0.05f; // Suavidad del movimiento.
 
     private float xRotation = 0f;
@@ -42,3 +41,4 @@ public class MouseCamera : MonoBehaviour
         playerRigidbody.MoveRotation(playerRigidbody.rotation * deltaRotation);
     }
 }
+

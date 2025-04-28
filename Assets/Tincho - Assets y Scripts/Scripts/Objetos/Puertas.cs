@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Puertas : MonoBehaviour
+public class Puertas : MonoBehaviour, IInteraction
 {
-    private PlayerMovement player;
-    private Interact playerState;
     [SerializeField] private bool _doorOpened;
-    public Animator _doorAnimation;
+    //public Animator _doorAnimation;
+    public bool isInteracting = false;
 
     private void Start()
     {
@@ -16,28 +13,23 @@ public class Puertas : MonoBehaviour
 
     private void Update()
     {
+        OpenDoor();
         //CloseDoor();
     }
 
-
-    private void OnTriggerStay(Collider other)
+    public void TriggerInteraction()
     {
-        if (other.CompareTag("Player"))
+        isInteracting = true;
+        Debug.Log("Llega el trigger!");
+    }
+
+    private void OpenDoor()
+    {
+        if (!_doorOpened && isInteracting)
         {
-            player = other.GetComponent<PlayerMovement>();
-            playerState = other.GetComponent<Interact>();
-
-            if (player != null && playerState.hasInteractered)
-            {
-                //Debug.Log("Jugador detectado");
-
-                if (!_doorOpened)
-                {
-                    _doorAnimation.SetBool("openedDoor", true);
-                    _doorOpened = true;
-                    print("Puerta abierta!");
-                }
-            }
+            //_doorAnimation.SetBool("openedDoor", true);
+            _doorOpened = true;
+            print("Puerta abierta!");
         }
     }
 
@@ -45,7 +37,7 @@ public class Puertas : MonoBehaviour
     //{
     //    if (_doorOpened)
     //    {
-    //        _doorAnimation.SetBool("openedDoor", false);
+    //        //_doorAnimation.SetBool("openedDoor", false);
     //        _doorOpened = false;
     //        print("Puerta cerrada!");
     //    }
