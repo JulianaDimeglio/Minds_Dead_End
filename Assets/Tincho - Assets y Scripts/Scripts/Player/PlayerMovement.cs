@@ -1,7 +1,10 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Movement _movementHandler;
+
     [Header("Stats")]
 
     [Header("Movement")]
@@ -48,6 +51,17 @@ public class PlayerMovement : MonoBehaviour
 
         _rb = GetComponent<Rigidbody>();
 
+        _movementHandler = new Movement(
+            _animator,
+            _rb,
+            footstepsSFX,
+            footstepsSprintFX,
+            heavyBreathingFX,
+            _ogSpeed,
+            _sprintMultiplier,
+            transform,
+            _playerStats
+        );
     }
 
     void Update()
@@ -57,98 +71,109 @@ public class PlayerMovement : MonoBehaviour
 
         if (canMove)
         {
-            Movement(_xAxis, _zAxis);
-        }
-        
-        Sprint();
+            _movementHandler.MoveAndSprint(_xAxis, _zAxis);
 
-    }
-
-    private void Movement(float x, float z)
-    {
-        Vector3 dir = (transform.right * x + transform.forward * z).normalized;
-
-        _animator.SetFloat("xMov", x);
-        _animator.SetFloat("zMov", z);
-
-        _rb.velocity = dir * _speed;
-
-        if (dir.magnitude == 0)
-        {
-            _rb.velocity = Vector3.zero;
-        }
-            
-
-        _isMoving = dir.magnitude > 0;
-
-        if (!isSprinting)
-        {
-            if (_isMoving)
-            {
-                _animator.SetBool("isMoving", true);
-                if (!footstepsSFX.isPlaying)
-                    footstepsSFX.Play();
-
-                // El otro sonido no esté sonando
-                if (footstepsSprintFX.isPlaying)
-                    footstepsSprintFX.Stop();
-            }
-            else
-            {
-                _animator.SetBool("isMoving", false);
-                if (footstepsSFX.isPlaying)
-                    footstepsSFX.Stop();
-            }
         }
     }
 
-    void Sprint()
+    public void InvertZAxis(bool state)
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _playerStats.canSprint)
+        if (state)
         {
-            isSprinting = true;
-            _animator.SetBool("isSprinting", true);
-            _speed = _ogSpeed * _sprintMultiplier;
-            _playerStats.UseStamina();
-            _playerStats.staminaIsBeingConsumed = true;
+            zAxisDirection *= -1;
         }
         else
         {
-            isSprinting = false;
-            _animator.SetBool("isSprinting", false);
-            _speed = _ogSpeed;
-            _playerStats.RecoverStaminaFromZero();
-            _playerStats.RecoverIncompletedStamina();
-            _playerStats.staminaIsBeingConsumed = false;
-        }
-
-        //NOTA:
-        //Error anterior: se empezaba a reproducir una vez por frame, dado que canSprint era falso en cada frame
-        //hasta que se llenara la stamina nuevamente. Ahora solo se ejecuta mientras sea falso y a su vez
-        //no se este reproduciendo ya.
-        if (!_playerStats.canSprint && !heavyBreathingFX.isPlaying)
-        {
-            heavyBreathingFX.enabled = true;
-        }
-
-        if (_playerStats.canSprint)
-        {
-            heavyBreathingFX.enabled = false;
-        }
-
-        if (isSprinting && (_xAxis != 0 || _zAxis != 0))
-        {
-            if (!footstepsSprintFX.isPlaying)
-                footstepsSprintFX.Play();
-
-            // SFX caminar apagado
-            if (footstepsSFX.isPlaying)
-                footstepsSFX.Stop();
-        }
-        else
-        {
-            if (footstepsSprintFX.isPlaying)
-                footstepsSprintFX.Stop();
+            zAxisDirection *= -1;
         }
     }
+
+
+    //private void Movement(float x, float z)
+    //{
+    //    Vector3 dir = (transform.right * x + transform.forward * z).normalized;
+
+    //    _animator.SetFloat("xMov", x);
+    //    _animator.SetFloat("zMov", z);
+
+    //    _rb.velocity = dir * _speed;
+
+    //    if (dir.magnitude == 0)
+    //    {
+    //        _rb.velocity = Vector3.zero;
+    //    }
+
+
+    //    _isMoving = dir.magnitude > 0;
+
+    //    if (!isSprinting)
+    //    {
+    //        if (_isMoving)
+    //        {
+    //            _animator.SetBool("isMoving", true);
+    //            if (!footstepsSFX.isPlaying)
+    //                footstepsSFX.Play();
+
+    //            // El otro sonido no esté sonando
+    //            if (footstepsSprintFX.isPlaying)
+    //                footstepsSprintFX.Stop();
+    //        }
+    //        else
+    //        {
+    //            _animator.SetBool("isMoving", false);
+    //            if (footstepsSFX.isPlaying)
+    //                footstepsSFX.Stop();
+    //        }
+    //    }
+    //}
+
+    //void Sprint()
+    //{
+    //    if (Input.GetKey(KeyCode.LeftShift) && _playerStats.canSprint)
+    //    {
+    //        isSprinting = true;
+    //        _animator.SetBool("isSprinting", true);
+    //        _speed = _ogSpeed * _sprintMultiplier;
+    //        _playerStats.UseStamina();
+    //        _playerStats.staminaIsBeingConsumed = true;
+    //    }
+    //    else
+    //    {
+    //        isSprinting = false;
+    //        _animator.SetBool("isSprinting", false);
+    //        _speed = _ogSpeed;
+    //        _playerStats.RecoverStaminaFromZero();
+    //        _playerStats.RecoverIncompletedStamina();
+    //        _playerStats.staminaIsBeingConsumed = false;
+    //    }
+
+    //    //NOTA:
+    //    //Error anterior: se empezaba a reproducir una vez por frame, dado que canSprint era falso en cada frame
+    //    //hasta que se llenara la stamina nuevamente. Ahora solo se ejecuta mientras sea falso y a su vez
+    //    //no se este reproduciendo ya.
+    //    if (!_playerStats.canSprint && !heavyBreathingFX.isPlaying)
+    //    {
+    //        heavyBreathingFX.enabled = true;
+    //    }
+
+    //    if (_playerStats.canSprint)
+    //    {
+    //        heavyBreathingFX.enabled = false;
+    //    }
+
+    //    if (isSprinting && (_xAxis != 0 || _zAxis != 0))
+    //    {
+    //        if (!footstepsSprintFX.isPlaying)
+    //            footstepsSprintFX.Play();
+
+    //        // SFX caminar apagado
+    //        if (footstepsSFX.isPlaying)
+    //            footstepsSFX.Stop();
+    //    }
+    //    else
+    //    {
+    //        if (footstepsSprintFX.isPlaying)
+    //            footstepsSprintFX.Stop();
+    //    }
+    //}
 }

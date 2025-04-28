@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class ObjetoRevertidor : MonoBehaviour
+public class ObjetoRevertidor : MonoBehaviour, IInteraction
 {
-    private PlayerMovement player;
-    private Interact playerState;
+    [SerializeField] private PlayerMovement player;
     [SerializeField] private float _timerObstacleBase = 5f;
     [SerializeField] private float _timerObstacle;
     [SerializeField] private bool _invertedControl;
+    public bool isInteracting = false;  
 
     private void Start()
     {
@@ -17,33 +17,30 @@ public class ObjetoRevertidor : MonoBehaviour
 
     private void Update()
     {
-        ChangeControllersObstacle();
+        InvertController();
+        RevertController();
     }
 
-
-    private void OnTriggerStay(Collider other)
+    public void TriggerInteraction()
     {
-        if (other.CompareTag("Player"))
+        isInteracting = true;
+    }
+
+    private void InvertController()
+    {
+        if (isInteracting)
         {
-            player = other.GetComponent<PlayerMovement>();
-            playerState = other.GetComponent<Interact>();
-
-            if (player != null && playerState.hasInteractered)
+            if (!_invertedControl)
             {
-                //Debug.Log("Jugador detectado");
-
-                if (!_invertedControl)
-                {
-                    _invertedControl = true;
-                    player.zAxisDirection *= -1;
-                    print("Obstaculo activado!");
-                    _timerObstacle = _timerObstacleBase;
-                }
+                _invertedControl = true;
+                player.InvertZAxis(true);
+                print("Obstaculo activado!");
+                _timerObstacle = _timerObstacleBase;
             }
         }
     }
 
-    private void ChangeControllersObstacle()
+    private void RevertController()
     {
         if (_invertedControl)
         {
@@ -51,9 +48,10 @@ public class ObjetoRevertidor : MonoBehaviour
 
             if (_timerObstacle <= 0)
             {
-                player.zAxisDirection *= -1;
+                player.InvertZAxis(false);
                 _invertedControl = false;
-                //print("Controles restaurados.");
+                print("Controles restaurados.");
+                isInteracting = false;
             }
         }
     }
