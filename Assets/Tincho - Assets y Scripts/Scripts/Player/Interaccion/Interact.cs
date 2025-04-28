@@ -19,8 +19,6 @@ public class Interact : MonoBehaviour
 
     private void Update()
     {
-        PlayerInteract();
-
         Debug.DrawRay(transform.position, transform.forward * interactDistance, Color.green);
         PlayerInteract();
     }
@@ -29,7 +27,7 @@ public class Interact : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && !player.isMoving)
         {
-            Ray ray = new Ray(transform.position, transform.forward);
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))

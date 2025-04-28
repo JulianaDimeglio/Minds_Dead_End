@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ButtonClickController : MonoBehaviour
+public class ButtonClickController : MonoBehaviour, IInteraction
 {
     private TextMeshPro textMeshPro;
     private int currentNumber = 0;
     public int buttonIndex;
     public ButtonsManager buttonsManager;
+    public bool isInteracting = false;
 
     void Start()
     {
@@ -23,6 +22,15 @@ public class ButtonClickController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (isInteracting) {
+            OnButtonClick();
+            Debug.Log("interacted");
+            isInteracting =false;
+        }
+    }
+
     public void OnButtonClick()
     {
         currentNumber = (currentNumber + 1) % 10;
@@ -32,5 +40,12 @@ public class ButtonClickController : MonoBehaviour
         {
             buttonsManager.UpdateList(buttonIndex, currentNumber);
         }
+    }
+
+    public void TriggerInteraction()
+    {
+        isInteracting = true;
+        Debug.Log("interacted true");
+
     }
 }
