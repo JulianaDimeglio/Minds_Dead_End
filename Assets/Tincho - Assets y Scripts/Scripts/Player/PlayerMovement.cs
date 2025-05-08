@@ -5,35 +5,28 @@ public class PlayerMovement : MonoBehaviour
 {
     private Movement _movementHandler;
 
-    [Header("Stats")]
-
     [Header("Movement")]
     [SerializeField]
     private float _ogSpeed;
+
     [SerializeField]
     private float _speed;
     [SerializeField]
     private float _sprintMultiplier = 1.5f;
     private float _xAxis, _zAxis;
-    public bool isSprinting;
-
+    private Rigidbody _rb;
+    private bool _isMoving;
     private PlayerStats _playerStats;
+    private Animator _animator;
 
     public AudioSource footstepsSFX;
     public AudioSource footstepsSprintFX;
     public AudioSource heavyBreathingFX;
-
-    Animator _animator;
-
     public int zAxisDirection = 1;
-
-    private bool _isMoving;
-
     public bool isMoving => _isMoving;
-
     public bool canMove;
+    public bool isSprinting;
 
-    private Rigidbody _rb;
 
     private void Start()
     {
@@ -51,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
         _rb = GetComponent<Rigidbody>();
 
+
+        //Se le pasan los valores de las variables al constrcutor.
         _movementHandler = new Movement(
             _animator,
             _rb,
@@ -66,8 +61,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //Se toman los inputs.
         _xAxis = Input.GetAxisRaw("Horizontal");
-        _zAxis = Input.GetAxisRaw("Vertical") * zAxisDirection;
+        _zAxis = Input.GetAxisRaw("Vertical") * zAxisDirection; //Se multiplica al eje vertical por la direccion del zAxis para tener control sobre ese eje de manera independiente.
 
         if (canMove)
         {
@@ -76,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Metodo que altera el zAxis en el momento que el jugador interactua con el objeto revertidor.
     public void InvertZAxis(bool state)
     {
         if (state)

@@ -4,10 +4,17 @@ using UnityEngine.UI;
 public class CrosshairController : MonoBehaviour
 {
     public Image crosshairImage;
-    public Color defaultColor = Color.white;
-    public Color interactColor = Color.green;
     public float checkDistance = 3f;
     public LayerMask interactLayer;
+
+    [Header("Colors:")]
+    public Color defaultColor = Color.white;
+    public Color interactColor = Color.green;
+
+    [Header("Sizes:")]
+    public Vector3 normalScale = Vector3.one;
+    public Vector3 hoverScale = new Vector3(1.5f, 1.5f, 1f);
+
 
     private Camera mainCamera;
     void Start()
@@ -25,10 +32,12 @@ public class CrosshairController : MonoBehaviour
         {
             if (hit.collider.GetComponent<IInteraction>() != null)
             {
-                crosshairImage.color = interactColor;
+                crosshairImage.transform.localScale = hoverScale;
                 return;
             }
         }
         crosshairImage.color = defaultColor;
+        crosshairImage.transform.localScale = normalScale;
+
     }
 }

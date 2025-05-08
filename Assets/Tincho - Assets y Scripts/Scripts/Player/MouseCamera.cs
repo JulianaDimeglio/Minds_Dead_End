@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class MouseCamera : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
-    public float smoothTime = 0.05f; // Suavidad del movimiento.
-
     private float xRotation = 0f;
     private Vector2 currentMouse;
     private Vector2 currentMouseSpeed;
 
+    public float mouseSensitivity = 100f;
+    public float smoothTime = 0.05f; // Suavidad del movimiento.
     public Rigidbody playerRigidbody;
 
     void Start()
@@ -22,7 +21,7 @@ public class MouseCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        // Movimiento del mouse crudo
+        // Movimiento del mouse base
         float rawMouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float rawMouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -31,12 +30,12 @@ public class MouseCamera : MonoBehaviour
         // Suavizado de movimiento. Da "peso" al movimiento.
         currentMouse = Vector2.SmoothDamp(currentMouse, rawMouseDelta, ref currentMouseSpeed, smoothTime);
 
-        // Rotación vertical (cámara)
+        // Rotación vertical de la cámara
         xRotation -= currentMouse.y;
         xRotation = Mathf.Clamp(xRotation, -80f, 60f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // Rotación horizontal (cuerpo del jugador)
+        // Rotación horizontal del cuerpo del jugador
         Quaternion deltaRotation = Quaternion.Euler(0f, currentMouse.x, 0f);
         playerRigidbody.MoveRotation(playerRigidbody.rotation * deltaRotation);
     }

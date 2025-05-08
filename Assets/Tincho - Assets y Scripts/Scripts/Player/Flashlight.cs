@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
+    //Esta clase controla el funcionamiento de la linterna: al presionar E se prende y al volver a presionar E se apaga.
     private Light _flashlight;
     private bool _isFlashLightOn;
     private AudioSource _flashlightSFX;

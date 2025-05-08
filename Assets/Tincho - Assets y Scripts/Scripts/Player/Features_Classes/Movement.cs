@@ -11,7 +11,6 @@ public class Movement
     private float _sprintMultiplier;
     private float _speed;
     private Transform _transform;
-
     private PlayerStats _playerStats;
 
     public bool IsMoving { get; private set; }
@@ -41,7 +40,24 @@ public class Movement
 
     public void MoveAndSprint(float x, float z)
     {
-        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && _playerStats.canSprint;
+        //Basic movement
+        Vector3 dir = (_transform.right * x + _transform.forward * z).normalized;
+
+        _animator.SetFloat("xMov", x);
+        _animator.SetFloat("zMov", z);
+        _rb.velocity = dir * _speed;
+
+        if (dir.magnitude == 0)
+        {
+            _rb.velocity = Vector3.zero;
+            IsMoving = true;
+        }
+
+        IsMoving = dir.magnitude > 0;
+
+
+        //Sprint
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && _playerStats.canSprint && IsMoving;
 
         if (isSprinting)
         {
@@ -59,6 +75,9 @@ public class Movement
             _playerStats.staminaIsBeingConsumed = false;
         }
 
+        //SFX
+
+        //Exhausted
         if (!_playerStats.canSprint && !_heavyBreathingFX.isPlaying)
         {
             _heavyBreathingFX.enabled = true;
@@ -68,17 +87,8 @@ public class Movement
             _heavyBreathingFX.enabled = false;
         }
 
-        Vector3 dir = (_transform.right * x + _transform.forward * z).normalized;
 
-        _animator.SetFloat("xMov", x);
-        _animator.SetFloat("zMov", z);
-        _rb.velocity = dir * _speed;
-
-        if (dir.magnitude == 0)
-            _rb.velocity = Vector3.zero;
-
-        IsMoving = dir.magnitude > 0;
-
+        //Walking and sprinting SFX
         if (isSprinting && IsMoving)
         {
             if (!_footstepsSprintFX.isPlaying)

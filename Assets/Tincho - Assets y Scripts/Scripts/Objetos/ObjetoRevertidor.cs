@@ -6,7 +6,7 @@ public class ObjetoRevertidor : MonoBehaviour, IInteraction
     [SerializeField] private float _timerObstacleBase = 5f;
     [SerializeField] private float _timerObstacle;
     [SerializeField] private bool _invertedControl;
-    public bool isInteracting = false;  
+    private bool _isInteracting = false;  
 
     private void Start()
     {
@@ -23,12 +23,14 @@ public class ObjetoRevertidor : MonoBehaviour, IInteraction
 
     public void TriggerInteraction()
     {
-        isInteracting = true;
+        _isInteracting = true;
     }
 
+    //Este metodo invierte los controles y el jugador va hacia adelante al presionar S y viceversa.
+    //El metodo cuenta con un timer ajustable, en el momento que se invierten los controles, el timer se dispara.
     private void InvertController()
     {
-        if (isInteracting)
+        if (_isInteracting)
         {
             if (!_invertedControl)
             {
@@ -40,6 +42,8 @@ public class ObjetoRevertidor : MonoBehaviour, IInteraction
         }
     }
 
+
+    //Este metodo revierte los controles a su estado default.
     private void RevertController()
     {
         if (_invertedControl)
@@ -51,7 +55,7 @@ public class ObjetoRevertidor : MonoBehaviour, IInteraction
                 player.InvertZAxis(false);
                 _invertedControl = false;
                 print("Controles restaurados.");
-                isInteracting = false;
+                _isInteracting = false;
             }
         }
     }

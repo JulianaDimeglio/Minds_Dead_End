@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class HeadBobbing : MonoBehaviour
 {
+    private float timer = 0f;
+    private Vector3 startPosition;
+    private Vector3 lastPlayerPosition;
+
     [Header("Bobbing Parameters")]
     public float bobSpeedWalk;
     public float bobSpeedSprint;
     public float bobAmountWalkSprint;
-
     public float bobAmountIdle;
     public float bobSpeedIdle;
     public PlayerMovement player;
-
-    private float timer = 0f;
-    private Vector3 startPosition;  
-    private Vector3 lastPlayerPosition;
 
     void Start()
     {
