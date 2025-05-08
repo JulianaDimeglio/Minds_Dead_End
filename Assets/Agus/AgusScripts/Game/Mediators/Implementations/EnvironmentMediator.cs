@@ -1,6 +1,7 @@
-using Game.Mediators.Interfaces;
+﻿using Game.Mediators.Interfaces;
 using UnityEngine;
 using Game.Environment.Lights;
+
 
 namespace Game.Mediators.Implementations
 {
@@ -15,6 +16,7 @@ namespace Game.Mediators.Implementations
         [SerializeField] private GlassManager glassManager;
         [SerializeField] private DoorManager doorManager;
         [SerializeField] private AmbientAudioManager audioManager;
+        [SerializeField] private VisualEffectsManager visualEffectsManager;
 
         // -----------------------------
         // ILightEffectService
@@ -23,7 +25,7 @@ namespace Game.Mediators.Implementations
         {
             lightingManager?.BeginDynamicFlicker(motherPosition, motherRadius); // o una luz en particular
             //ambientAudioManager?.PlayJumpscareSting();
-            //doorManager?.SlamRandomDoor(); // �boom!
+            //doorManager?.SlamRandomDoor(); // ¡boom!
             //glassManager?.ShatterNear(entryPoint);
         }
 
@@ -88,5 +90,19 @@ namespace Game.Mediators.Implementations
         {
             audioManager?.Stop(clipName);
         }
+       
+        // -----------------------------
+        // Visual Effects (Madness)
+        // -----------------------------
+
+        public void IncreaseAberration(float amount)
+    {
+        visualEffectsManager?.IncreaseAberration(amount);
+    }
+
+    public void ResetAberration()
+    {
+        visualEffectsManager?.ResetAberration();
+    }
     }
 }

@@ -20,7 +20,7 @@ public class InterruptorBasico : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(1))
         {
             encendido = !encendido;
             rotacionObjetivo = Quaternion.Euler(encendido ? anguloEncendido : anguloApagado, 0, 0);
