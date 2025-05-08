@@ -1,7 +1,5 @@
 using Game.Enemies.States;
 using UnityEngine;
-using Game.Enemies.Mother;
-using Game.Mediators.Interfaces;
 using System.Collections;
 
 namespace Game.Enemies.Mother.MotherStates
@@ -63,6 +61,11 @@ namespace Game.Enemies.Mother.MotherStates
             // Stop flickering when hunt ends
             mother.Mediator?.NotifyMotherHuntFinished(mother);
             Debug.Log("[Mother] Exited HUNTING STATE.");
+        }
+
+        public void OnSeenByPlayer(BaseEnemy enemy)
+        {
+            // The dormant state does not react to being seen.
         }
     }
 }

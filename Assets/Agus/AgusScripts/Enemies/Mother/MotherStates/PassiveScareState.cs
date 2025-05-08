@@ -1,7 +1,5 @@
 using Game.Enemies.States;
 using UnityEngine;
-using Game.Mediators.Interfaces;
-using Game.Enemies.SharedStates;
 using Game.Enemies.Mother.MotherStates;
 
 namespace Game.Enemies.SharedStates
@@ -40,6 +38,11 @@ namespace Game.Enemies.SharedStates
         public void ExitState(BaseEnemy enemy)
         {
             Debug.Log($"[{enemy.name}] Exited PASSIVE SCARE STATE.");
+        }
+
+        public void OnSeenByPlayer(BaseEnemy enemy)
+        {
+            // The dormant state does not react to being seen.
         }
     }
 }

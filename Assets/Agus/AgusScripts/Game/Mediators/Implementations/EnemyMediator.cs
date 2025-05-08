@@ -15,7 +15,7 @@ namespace Game.Mediators.Implementations
         [SerializeField] private MotherEnemy mother;
         //[SerializeField] private ShadowEnemy shadow;
         //[SerializeField] private MirrorLadyEnemy mirrorLady;
-        //[SerializeField] private ChildEnemy child;
+        [SerializeField] private ChildEnemy child;
 
         [Header("Environment Mediator")]
         [SerializeField] private EnvironmentMediator environmentMediator;
@@ -27,7 +27,7 @@ namespace Game.Mediators.Implementations
         void Start()
         {
             mother.Configure(this);
-            NotifyChildFound();
+            child.Configure(this);
         }
 
         public void NotifyChildFound()

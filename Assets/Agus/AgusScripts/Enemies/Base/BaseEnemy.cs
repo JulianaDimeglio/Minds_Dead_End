@@ -12,6 +12,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class BaseEnemy : MonoBehaviour
 {
+    [SerializeField] private Transform player;
     protected IEnemyMediator _enemyMediator;
     protected IEnemyState _currentState;
     protected bool canChangeState = false;
@@ -30,6 +31,16 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public NavMeshAgent Agent => m_Agent;
     public IEnemyMediator Mediator => _enemyMediator;
+
+    /// <summary>
+    /// Reference to the player target.
+    /// </summary>
+    public Transform Target => player;
+
+    protected virtual IEnemyState GetInitialState()
+    {
+        return null;
+    }
 
     /// <summary>
     /// Switches the enemy's active state using the State pattern.
@@ -60,6 +71,15 @@ public abstract class BaseEnemy : MonoBehaviour
         if (!NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
         {
             Debug.LogWarning($"{name} is not on the NavMesh!");
+        }
+        var initialState = GetInitialState();
+        if (initialState != null)
+        {
+            SwitchState(initialState);
+        }
+        else
+        {
+            Debug.LogWarning($"{name} has no initial state assigned.");
         }
     }
 

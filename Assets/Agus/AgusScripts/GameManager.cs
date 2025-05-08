@@ -17,11 +17,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         _huntAgainIn -= Time.deltaTime;
         if (_huntAgainIn <= 0)
         {
             _enemyMediator.NotifyChildFound();
             _huntAgainIn = 20f;
         }
+        */
     }
 }

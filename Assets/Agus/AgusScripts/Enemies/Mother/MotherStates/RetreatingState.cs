@@ -1,7 +1,5 @@
 using Game.Enemies.States;
 using UnityEngine;
-using Game.Enemies.Mother;
-using Game.Mediators.Interfaces;
 
 namespace Game.Enemies.Mother.MotherStates
 {
@@ -46,6 +44,11 @@ namespace Game.Enemies.Mother.MotherStates
 
             // Optional: trigger ambient recovery, silence, etc.
             Debug.Log("[Mother] Exited RETREATING STATE.");
+        }
+
+        public void OnSeenByPlayer(BaseEnemy enemy)
+        {
+            // The dormant state does not react to being seen.
         }
     }
 }

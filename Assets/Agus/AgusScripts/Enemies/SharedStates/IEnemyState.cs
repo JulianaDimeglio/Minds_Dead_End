@@ -23,5 +23,12 @@ namespace Game.Enemies.States
         /// </summary>
         /// <param name="enemy">The enemy exiting this state.</param>
         void ExitState(BaseEnemy enemy);
+
+        /// <summary>
+        /// Called when the enemy is seen by the player.
+        /// </summary>
+        /// <param name="enemy"></param>
+        void OnSeenByPlayer(BaseEnemy enemy);
+
     }
 }

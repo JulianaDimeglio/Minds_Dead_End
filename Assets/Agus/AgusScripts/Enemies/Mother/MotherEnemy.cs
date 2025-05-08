@@ -13,7 +13,7 @@ namespace Game.Enemies.Mother
     /// Environmental effects are delegated to the EnvironmentMediator.
     /// </summary>
     
-    public class MotherEnemy : BaseEnemy
+    public class MotherEnemy : BaseEnemy, IDetectableByPlayer
     {
 
         [Header("Spawn Settings")]
@@ -23,7 +23,6 @@ namespace Game.Enemies.Mother
         [Header("Mother Settings")]
         [SerializeField] private float huntDuration = 10f;
         [SerializeField] private float speed = 2.5f;
-        [SerializeField] private Transform player;
         public float flickRadius = 7.5f;
 
 
@@ -32,14 +31,16 @@ namespace Game.Enemies.Mother
         public bool canHunt = false;
 
         /// <summary>
-        /// Reference to the player target.
-        /// </summary>
-        public Transform Target => player;
-
-        /// <summary>
         /// Movement speed while hunting.
         /// </summary>
         public float Speed => speed;
+
+        public IEnemyState CurrentState => _currentState;
+
+        protected override IEnemyState GetInitialState()
+        {
+            return new DormantState();
+        }
 
         /// <summary>
         /// Called by the EnemyMediator when the child has been found.
@@ -49,9 +50,6 @@ namespace Game.Enemies.Mother
         {
             SwitchState(new MotherStates.HuntingState());
         }
-
-
-        public IEnemyState CurrentState => _currentState;
 
 
         /// <summary>
@@ -65,18 +63,20 @@ namespace Game.Enemies.Mother
                 Debug.LogWarning("[MotherEnemy] No spawn points assigned.");
                 return;
             }
-            Vector3 playerPosition = player.position;
+            Vector3 playerPosition = Target.position;
             var validSpawns = spawnPoints
                 .Where(spawn => Vector3.Distance(spawn.position, playerPosition) >= minimumDistanceFromPlayer)
                 .ToArray();
 
             if (validSpawns.Length == 0)
             {
-                Debug.LogWarning("[MotherEnemy] No valid spawn points found outside player view.");
+                Debug.LogWarning("[MotherEnemy] No valid spawn points found outside player view");
                 return;
             }
             Transform selectedSpawn = validSpawns[Random.Range(0, validSpawns.Length)];
             m_Agent.Warp(selectedSpawn.position);
+            Vector3 lookPosition = new Vector3(playerPosition.x, transform.position.y, playerPosition.z);
+            transform.LookAt(lookPosition);
             Debug.Log($"[MotherEnemy] Spawned at {selectedSpawn.name} ({selectedSpawn.position}).");
         }
 
@@ -85,7 +85,7 @@ namespace Game.Enemies.Mother
         /// </summary>
         public bool IsPlayerInRange()
         {
-            return Vector3.Distance(transform.position, player.position) < 3f;
+            return Vector3.Distance(transform.position, Target.position) < 3f;
         }
 
         /// <summary>
@@ -111,6 +111,11 @@ namespace Game.Enemies.Mother
         public float GetHuntDuration()
         {
             return huntDuration;
+        }
+
+        public virtual void OnSeenByPlayer()
+        {
+            _currentState?.OnSeenByPlayer(this);
         }
     }
 }

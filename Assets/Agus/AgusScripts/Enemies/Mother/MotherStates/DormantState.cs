@@ -1,5 +1,4 @@
 using Game.Enemies.States;
-using Game.Enemies.Mother;
 using UnityEngine;
 
 namespace Game.Enemies.Mother.MotherStates
@@ -26,6 +25,11 @@ namespace Game.Enemies.Mother.MotherStates
         public void ExitState(BaseEnemy enemy)
         {
             Debug.Log("[Mother] Exited DORMANT STATE.");
+        }
+
+        public void OnSeenByPlayer(BaseEnemy enemy)
+        {
+            // The dormant state does not react to being seen.
         }
     }
 }

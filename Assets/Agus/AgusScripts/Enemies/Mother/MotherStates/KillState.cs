@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using Game.Enemies.States;
-using Game.Enemies.Mother;
-using Game.Mediators.Interfaces;
 
 
 namespace Game.Enemies.Mother.MotherStates
@@ -39,6 +37,11 @@ namespace Game.Enemies.Mother.MotherStates
 
             //GameManager.Instance.TriggerGameOver();
             mother.SwitchState(new DormantState()); // destroys itself
+        }
+
+        public void OnSeenByPlayer(BaseEnemy enemy)
+        {
+            // The dormant state does not react to being seen.
         }
     }
 }
