@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource footstepsSFX;
     public AudioSource footstepsSprintFX;
+    public AudioSource heavyBreathingFX;
+
+    Animator _animator;
 
 
     private void Start()
@@ -31,12 +34,18 @@ public class PlayerMovement : MonoBehaviour
 
         isSprinting = false;
 
+        _animator = GetComponentInChildren<Animator>();
+
+        heavyBreathingFX.enabled = false;
+
     }
 
     void Update()
     {
         _xAxis = Input.GetAxisRaw("Horizontal");
         _zAxis = Input.GetAxisRaw("Vertical");
+
+        
 
         Movement(_xAxis, _zAxis);
 
@@ -48,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 dir = (transform.right * x + transform.forward * z).normalized;
 
+        _animator.SetFloat("xMov", x);
+        _animator.SetFloat("zMov", z);
+
         transform.position += dir * _speed * Time.deltaTime;
 
         bool isMoving = dir.magnitude > 0;
@@ -56,15 +68,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isMoving)
             {
+                _animator.SetBool("isMoving", true);
                 if (!footstepsSFX.isPlaying)
                     footstepsSFX.Play();
 
-                // Asegurarse de que el otro sonido no esté sonando
+                // El otro sonido no esté sonando
                 if (footstepsSprintFX.isPlaying)
                     footstepsSprintFX.Stop();
             }
             else
             {
+                _animator.SetBool("isMoving", false);
                 if (footstepsSFX.isPlaying)
                     footstepsSFX.Stop();
             }
@@ -73,17 +87,36 @@ public class PlayerMovement : MonoBehaviour
 
     void Sprint()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _playerStats.CanSprint())
+        if (Input.GetKey(KeyCode.LeftShift) && _playerStats.canSprint)
         {
             isSprinting = true;
+            _animator.SetBool("isSprinting", true);
             _speed = _ogSpeed * _sprintMultiplier;
             _playerStats.UseStamina();
+            _playerStats.staminaIsBeingConsumed = true;
         }
         else
         {
             isSprinting = false;
+            _animator.SetBool("isSprinting", false);
             _speed = _ogSpeed;
-            _playerStats.RecoverStamina();
+            _playerStats.RecoverStaminaFromZero();
+            _playerStats.RecoverIncompletedStamina();
+            _playerStats.staminaIsBeingConsumed = false;
+        }
+
+        //NOTA:
+        //Error anterior: se empezaba a reproducir una vez por frame, dado que canSprint era falso en cada frame
+        //hasta que se llenara la stamina nuevamente. Ahora solo se ejecuta mientras sea falso y a su vez
+        //no se este reproduciendo ya.
+        if (!_playerStats.canSprint && !heavyBreathingFX.isPlaying)
+        {
+            heavyBreathingFX.enabled = true;
+        }
+
+        if (_playerStats.canSprint)
+        {
+            heavyBreathingFX.enabled = false;
         }
 
         if (isSprinting && (_xAxis != 0 || _zAxis != 0))
@@ -91,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             if (!footstepsSprintFX.isPlaying)
                 footstepsSprintFX.Play();
 
-            // Asegurarse de que el sonido de caminar esté apagado
+            // SFX caminar apagado
             if (footstepsSFX.isPlaying)
                 footstepsSFX.Stop();
         }
