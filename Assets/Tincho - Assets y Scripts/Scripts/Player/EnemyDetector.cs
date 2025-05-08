@@ -14,18 +14,17 @@ public class EnemyDetector : MonoBehaviour
 
     private void PlayerInteract()
     {
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))
+        RaycastHit hit;
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.red);
+        if (Physics.Raycast(ray, out hit, interactDistance))
+        {
+            var detectable = hit.collider.GetComponent<IDetectableByPlayer>();
+            if (detectable != null)
             {
-                Debug.Log("Player is interacting with " + hit.collider.name);
-
-                IInteraction interactable = hit.collider.GetComponent<IInteraction>();
-                if (interactable != null)
-                {
-                    interactable.TriggerInteraction();
-                }
+                detectable.OnSeenByPlayer();
+                Debug.Log("[RaycastPlayer] Detected: " + detectable);
             }
+        }
     }
 }
