@@ -3,12 +3,12 @@ using UnityEngine;
 public class EnemyDetector : MonoBehaviour
 {
     [Header("Raycast Settings")]
-    public float interactDistance = 3f;
-    public LayerMask interactLayer;
+    [SerializeField] private float _interactDistance = 3f;
+    [SerializeField] private LayerMask _interactLayer;
 
     private void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * interactDistance, Color.green);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * _interactDistance, Color.green);
         PlayerInteract();
     }
 
@@ -17,7 +17,7 @@ public class EnemyDetector : MonoBehaviour
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))
+            if (Physics.Raycast(ray, out hit, _interactDistance, _interactLayer))
             {
                 Debug.Log("Player is interacting with " + hit.collider.name);
 

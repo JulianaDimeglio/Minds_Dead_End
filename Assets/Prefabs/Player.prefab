@@ -547,10 +547,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.32
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1, z: 0.24}
 --- !u!54 &8830591888380246563
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -684,8 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbd9e87327f19440b4094ddcca86fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 8
-  interactLayer:
+  _interactDistance: 3
+  _interactLayer:
     serializedVersion: 2
     m_Bits: 256
 --- !u!1 &7727593024259599848
