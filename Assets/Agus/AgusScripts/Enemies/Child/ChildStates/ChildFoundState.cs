@@ -33,7 +33,7 @@ public class ChildFoundState : IEnemyState
 
     public void OnSeenByPlayer(BaseEnemy enemy)
     {
-        // The dormant state does not react to being seen.
+        
     }
 
     private System.Collections.IEnumerator DisappearAfterSeconds(ChildEnemy child, float seconds)
@@ -41,7 +41,7 @@ public class ChildFoundState : IEnemyState
         yield return new WaitForSeconds(seconds);
 
         // Desaparecer visualmente
-        child.Vanish();
+        child.SetActiveVisualAndLogic(false);
 
         // Notificar a la madre a través del mediator
         child.Mediator?.NotifyChildFound();

@@ -27,7 +27,7 @@ public class Interact : MonoBehaviour
 
     private void PlayerInteract()
     {
-        if (Input.GetKeyDown(KeyCode.F)/* && !player.isMoving*/)
+        if (Input.GetMouseButtonDown(0)/* && !player.isMoving*/)
         {
               
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -38,11 +38,12 @@ public class Interact : MonoBehaviour
                 _interactSFX.Play();
                 //_isInteracting = true;
                 //_animation.SetBool("Interacted", true);
-                Debug.Log("Player is interacting with " + hit.collider.name);
+                
 
-                IInteraction interactable = hit.collider.GetComponent<IInteraction>();
+                IInteraction interactable = hit.collider.GetComponentInParent<IInteraction>();
                 if (interactable != null)
                 {
+                    Debug.Log("Player is interacting with " + hit.collider.name);
                     interactable.TriggerInteraction();
                 }
             }

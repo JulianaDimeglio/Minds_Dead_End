@@ -15,7 +15,7 @@ namespace Game.Enemies.SharedStates
 
         public void EnterState(BaseEnemy enemy)
         {
-            enemy.Appear();
+            enemy.SetActiveVisualAndLogic(true);
 
             enemy.Mediator?.NotifyEnemyTriggeredScare(enemy);
 
@@ -30,7 +30,7 @@ namespace Game.Enemies.SharedStates
 
             if (_timer >= _duration)
             {
-                enemy.Vanish();
+                enemy.SetActiveVisualAndLogic(false);
                 enemy.SwitchState(new DormantState()); // Or any other idle state
             }
         }

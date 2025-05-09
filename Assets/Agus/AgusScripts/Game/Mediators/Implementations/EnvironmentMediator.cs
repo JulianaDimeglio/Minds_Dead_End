@@ -55,6 +55,7 @@ namespace Game.Mediators.Implementations
         // IDoorControlService
         // -----------------------------
 
+        /*
         public void OpenDoor(string doorId)
         {
             doorManager?.Open(doorId);
@@ -69,7 +70,7 @@ namespace Game.Mediators.Implementations
         {
             doorManager?.Toggle(doorId);
         }
-
+        */
         // -----------------------------
         // IAmbientAudioService
         // -----------------------------

@@ -57,7 +57,7 @@ namespace Game.Enemies.Mother
         /// </summary>
         public void AppearOutsidePlayerView()
         {
-            Appear();
+            SetActiveVisualAndLogic(true);
             if (spawnPoints == null || spawnPoints.Length == 0)
             {
                 Debug.LogWarning("[MotherEnemy] No spawn points assigned.");
@@ -85,7 +85,7 @@ namespace Game.Enemies.Mother
         /// </summary>
         public bool IsPlayerInRange()
         {
-            return Vector3.Distance(transform.position, Target.position) < 3f;
+            return Vector3.Distance(transform.position, Target.position) < 0.5f;
         }
 
         /// <summary>

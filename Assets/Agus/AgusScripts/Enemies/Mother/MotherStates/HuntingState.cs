@@ -59,7 +59,6 @@ namespace Game.Enemies.Mother.MotherStates
             mother.canHunt = false;
             mother.stopAgent();
             // Stop flickering when hunt ends
-            mother.Mediator?.NotifyMotherHuntFinished(mother);
             Debug.Log("[Mother] Exited HUNTING STATE.");
         }
 
