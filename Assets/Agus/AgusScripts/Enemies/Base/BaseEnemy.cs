@@ -5,6 +5,7 @@ using Game.Mediators.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 /// <summary>
 /// Abstract base class for all enemy types.
 /// Provides common functionality such as state management, movement, visibility, and mediator communication.

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InterruptorBasico : MonoBehaviour
 {
-    public Transform interruptor;  
+    public Transform interruptor;
     public float anguloEncendido = -30f;
     public float anguloApagado = 0f;
     public float velocidadRotacion = 5f;
@@ -20,7 +20,7 @@ public class InterruptorBasico : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(1))
         {
             encendido = !encendido;
             rotacionObjetivo = Quaternion.Euler(encendido ? anguloEncendido : anguloApagado, 0, 0);
