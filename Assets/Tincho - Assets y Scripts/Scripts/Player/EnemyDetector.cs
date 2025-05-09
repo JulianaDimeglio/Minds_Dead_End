@@ -83,17 +83,15 @@ public class EnemyDetector : MonoBehaviour
         var bounds = collider.bounds;
         var points = new List<Vector3>();
 
-        points.Add(bounds.center); // punto central
+        points.Add(bounds.center);
 
         if (count <= 1) return points;
 
-        // puntos alrededor del centro
         points.Add(bounds.center + Vector3.up * sampleOffset);
         points.Add(bounds.center - Vector3.up * sampleOffset);
         points.Add(bounds.center + Vector3.right * sampleOffset);
         points.Add(bounds.center - Vector3.right * sampleOffset);
 
-        // si querés más, podés agregar diagonales u otros ejes
 
         return points;
     }
