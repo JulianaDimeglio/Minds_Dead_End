@@ -15,10 +15,10 @@ public class Interact : MonoBehaviour
         PlayerInteract();
     }
 
-    // Player interacts with objects using Mouse 1.
+    // Player interacts with objects using Mouse 0.
     private void PlayerInteract()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
               
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -27,7 +27,7 @@ public class Interact : MonoBehaviour
             if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))
             {
                 _interactSFX.Play();
-                IInteraction interactable = hit.collider.GetComponent<IInteraction>();
+                IInteraction interactable = hit.collider.GetComponentInParent<IInteraction>();
                 if (interactable != null)
                 {
                     Debug.Log("Player is interacting with " + hit.collider.name);
