@@ -1,42 +1,47 @@
 using Game.Enemies.States;
 using UnityEngine;
 
-/// <summary>
-/// represents the dormant state of the Shadow
-/// the enemy stays hidden and waits before appearing
-/// </summary>
+// This state is for when the Shadow is hidden and inactive
 public class ShadowDormantState : IEnemyState
 {
-    private float _timer = 0f;
+    private float _timer = 0f; // Time counter
 
+   
     public void EnterState(BaseEnemy enemy)
     {
-        _timer = 0f;
+        if (enemy is not ShadowEnemy shadow) return;
 
-        // move the Shadow far away to hide it
-        enemy.transform.position = new Vector3(9999f, 9999f, 9999f);
-
-        Debug.Log("[ShadowDormantState] Entered Dormant and moved out of the map");
+        shadow.Agent.enabled = false; // Disable movement (NavMeshAgent)
+        shadow.transform.position = new Vector3(5000f, 5000f, 5000f); // Move far away to hide
+        Debug.Log("[ShadowDormantState] Moved far away and disabled NavMeshAgent.");
     }
 
+   
     public void UpdateState(BaseEnemy enemy)
     {
-        _timer += Time.deltaTime;
+        _timer += Time.deltaTime; // Count how much time has passed
 
-        ShadowEnemy shadow = (ShadowEnemy)enemy;
+        if (enemy is not ShadowEnemy shadow) return;
 
+        // If enough time passed, switch to appear state
         if (_timer >= shadow.waitTimeBeforeAppear)
         {
+            Debug.Log("[ShadowDormantState] Switching to AppearState.");
             enemy.SwitchState(new ShadowAppearState());
         }
     }
+
     public void ExitState(BaseEnemy enemy)
     {
-        Debug.Log("[ShadowDormantState] Exiting Dormant.");
-    }
+        if (enemy is ShadowEnemy shadow)
+        {
+            shadow.Agent.enabled = true; // Enable movement again
+        }
 
+        Debug.Log("[ShadowDormantState] Exiting DORMANT STATE.");
+    }
     public void OnSeenByPlayer(BaseEnemy enemy)
     {
-        // Dormant state does not react to being seen
+        // No reaction when seen in Dormant
     }
 }

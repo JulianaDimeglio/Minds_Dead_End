@@ -2,7 +2,6 @@
 using UnityEngine;
 using Game.Environment.Lights;
 
-
 namespace Game.Mediators.Implementations
 {
     /// <summary>
@@ -23,10 +22,7 @@ namespace Game.Mediators.Implementations
         // -----------------------------
         public void TriggerMotherEntrance(Transform motherPosition, float motherRadius)
         {
-            lightingManager?.BeginDynamicFlicker(motherPosition, motherRadius); // o una luz en particular
-            //ambientAudioManager?.PlayJumpscareSting();
-            //doorManager?.SlamRandomDoor(); // ¡boom!
-            //glassManager?.ShatterNear(entryPoint);
+            lightingManager?.BeginDynamicFlicker(motherPosition, motherRadius);
         }
 
         public void TriggerMotherOut()
@@ -36,7 +32,7 @@ namespace Game.Mediators.Implementations
 
         public void StartFlickerNear(Vector3 origin, float radius)
         {
-            //lightingManager?.FlickerLightsNear(origin, radius);
+            // lightingManager?.FlickerLightsNear(origin, radius);
         }
 
         public void ResetAllFlicker()
@@ -90,19 +86,21 @@ namespace Game.Mediators.Implementations
         {
             audioManager?.Stop(clipName);
         }
-       
+
         // -----------------------------
         // Visual Effects (Madness)
         // -----------------------------
 
-        public void IncreaseAberration(float amount)
-    {
-        visualEffectsManager?.IncreaseAberration(amount);
-    }
+        public void ApplyVisualEffects(float intensity01)
+        {
+            visualEffectsManager?.ApplyEffects(intensity01);
+        }
 
-    public void ResetAberration()
-    {
-        visualEffectsManager?.ResetAberration();
-    }
+        public void ResetVisualEffects()
+        {
+            visualEffectsManager?.ResetAll();
+        }
+
+        public VisualEffectsManager VisualManager => visualEffectsManager;
     }
 }

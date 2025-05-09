@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class ObjetoRevertidor : MonoBehaviour
+public class ObjetoRevertidor : MonoBehaviour, IInteraction
 {
-    private PlayerMovement player;
-    private Interact playerState;
+    [SerializeField] private PlayerMovement player;
     [SerializeField] private float _timerObstacleBase = 5f;
     [SerializeField] private float _timerObstacle;
     [SerializeField] private bool _invertedControl;
+    private bool _isInteracting = false;  
 
     private void Start()
     {
@@ -17,33 +17,34 @@ public class ObjetoRevertidor : MonoBehaviour
 
     private void Update()
     {
-        ChangeControllersObstacle();
+        InvertController();
+        RevertController();
     }
 
-
-    private void OnTriggerStay(Collider other)
+    public void TriggerInteraction()
     {
-        if (other.CompareTag("Player"))
+        _isInteracting = true;
+    }
+
+    //Este metodo invierte los controles y el jugador va hacia adelante al presionar S y viceversa.
+    //El metodo cuenta con un timer ajustable, en el momento que se invierten los controles, el timer se dispara.
+    private void InvertController()
+    {
+        if (_isInteracting)
         {
-            player = other.GetComponent<PlayerMovement>();
-            playerState = other.GetComponent<Interact>();
-
-            if (player != null && playerState.hasInteractered)
+            if (!_invertedControl)
             {
-                //Debug.Log("Jugador detectado");
-
-                if (!_invertedControl)
-                {
-                    _invertedControl = true;
-                    player.zAxisDirection *= -1;
-                    print("Obstaculo activado!");
-                    _timerObstacle = _timerObstacleBase;
-                }
+                _invertedControl = true;
+                player.InvertZAxis(true);
+                print("Obstaculo activado!");
+                _timerObstacle = _timerObstacleBase;
             }
         }
     }
 
-    private void ChangeControllersObstacle()
+
+    //Este metodo revierte los controles a su estado default.
+    private void RevertController()
     {
         if (_invertedControl)
         {
@@ -51,9 +52,10 @@ public class ObjetoRevertidor : MonoBehaviour
 
             if (_timerObstacle <= 0)
             {
-                player.zAxisDirection *= -1;
+                player.InvertZAxis(false);
                 _invertedControl = false;
-                //print("Controles restaurados.");
+                print("Controles restaurados.");
+                _isInteracting = false;
             }
         }
     }

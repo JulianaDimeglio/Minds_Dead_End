@@ -1,65 +1,91 @@
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using System.Collections;
 
 public class VisualEffectsManager : MonoBehaviour
 {
-    [Header("Post Processing")]
-    [SerializeField] private PostProcessVolume postProcessVolume;
+    [SerializeField] private PostProcessVolume volume;
 
-    private ChromaticAberration chromaticAberration;
+    [Header("Max Effect Intensities")]
+    [SerializeField] private float maxAberration = 1.0f;
+    [SerializeField] private float maxGrain = 0.6f;
+    [SerializeField] private float maxVignette = 0.4f;
+    [SerializeField] private float maxDistortion = 40f;
+    [SerializeField] private float fadeOutDuration = 1.5f;
 
-    [Header("Fade Settings")]
-    [SerializeField] private float fadeOutSpeed = 0.5f; // Qué tan rápido baja cuando no miras
-    [SerializeField] private float maxAberration = 1f;  // Valor máximo permitido
+    private ChromaticAberration _aberration;
+    private Grain _grain;
+    private Vignette _vignette;
+    private LensDistortion _distortion;
 
-    private bool isIncreasing = false; // Para saber si lo están mirando
+    private Coroutine fadeCoroutine;
 
-    private void Awake()
+    private void Start()
     {
-        if (postProcessVolume != null && postProcessVolume.profile.TryGetSettings(out chromaticAberration))
+        if (volume == null)
         {
-            chromaticAberration.intensity.value = 0f;
+            Debug.LogError("[VisualEffectsManager] PostProcessVolume not assigned.");
+            return;
         }
-        else
-        {
-            Debug.LogWarning("[VisualEffectsManager] Chromatic Aberration not found in profile.");
-        }
+
+        // Get post-processing effect settings from the volume
+        volume.profile.TryGetSettings(out _aberration);
+        volume.profile.TryGetSettings(out _grain);
+        volume.profile.TryGetSettings(out _vignette);
+        volume.profile.TryGetSettings(out _distortion);
     }
 
-    private void Update()
+    // Called when the player is looking at the enemy
+    public void ApplyEffects(float t)
     {
-        if (chromaticAberration != null)
-        {
-            // Si no se está sumando (no lo están mirando), hacemos el fade out
-            if (!isIncreasing && chromaticAberration.intensity.value > 0f)
-            {
-                chromaticAberration.intensity.value -= fadeOutSpeed * Time.deltaTime;
-                if (chromaticAberration.intensity.value < 0f)
-                    chromaticAberration.intensity.value = 0f;
-            }
+        t = Mathf.Clamp01(t);
 
-            // Reset el flag cada frame. Solo suma si alguien llama IncreaseAberration ese frame.
-            isIncreasing = false;
-        }
+        // Stop fading if player is looking again
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+
+        if (_aberration != null) _aberration.intensity.value = Mathf.Lerp(0f, maxAberration, t);
+        if (_grain != null) _grain.intensity.value = Mathf.Lerp(0f, maxGrain, t);
+        if (_vignette != null) _vignette.intensity.value = Mathf.Lerp(0f, maxVignette, t);
+        if (_distortion != null) _distortion.intensity.value = Mathf.Lerp(0f, maxDistortion, t);
     }
 
-    /// <summary>
-    /// Increases the chromatic aberration intensity while the player is looking at the enemy.
-    /// </summary>
-    public void IncreaseAberration(float amount)
+    // Called when the player stops looking
+    public void ResetAll()
     {
-        if (chromaticAberration != null)
-        {
-            chromaticAberration.intensity.value = Mathf.Clamp(chromaticAberration.intensity.value + amount * Time.deltaTime, 0f, maxAberration);
-            isIncreasing = true;
-        }
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+
+        fadeCoroutine = StartCoroutine(FadeOutEffects());
     }
 
-    /// <summary>
-    /// No longer forces reset. Fade out is handled in Update.
-    /// </summary>
-    public void ResetAberration()
+    // Smoothly reduce all effects over time
+    private IEnumerator FadeOutEffects()
     {
-        // Vacío porque ahora el Update maneja el fade out automáticamente
+        float elapsed = 0f;
+
+        float startAberration = _aberration != null ? _aberration.intensity.value : 0f;
+        float startGrain = _grain != null ? _grain.intensity.value : 0f;
+        float startVignette = _vignette != null ? _vignette.intensity.value : 0f;
+        float startDistortion = _distortion != null ? _distortion.intensity.value : 0f;
+
+        while (elapsed < fadeOutDuration)
+        {
+            float t = 1f - (elapsed / fadeOutDuration);
+
+            if (_aberration != null) _aberration.intensity.value = startAberration * t;
+            if (_grain != null) _grain.intensity.value = startGrain * t;
+            if (_vignette != null) _vignette.intensity.value = startVignette * t;
+            if (_distortion != null) _distortion.intensity.value = startDistortion * t;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Fully disable all effects at the end
+        if (_aberration != null) _aberration.intensity.value = 0f;
+        if (_grain != null) _grain.intensity.value = 0f;
+        if (_vignette != null) _vignette.intensity.value = 0f;
+        if (_distortion != null) _distortion.intensity.value = 0f;
     }
 }

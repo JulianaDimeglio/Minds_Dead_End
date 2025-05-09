@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
   m_Name: Grain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -327,7 +327,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -81
+    value: -46
   tint:
     overrideState: 1
     value: 42
@@ -339,7 +339,7 @@ MonoBehaviour:
     value: -5
   saturation:
     overrideState: 1
-    value: -10
+    value: 15
   brightness:
     overrideState: 0
     value: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
     value: {x: 0.9349736, y: 1, z: 0.8235259, w: 0}
   gain:
     overrideState: 1
-    value: {x: 0.7344202, y: 0.75681275, z: 1, w: 0}
+    value: {x: 0.79514843, y: 0.90115374, z: 1, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1607,7 +1607,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.3
+    value: 0
   fastMode:
     overrideState: 1
     value: 1

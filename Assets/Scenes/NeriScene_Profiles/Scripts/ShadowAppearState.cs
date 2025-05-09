@@ -14,12 +14,11 @@ public class ShadowAppearState : IEnemyState
 
     public void EnterState(BaseEnemy enemy)
     {
-        _lookTimer = 0f;
+        if (enemy is not ShadowEnemy shadow) return;
 
-        ShadowEnemy shadow = (ShadowEnemy)enemy;
+        shadow.Agent.enabled = true; // Reactivar el NavMeshAgent
         shadow.AppearNearPlayer();
-
-        Debug.Log("[ShadowAppearState] Appeared near the player.");
+        Debug.Log("[ShadowAppearState] Reappeared near the player.");
     }
 
     public void UpdateState(BaseEnemy enemy)

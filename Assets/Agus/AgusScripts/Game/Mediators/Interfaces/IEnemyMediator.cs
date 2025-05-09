@@ -53,6 +53,13 @@ namespace Game.Mediators.Interfaces
         void ActivateEnemiesForFinalLoop();
 
         /// <summary>
+        /// Called when the Shadow enemy kills the player after being observed for too long.
+        /// Triggers appropriate game-over behavior or effects.
+        /// </summary>
+        void NotifyShadowKilledPlayer();
+
+
+        /// <summary>
         /// Resets all enemies to their default or idle state.
         /// </summary>
         void ResetAllEnemies();

@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using Game.Enemies.States;
+using Game.Mediators.Implementations;
+using Game.Mediators.Interfaces;
 
 public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
 {
@@ -9,17 +11,31 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
     public float disappearTime = 20f;
     public List<Transform> spawnPoints;
 
-    [SerializeField] public float waitTimeBeforeAppear = 5f;
+    [Header("Behavior Settings")]
+    public float waitTimeBeforeAppear = 5f;
+    public float lookThreshold = 5f;
 
-    private float _currentAppearTime = 0f;
+    private float _lookTimer = 0f;
+    private float _timeSinceLastSeen = 0f;
+    private float _timeToReset = 1f;
+    private bool _wasSeenThisFrame = false;
+
+    private EnvironmentMediator _environmentMediator;
 
     public IEnemyState CurrentState => _currentState;
 
+    // Set up connections to the environment and mediator
+    public void Configure(IEnemyMediator mediator, EnvironmentMediator env)
+    {
+        _enemyMediator = mediator;
+        _environmentMediator = env;
+    }
+
     private void Awake()
     {
-        m_Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        m_Agent = GetComponent<NavMeshAgent>();
 
-        // Check if starting position is on the NavMesh
+        // Check if the enemy starts on the NavMesh
         if (!NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
         {
             Debug.LogWarning("[ShadowEnemy] Not on the NavMesh at start.");
@@ -31,57 +47,124 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
         return new ShadowDormantState();
     }
 
-    /// <summary>
-    /// Moves the Shadow near the player using a valid NavMesh position.
-    /// </summary>
+    // Spawn near the player 
     public void AppearNearPlayer()
     {
-        Vector3 playerPosition = Target.position;
+        if (Target == null) return;
 
+        Vector3 playerPosition = Target.position;
         Vector3 randomOffset = Random.insideUnitSphere * 5f;
         randomOffset.y = 0;
 
         Vector3 spawnPosition = playerPosition + randomOffset;
 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(spawnPosition, out hit, 5f, NavMesh.AllAreas))
+        // Warp to a valid NavMesh point near player
+        if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
         {
             Vector3 fixedPosition = hit.position;
-            fixedPosition.y = 0.1f; // Slightly raise to avoid floor clipping
+            fixedPosition.y = 0.1f;
 
             m_Agent.Warp(fixedPosition);
             Appear();
-            Debug.Log("[ShadowEnemy] Appeared near the player at: " + fixedPosition);
-        }
-        else
-        {
-            Debug.LogWarning("[ShadowEnemy] No valid position found near the player.");
         }
     }
 
-    /// <summary>
-    /// Hides the Shadow.
-    /// </summary>
+    // Spawn behind or out of player's view
+    public void AppearOutOfSight()
+    {
+        if (Target == null) return;
+
+        int maxAttempts = 10;
+        float spawnDistance = 6f;
+        float minAngle = 100f;
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            Vector3 randomDir = Random.insideUnitSphere;
+            randomDir.y = 0;
+            randomDir.Normalize();
+
+            Vector3 candidate = Target.position + randomDir * spawnDistance;
+            Vector3 dirToCandidate = (candidate - Target.position).normalized;
+            float angle = Vector3.Angle(Target.forward, dirToCandidate);
+
+            // Try to spawn outside of player's view cone
+            if (angle >= minAngle)
+            {
+                if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+                {
+                    m_Agent.Warp(hit.position);
+                    Appear();
+                    return;
+                }
+            }
+        }
+
+        // If no valid point, just appear anyway
+        Appear();
+    }
+
     public void Disappear()
     {
         Vanish();
     }
 
-    /// <summary>
-    /// Called when the player sees the Shadow.
-    /// </summary>
+    // Called when the player sees the enemy
     public void OnSeenByPlayer()
     {
+        _wasSeenThisFrame = true;
         _currentState?.OnSeenByPlayer(this);
+
+        _lookTimer += Time.deltaTime;
+
+        // Increase visual effects based on how long the player looks
+        float intensity = Mathf.Clamp01(_lookTimer / lookThreshold);
+        _environmentMediator?.ApplyVisualEffects(intensity);
+
+        // Kill the player if they stare too long
+        if (_lookTimer >= lookThreshold)
+        {
+            Debug.Log("[ShadowEnemy] Player stared too long. PLAYER DEAD.");
+            _enemyMediator?.NotifyShadowKilledPlayer();
+            Disappear();
+            _lookTimer = 0f;
+        }
+    }
+
+    public void ResetLookTimer()
+    {
+        _lookTimer = 0f;
+        _environmentMediator?.ResetVisualEffects();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        // If not seen this frame, reset the timer gradually
+        if (!_wasSeenThisFrame)
+        {
+            _timeSinceLastSeen += Time.deltaTime;
+            if (_timeSinceLastSeen >= _timeToReset && _lookTimer > 0f)
+            {
+                ResetLookTimer();
+            }
+        }
+        else
+        {
+            _timeSinceLastSeen = 0f;
+        }
+
+        _wasSeenThisFrame = false;
     }
 
     private void LateUpdate()
     {
-        // Always rotate to face the player
+        // Always look at the player while active
         if (Target != null && IsActive())
         {
-            Vector3 lookPosition = new Vector3(Target.position.x, transform.position.y, Target.position.z);
-            transform.LookAt(lookPosition);
+            Vector3 lookPos = new Vector3(Target.position.x, transform.position.y, Target.position.z);
+            transform.LookAt(lookPos);
         }
     }
 }

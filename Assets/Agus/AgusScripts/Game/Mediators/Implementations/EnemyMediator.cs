@@ -13,9 +13,10 @@ namespace Game.Mediators.Implementations
     {
         [Header("Enemy References")]
         [SerializeField] private MotherEnemy mother;
-        //[SerializeField] private ShadowEnemy shadow;
+        [SerializeField] private ShadowEnemy shadow;
         //[SerializeField] private MirrorLadyEnemy mirrorLady;
         [SerializeField] private ChildEnemy child;
+    
 
         [Header("Environment Mediator")]
         [SerializeField] private EnvironmentMediator environmentMediator;
@@ -27,6 +28,7 @@ namespace Game.Mediators.Implementations
         void Start()
         {
             mother.Configure(this);
+            shadow.Configure(this, environmentMediator);  
             child.Configure(this);
         }
 
@@ -92,7 +94,12 @@ namespace Game.Mediators.Implementations
             mother?.Appear();
             //shadow?.Appear();
         }
-
+        public void NotifyShadowKilledPlayer()
+        {
+            Debug.Log("[Mediator] Shadow killed the player.");
+            environmentMediator?.ResetVisualEffects();
+            // TODO: trigger death UI, block input, scream, etc.
+        }
         public void ResetAllEnemies()
         {
             mother?.SwitchState(new DormantState());
