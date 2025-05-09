@@ -2,12 +2,22 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    // This class handles how the player interacts with objects under the layer "Interactable" using Raycast and an Interface.
+    //private Animator _animation;
+    private PlayerMovement player;
+    //private bool _isInteracting;
 
     [Header("Raycast Settings")]
-    [SerializeField] private float interactDistance = 3f;
-    [SerializeField] private LayerMask interactLayer;
+    public float interactDistance = 3f;
+    public LayerMask interactLayer;
+
     [SerializeField] private AudioSource _interactSFX;
+
+    private void Start()
+    {
+        //_animation = GetComponent<Animator>();
+        player = GetComponent<PlayerMovement>();
+        //_isInteracting = false;
+    }
 
     private void Update()
     {
@@ -15,10 +25,9 @@ public class Interact : MonoBehaviour
         PlayerInteract();
     }
 
-    // Player interacts with objects using Mouse 1.
     private void PlayerInteract()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetMouseButtonDown(0)/* && !player.isMoving*/)
         {
               
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -27,7 +36,11 @@ public class Interact : MonoBehaviour
             if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))
             {
                 _interactSFX.Play();
-                IInteraction interactable = hit.collider.GetComponent<IInteraction>();
+                //_isInteracting = true;
+                //_animation.SetBool("Interacted", true);
+                
+
+                IInteraction interactable = hit.collider.GetComponentInParent<IInteraction>();
                 if (interactable != null)
                 {
                     Debug.Log("Player is interacting with " + hit.collider.name);
@@ -35,5 +48,18 @@ public class Interact : MonoBehaviour
                 }
             }
         }
+
+        //if (_isInteracting)
+        //{
+        //    player.canMove = false;
+        //}
     }
+
+    //public void EndInteraction()
+    //{
+    //    _animation.SetBool("Interacted", false);
+    //    Debug.Log("Interaction animation ended.");
+    //    _isInteracting = false;
+    //    player.canMove = true;
+    //}
 }
