@@ -15,7 +15,7 @@ public class Interact : MonoBehaviour
         PlayerInteract();
     }
 
-    // Player interacts with objects using Mouse 1.
+    // Player interacts with objects using Mouse 0.
     private void PlayerInteract()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
