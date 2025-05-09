@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class EnemyDetector : MonoBehaviour
 {
-    [Header("Configuración de detección")]
+    [Header("Detection Settings")]
     [SerializeField] private float sphereCastRadius = 0.6f;
     [SerializeField] private float detectionRange = 20f;
     [SerializeField] private float checkInterval = 0.3f;
@@ -20,7 +20,7 @@ public class EnemyDetector : MonoBehaviour
     {
         _camera = Camera.main;
         if (_camera == null)
-            Debug.LogError("[PlayerVisionSystem] No se encontró la cámara principal.");
+            Debug.LogError("[PlayerVisionSystem] Main camera not found.");
     }
 
     private void Update()
