@@ -2,11 +2,6 @@ using Game.Enemies.States;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-
-/// <summary>
-/// represents the Appear state of the Shadow
-/// the enemy becomes visible and can be seen by the player
-/// </summary>
 public class ShadowAppearState : IEnemyState
 {
     private float _lookTimer = 0f;
@@ -16,9 +11,18 @@ public class ShadowAppearState : IEnemyState
     {
         if (enemy is not ShadowEnemy shadow) return;
 
-        shadow.Agent.enabled = true; // Reactivar el NavMeshAgent
-        shadow.AppearNearPlayer();
-        Debug.Log("[ShadowAppearState] Reappeared near the player.");
+        shadow.Agent.enabled = true;
+
+        // Appear somewhere the player can’t see
+        shadow.AppearOutOfSight();
+
+        // Play sound when he appears
+        if (shadow.appearSound != null && shadow.AudioSource != null)
+        {
+            shadow.AudioSource.PlayOneShot(shadow.appearSound);
+        }
+
+        Debug.Log("[ShadowAppearState] Reappeared out of player’s view.");
     }
 
     public void UpdateState(BaseEnemy enemy)

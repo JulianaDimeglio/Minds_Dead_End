@@ -4,6 +4,8 @@ using UnityEngine.AI;
 using Game.Enemies.States;
 using Game.Mediators.Implementations;
 using Game.Mediators.Interfaces;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
 {
@@ -19,6 +21,16 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
     private float _timeSinceLastSeen = 0f;
     private float _timeToReset = 1f;
     private bool _wasSeenThisFrame = false;
+    
+    public AudioClip appearSound;
+    [HideInInspector] public AudioSource AudioSource;
+    
+    [Header("Death Settings")]
+    public GameObject deathScreamerObject;
+    public AudioClip deathSound;
+    public float delayBeforeRestart = 2f;
+
+    private AudioSource _audioSource;
 
     private EnvironmentMediator _environmentMediator;
 
@@ -34,6 +46,7 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
     private void Awake()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+        AudioSource = GetComponent<AudioSource>();
 
         // Check if the enemy starts on the NavMesh
         if (!NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
@@ -125,8 +138,7 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
         if (_lookTimer >= lookThreshold)
         {
             Debug.Log("[ShadowEnemy] Player stared too long. PLAYER DEAD.");
-            _enemyMediator?.NotifyShadowKilledPlayer();
-            Disappear();
+            StartCoroutine(HandlePlayerDeath());
             _lookTimer = 0f;
         }
     }
@@ -166,5 +178,27 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
             Vector3 lookPos = new Vector3(Target.position.x, transform.position.y, Target.position.z);
             transform.LookAt(lookPos);
         }
+    }
+
+    private IEnumerator HandlePlayerDeath()
+    {
+        if (deathSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(deathSound);
+        }
+
+  
+        if (deathScreamerObject != null)
+        {
+            deathScreamerObject.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(delayBeforeRestart);
+
+        _environmentMediator?.ResetVisualEffects();
+
+        Disappear();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
