@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+    // This class handles how stamina is consumed and its limits.
+
     [Header("Stamina")]
     [SerializeField] private float _maxStamina;
     [SerializeField] private float _currentStamina;
@@ -13,10 +15,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _timerDelay;
     [SerializeField] private float _timerEarlyRecoverBase = 3;
     [SerializeField] private float _timerEarlyRecover;
-    [SerializeField] public bool staminaIsBeingConsumed;
-
+    public bool staminaIsBeingConsumed;
     public bool canSprint = true;
-
     public Image staminaBar;
 
     void Start()
@@ -41,10 +41,10 @@ public class PlayerStats : MonoBehaviour
         _currentStamina = Mathf.Clamp(_currentStamina, 0f, _maxStamina);
     }
 
-    // Early Delay se activa cuando:
-    // - La stamina no esta al 100%
-    // - La stamina no esta al 0%
-    // - La stamina no esta siendo consumida.
+    //Early Delay activated when:
+    // - Stamina is not at 100%.
+    // - Stamina is not at 0%.
+    // - Stamina is not being consumed.
 
     public void EarlyDelay()
     {
@@ -102,7 +102,3 @@ public class PlayerStats : MonoBehaviour
         staminaBar.fillAmount = _currentStamina / _maxStamina;
     }
 }
-
-
-// Timer corto sigue descontando una vez timer largo llega a su fin.
-// Timer corto descuenta despues de que el timer largo termina hasta que la stamina llega a su maximo.
