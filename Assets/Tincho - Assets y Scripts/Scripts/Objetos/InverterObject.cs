@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class ObjetoRevertidor : MonoBehaviour, IInteraction
+public class InverterObject : MonoBehaviour, IInteraction
 {
+    // This class handles the InverterObject behavior. By the time user interacts with it, user's zAxis controls will get inverted.
+
     [SerializeField] private PlayerMovement player;
     [SerializeField] private float _timerObstacleBase = 5f;
     [SerializeField] private float _timerObstacle;
@@ -26,8 +28,7 @@ public class ObjetoRevertidor : MonoBehaviour, IInteraction
         _isInteracting = true;
     }
 
-    //Este metodo invierte los controles y el jugador va hacia adelante al presionar S y viceversa.
-    //El metodo cuenta con un timer ajustable, en el momento que se invierten los controles, el timer se dispara.
+    //This method has an adjustable timer, by the time controls get inverted, timer gets triggered.
     private void InvertController()
     {
         if (_isInteracting)
@@ -36,14 +37,13 @@ public class ObjetoRevertidor : MonoBehaviour, IInteraction
             {
                 _invertedControl = true;
                 player.InvertZAxis(true);
-                print("Obstaculo activado!");
+                print("Obstacle activated!");
                 _timerObstacle = _timerObstacleBase;
             }
         }
     }
 
-
-    //Este metodo revierte los controles a su estado default.
+    // This method set the controls back to default state.
     private void RevertController()
     {
         if (_invertedControl)
@@ -54,7 +54,7 @@ public class ObjetoRevertidor : MonoBehaviour, IInteraction
             {
                 player.InvertZAxis(false);
                 _invertedControl = false;
-                print("Controles restaurados.");
+                print("Controls reset.");
                 _isInteracting = false;
             }
         }

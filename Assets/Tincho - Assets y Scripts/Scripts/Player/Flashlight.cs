@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    //Esta clase controla el funcionamiento de la linterna: al presionar E se prende y al volver a presionar E se apaga.
+    //This class handles how the flashlight works: by pressing E the flashlight turns on and pressing E again, the flashlight will turn off.
     private Light _flashlight;
     private bool _isFlashLightOn;
     private AudioSource _flashlightSFX;
@@ -28,13 +28,13 @@ public class Flashlight : MonoBehaviour
             {
                 _flashlight.enabled = true;
                 _isFlashLightOn = true;
-                //print("Linterna prendida.");
+                //print("Flashligth turned on.");
             }
             else if ((_isFlashLightOn && Input.GetKeyDown(KeyCode.E)))
             {
                 _flashlight.enabled = false;
                 _isFlashLightOn = false;
-                //print("Linterna apagada.");
+                //print("Flashligth turned on.");
             }
         }
 

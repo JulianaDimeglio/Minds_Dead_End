@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Movement
 {
+    // This class handles the movement in the player. It receives the values from PlayerMovement and use them here.
+
     private Animator _animator;
     private Rigidbody _rb;
     private AudioSource _footstepsSFX;

@@ -4,7 +4,11 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+<<<<<<< Updated upstream
     // This class handles how stamina is consumed and its limits.
+=======
+    // This class handles how the player consumes the available stamina. All values can be adjusted as desired.
+>>>>>>> Stashed changes
 
     [Header("Stamina")]
     [SerializeField] private float _maxStamina;
@@ -15,9 +19,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _timerDelay;
     [SerializeField] private float _timerEarlyRecoverBase = 3;
     [SerializeField] private float _timerEarlyRecover;
+<<<<<<< Updated upstream
     public bool staminaIsBeingConsumed;
     public bool canSprint = true;
     public Image staminaBar;
+=======
+    [SerializeField] public bool staminaIsBeingConsumed;
+    public bool canSprint = true;
+    [SerializeField] private Image staminaBar;
+>>>>>>> Stashed changes
 
     void Start()
     {
@@ -41,7 +51,11 @@ public class PlayerStats : MonoBehaviour
         _currentStamina = Mathf.Clamp(_currentStamina, 0f, _maxStamina);
     }
 
+<<<<<<< Updated upstream
     //Early Delay activated when:
+=======
+    // Early Delay timer gets activated when:
+>>>>>>> Stashed changes
     // - Stamina is not at 100%.
     // - Stamina is not at 0%.
     // - Stamina is not being consumed.
@@ -101,4 +115,8 @@ public class PlayerStats : MonoBehaviour
     {
         staminaBar.fillAmount = _currentStamina / _maxStamina;
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
