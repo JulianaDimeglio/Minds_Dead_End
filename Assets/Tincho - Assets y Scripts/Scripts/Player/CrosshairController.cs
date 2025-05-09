@@ -3,24 +3,21 @@ using UnityEngine.UI;
 
 public class CrosshairController : MonoBehaviour
 {
+    // This class controls how the crosshair works and informs the player what objects are interactable
+
     public Image crosshairImage;
     public float checkDistance = 3f;
     public LayerMask interactLayer;
 
-    [Header("Colors:")]
-    public Color defaultColor = Color.white;
-    public Color interactColor = Color.green;
-
     [Header("Sizes:")]
     public Vector3 normalScale = Vector3.one;
-    public Vector3 hoverScale = new Vector3(1.5f, 1.5f, 1f);
+    [SerializeField] private Vector3 hoverScale;
 
 
     private Camera mainCamera;
     void Start()
     {
         mainCamera = Camera.main;
-        crosshairImage.color = defaultColor;
     }
 
     void Update()
@@ -36,7 +33,6 @@ public class CrosshairController : MonoBehaviour
                 return;
             }
         }
-        crosshairImage.color = defaultColor;
         crosshairImage.transform.localScale = normalScale;
 
     }

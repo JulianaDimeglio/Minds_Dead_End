@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class HeadBobbing : MonoBehaviour
 {
+    //This class handles how camera will bob, imitating a breathing effect on screen.
     private float timer = 0f;
     private Vector3 startPosition;
     private Vector3 lastPlayerPosition;
 
     [Header("Bobbing Parameters")]
-    public float bobSpeedWalk;
-    public float bobSpeedSprint;
-    public float bobAmountWalkSprint;
-    public float bobAmountIdle;
-    public float bobSpeedIdle;
-    public PlayerMovement player;
+    [SerializeField] private float bobSpeedWalk;
+    [SerializeField] private float bobSpeedSprint;
+    [SerializeField] private float bobAmountWalkSprint;
+    [SerializeField] private float bobAmountIdle;
+    [SerializeField] private float bobSpeedIdle;
+    [SerializeField] private PlayerMovement player;
 
     void Start()
     {
@@ -50,9 +51,6 @@ public class HeadBobbing : MonoBehaviour
         //Idle bobbing
         else if (speed == 0)
         {
-
-            //timer = 0;
-            //transform.localPosition = Vector3.Lerp(transform.localPosition, startPosition, Time.deltaTime * bobSpeed);
             timer += Time.deltaTime * bobSpeedIdle;
             float bobOffset = Mathf.Sin(timer) * bobAmountIdle;
             transform.localPosition = startPosition + new Vector3(0, bobOffset, 0);
