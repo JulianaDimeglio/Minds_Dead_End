@@ -20,6 +20,7 @@ public class Door : MonoBehaviour, IInteraction
     private void Awake()
     {
         _doorSoundManager = DoorSoundManager.Instance;
+
         DoorManager.Instance?.RegisterDoor(this);
         animator = gameObject.GetComponent<Animator>();
 

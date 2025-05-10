@@ -62,6 +62,7 @@ public abstract class BaseEnemy : MonoBehaviour
     protected virtual void Update()
     {
         _currentState?.UpdateState(this);
+        
     }
 
 
@@ -142,13 +143,6 @@ public abstract class BaseEnemy : MonoBehaviour
     /// <param name="speed">The movement speed.</param>
     public void MoveTowards(Transform target, float speed)
     {
-        /*
-        Vector3 targetPosition = target.position;
-        targetPosition.y = transform.position.y;
-
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
-        */
         m_Distance = Vector3.Distance(m_Agent.transform.position, target.position);
         m_Agent.isStopped = false;
         if (m_Distance > 0.5f)

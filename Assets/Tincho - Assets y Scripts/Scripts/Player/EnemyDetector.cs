@@ -68,7 +68,6 @@ public class EnemyDetector : MonoBehaviour
         foreach (var point in points)
         {
             if (!IsInCameraFrustum(point)) continue;
-            Debug.Log("dadada");
             if (!Physics.Linecast(_camera.transform.position, point))
             {
                 return true;
