@@ -3,15 +3,13 @@ using UnityEngine.UI;
 
 public class CrosshairController : MonoBehaviour
 {
-    // This class controls how the crosshair works and informs the player what objects are interactable
-
     public Image crosshairImage;
     public float checkDistance = 3f;
     public LayerMask interactLayer;
 
     [Header("Sizes:")]
     public Vector3 normalScale = Vector3.one;
-    [SerializeField] private Vector3 hoverScale;
+    public Vector3 hoverScale = new Vector3(1.5f, 1.5f, 1f);
 
 
     private Camera mainCamera;
@@ -22,18 +20,21 @@ public class CrosshairController : MonoBehaviour
 
     void Update()
     {
+        //casts a ray from the camera to check the distance 
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, checkDistance, interactLayer))
         {
+            //if the object is interactable then it wil
             if (hit.collider.GetComponent<IInteraction>() != null)
             {
                 crosshairImage.transform.localScale = hoverScale;
                 return;
             }
         }
-        crosshairImage.transform.localScale = normalScale;
+        //if the object is not interactable reset the size 
+        crosshairImage.transform.localScale = normalScale; 
 
     }
 }
