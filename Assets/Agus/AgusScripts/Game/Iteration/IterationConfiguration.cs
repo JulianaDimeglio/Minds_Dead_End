@@ -16,6 +16,7 @@ public class IterationConfigurator : MonoBehaviour
 
     private void ConfigureIteration(int iteration)
     {
+        LoopManager.Instance.SetConditionMet(false);
         ILoopState state = IterationFactory.GetStateForIteration(iteration);
         state.Configure();
     }

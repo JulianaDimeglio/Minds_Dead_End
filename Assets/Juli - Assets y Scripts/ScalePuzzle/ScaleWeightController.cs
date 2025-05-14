@@ -70,6 +70,7 @@ public class ScaleWeightController : MonoBehaviour
         }
         else if (_totalWeight == _goalWeight)
         {
+            LoopManager.Instance.SetConditionMet(true);
             mat.SetColor("_EmissionColor", Color.green);
         }
         else

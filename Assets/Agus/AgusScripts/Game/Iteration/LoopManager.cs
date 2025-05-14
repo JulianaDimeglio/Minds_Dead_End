@@ -69,17 +69,5 @@ public class LoopManager : MonoBehaviour
         // Notify all systems that the loop has (re)started
         OnLoopChanged?.Invoke(CurrentIteration);
 
-        // Reload the current scene to reset its state
-        ReloadCurrentScene();
-    }
-
-    /// <summary>
-    /// Reloads the active scene by its build index.
-    /// Used to reset everything visually and logically for the loop system.
-    /// </summary>
-    private void ReloadCurrentScene()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.buildIndex);
     }
 }

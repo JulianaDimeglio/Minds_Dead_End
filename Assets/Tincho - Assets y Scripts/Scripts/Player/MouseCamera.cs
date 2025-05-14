@@ -23,8 +23,8 @@ public class MouseCamera : MonoBehaviour
     void LateUpdate()
     {
         // Base mouse movement.
-        float rawMouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float rawMouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float rawMouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float rawMouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         Vector2 rawMouseDelta = new Vector2(rawMouseX, rawMouseY);
 
