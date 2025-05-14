@@ -68,6 +68,5 @@ public class LoopManager : MonoBehaviour
 
         // Notify all systems that the loop has (re)started
         OnLoopChanged?.Invoke(CurrentIteration);
-
     }
 }
