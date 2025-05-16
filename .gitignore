@@ -78,3 +78,6 @@ crashlytics-build.properties
 # Mirror
 /[Aa]ssets/AK Studio Art/
 /[Aa]ssets/AK Studio Art.meta
+# Modular House
+/[Aa]ssets/Arte/modular_house_package
+/[Aa]ssets/Arte/modular_house_package.meta
