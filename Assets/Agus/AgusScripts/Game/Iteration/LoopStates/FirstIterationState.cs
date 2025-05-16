@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstIterationState : ILoopState
+public class FirstIterationState : LoopStateBase
 {
-    public void Configure() {
-        // here you can configure the first iteration
+    public override void Configure() {
+        Debug.Log("AAAASDDDDDDDDDD MOTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        Disable("ButtonsManager");
+        Disable("ButtonsPuzzle");
+        Disable("ScalePuzzle");
+        Disable("Child");
+        Disable("Mother");
     }
+
 }

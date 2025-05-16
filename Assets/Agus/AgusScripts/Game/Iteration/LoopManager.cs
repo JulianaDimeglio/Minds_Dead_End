@@ -14,7 +14,7 @@ public class LoopManager : MonoBehaviour
     /// <summary>
     /// The current loop iteration (starts at 1).
     /// </summary>
-    public int CurrentIteration { get; private set; } = 1;
+    public int CurrentIteration { get; private set; } = 0;
 
     /// <summary>
     /// Event fired whenever the loop restarts or advances to a new iteration.

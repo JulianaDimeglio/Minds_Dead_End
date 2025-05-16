@@ -74,3 +74,7 @@ crashlytics-build.properties
 # Atmospheric House
 /[Aa]ssets/AtmosphericHouse
 /[Aa]ssets/AtmosphericHouse.meta
+
+# Mirror
+/[Aa]ssets/AK Studio Art/
+/[Aa]ssets/AK Studio Art.meta

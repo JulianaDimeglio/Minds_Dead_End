@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShadowIterationState : ILoopState
+public class ShadowIterationState : LoopStateBase
 {
-    public void Configure()
+    public override void Configure()
     {
-        // here you can configure the first iteration
+        Enable("ScalePuzzle");
+        Disable("Shadow");
+        Enable("Child");
+        Enable("Mother");
     }
 }
