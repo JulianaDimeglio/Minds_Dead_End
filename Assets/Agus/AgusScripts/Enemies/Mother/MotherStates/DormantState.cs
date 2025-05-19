@@ -13,7 +13,7 @@ namespace Game.Enemies.Mother.MotherStates
         {
             if (enemy is not MotherEnemy mother) return;
 
-            mother.Vanish(); // Ensure she is not visible
+            mother.SetActiveVisualAndLogic(false); // Ensure she is not visible
             Debug.Log("[Mother] Entered DORMANT STATE.");
         }
 

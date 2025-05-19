@@ -7,10 +7,6 @@ public class CrosshairController : MonoBehaviour
     public float checkDistance = 3f;
     public LayerMask interactLayer;
 
-    [Header("Colors:")]
-    public Color defaultColor = Color.white;
-    public Color interactColor = Color.green;
-
     [Header("Sizes:")]
     public Vector3 normalScale = Vector3.one;
     public Vector3 hoverScale = new Vector3(1.5f, 1.5f, 1f);
@@ -20,24 +16,25 @@ public class CrosshairController : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        crosshairImage.color = defaultColor;
     }
 
     void Update()
     {
+        //casts a ray from the camera to check the distance 
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, checkDistance, interactLayer))
         {
+            //if the object is interactable then it wil
             if (hit.collider.GetComponent<IInteraction>() != null)
             {
                 crosshairImage.transform.localScale = hoverScale;
                 return;
             }
         }
-        crosshairImage.color = defaultColor;
-        crosshairImage.transform.localScale = normalScale;
+        //if the object is not interactable reset the size 
+        crosshairImage.transform.localScale = normalScale; 
 
     }
 }

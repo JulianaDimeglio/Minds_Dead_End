@@ -72,6 +72,7 @@ namespace Game.Mediators.Implementations
             Debug.Log("[Mediator] Mother hunt finished.");
 
             environmentMediator?.TriggerMotherOut();
+            child.StartHiding();
             //environmentMediator?.ResetAmbientSound("scare_static");
             //environmentMediator?.CloseDoor("living_room_door");
         }
@@ -79,6 +80,7 @@ namespace Game.Mediators.Implementations
         public void NotifyEnemyExecutedPlayer(BaseEnemy enemy)
         {
             Debug.Log($"Enemy {enemy.name} executed the player.");
+            environmentMediator?.TriggerMotherOut();
             // TODO: show death screen, block input, etc.
         }
 
@@ -91,7 +93,7 @@ namespace Game.Mediators.Implementations
             Debug.Log("Activating enemies for the final loop.");
 
             // Example logic
-            mother?.Appear();
+            mother?.SetActiveVisualAndLogic(true);
             //shadow?.Appear();
         }
         public void NotifyShadowKilledPlayer()

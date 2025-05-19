@@ -31,7 +31,9 @@ namespace Game.Enemies.Mother.MotherStates
             if (_timer >= _retreatDuration)
             {
                 // Disappear and return to passive
-                mother.Vanish();
+                mother.Mediator?.NotifyMotherHuntFinished(mother);
+                mother.SetActiveVisualAndLogic(false);
+                
                 mother.SwitchState(new DormantState()); // Or any idle/passive state you define
 
                 Debug.Log("[Mother] Retreat complete. Returning to passive state.");

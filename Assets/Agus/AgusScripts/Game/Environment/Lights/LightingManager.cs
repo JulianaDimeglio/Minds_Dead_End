@@ -133,7 +133,7 @@ namespace Game.Environment.Lights
                     _currentlyFlickering.Add(light);
                 }
 
-                yield return new WaitForSeconds(1f); // Check cada 1s. Podés ajustar
+                yield return new WaitForSeconds(5f); // Check cada 1s. Podés ajustar
             }
         }
 

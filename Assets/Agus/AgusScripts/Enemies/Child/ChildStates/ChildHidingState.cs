@@ -5,29 +5,33 @@ public class ChildHidingState : IEnemyState
 {
     public void EnterState(BaseEnemy enemy)
     {
-        
+        if (enemy is not ChildEnemy child) return;
+
+        child.SetActiveVisualAndLogic(true);
+        child.PrepareToHide();
     }
+
+    public void ExitState(BaseEnemy enemy)
+    {
+        // Nada por ahora
+    }
+
     public void UpdateState(BaseEnemy enemy)
     {
         if (enemy is not ChildEnemy child || child.WasFound) return;
 
-        //Collider[] hits = Physics.OverlapSphere(child.transform.position, child.DetectionRadius, child.PlayerLayer);
-        //if (hits.Length > 0)
-        //{
-        //    child.OnDiscovered();
-        //}
-    }
-    public void ExitState(BaseEnemy enemy)
-    {
-
+        child.CheckVisibilityAndMaybeRelocate();
     }
 
     public void OnSeenByPlayer(BaseEnemy enemy)
     {
-        if (enemy is ChildEnemy child && !child.WasFound)
-        {
-            child.OnDiscovered();
-        }
-    }
+        if (enemy is not ChildEnemy child || child.WasFound) return;
 
+        Debug.Log("[ChildHidingState] El niño fue visto. ¡Activando transición a FoundState!");
+
+        child.MarkAsFound(); // separa esta lógica del estado
+
+        child.Mediator?.NotifyChildFound();
+        child.SwitchState(new ChildFoundState());
+    }
 }

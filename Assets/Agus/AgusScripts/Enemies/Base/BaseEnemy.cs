@@ -62,6 +62,7 @@ public abstract class BaseEnemy : MonoBehaviour
     protected virtual void Update()
     {
         _currentState?.UpdateState(this);
+        
     }
 
 
@@ -94,20 +95,37 @@ public abstract class BaseEnemy : MonoBehaviour
         // TODO: trigger kill animation, sound, or cinematic
     }
 
-    /// <summary>
-    /// Makes the enemy appear visually (without disabling logic).
-    /// </summary>
-    public virtual void Appear()
+    public virtual void SetActiveVisualAndLogic(bool active)
     {
-        gameObject.SetActive(true);
-    }
+        // Renderers
+        foreach (var renderer in GetComponentsInChildren<Renderer>())
+            renderer.enabled = active;
 
-    /// <summary>
-    /// Hides the enemy visually (without destroying the object or stopping logic).
-    /// </summary>
-    public virtual void Vanish()
-    {
-        gameObject.SetActive(false);
+        // Colliders
+        foreach (var col in GetComponentsInChildren<Collider>())
+            col.enabled = active;
+
+        // NavMeshAgent
+        if (Agent != null)
+        {
+            if (active)
+            {
+                if (!NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+                {
+                    Debug.LogWarning($"[{name}] No está sobre el NavMesh, intentando mover al punto más cercano.");
+                    transform.position = hit.position;
+                }
+
+                Agent.enabled = true;
+            }
+            else
+            {
+                Agent.enabled = true;
+            }
+        }
+
+        // Otros scripts opcionales (como IA, sensores, etc.)
+        this.enabled = active;
     }
 
     /// <summary>
@@ -125,13 +143,6 @@ public abstract class BaseEnemy : MonoBehaviour
     /// <param name="speed">The movement speed.</param>
     public void MoveTowards(Transform target, float speed)
     {
-        /*
-        Vector3 targetPosition = target.position;
-        targetPosition.y = transform.position.y;
-
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
-        */
         m_Distance = Vector3.Distance(m_Agent.transform.position, target.position);
         m_Agent.isStopped = false;
         if (m_Distance > 0.5f)
