@@ -13,7 +13,7 @@ public class HeadBobbing : MonoBehaviour
     [SerializeField] private float bobAmountWalkSprint;
     [SerializeField] private float bobAmountIdle;
     [SerializeField] private float bobSpeedIdle;
-    [SerializeField] private PlayerMovement player;
+    [SerializeField] private PlayerMovementDeprecated player;
 
     void Start()
     {

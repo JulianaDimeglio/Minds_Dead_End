@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265b8516c833e5242a94ca99365b904b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 250
+  mouseSensitivity: 2
   smoothTime: 0.1
   playerRigidbody: {fileID: 1933519094}
 --- !u!81 &165965691
@@ -3047,10 +3047,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbd9e87327f19440b4094ddcca86fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 8
-  interactLayer:
+  sphereCastRadius: 0.6
+  detectionRange: 20
+  checkInterval: 0.3
+  detectionLayer:
     serializedVersion: 2
     m_Bits: 0
+  samplePointCount: 5
+  sampleOffset: 0.3
 --- !u!136 &1933519088
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3162,12 +3166,12 @@ MonoBehaviour:
   _ogSpeed: 3
   _speed: 3
   _sprintMultiplier: 1.5
-  footstepsSFX: {fileID: 1937451358}
-  footstepsSprintFX: {fileID: 2030634699}
-  heavyBreathingFX: {fileID: 128986648}
   zAxisDirection: 1
   canMove: 1
   isSprinting: 0
+  footstepsSFX: {fileID: 1937451358}
+  footstepsSprintFX: {fileID: 2030634699}
+  heavyBreathingFX: {fileID: 128986648}
 --- !u!54 &1933519094
 Rigidbody:
   m_ObjectHideFlags: 0

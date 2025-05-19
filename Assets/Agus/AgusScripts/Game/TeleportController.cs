@@ -10,20 +10,16 @@ public class TeleportController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Rigidbody playerrb = other.GetComponent<Rigidbody>();
+            CharacterController cc = other.GetComponent<CharacterController>();
 
-            if (playerrb!=null)
+            if (cc != null)
             {
-                Vector3 originalVelocity = playerrb.velocity;
-                Vector3 originalAngularVelocity = playerrb.angularVelocity;
                 Vector3 localOffset = transform.InverseTransformPoint(other.transform.position);
                 Quaternion relativeRotation = TeleportZoneObject.rotation * Quaternion.Inverse(transform.rotation);
-                playerrb.isKinematic = true;
+                cc.enabled = false;
                 other.transform.position = TeleportZoneObject.TransformPoint(localOffset);
                 other.transform.rotation = relativeRotation * other.transform.rotation;
-                playerrb.isKinematic = false;
-                playerrb.velocity = relativeVelocity(relativeRotation, originalVelocity);
-                playerrb.angularVelocity = relativeAngularVelocity(relativeRotation, originalAngularVelocity);
+                cc.enabled = true;
             }
         }
     }

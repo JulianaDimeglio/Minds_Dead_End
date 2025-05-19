@@ -4,7 +4,7 @@ public class InverterObject : MonoBehaviour, IInteraction
 {
     // This class handles the InverterObject behavior. By the time user interacts with it, user's zAxis controls will get inverted.
 
-    [SerializeField] private PlayerMovement player;
+    [SerializeField] private PlayerMovementDeprecated player;
     [SerializeField] private float _timerObstacleBase = 5f;
     [SerializeField] private float _timerObstacle;
     [SerializeField] private bool _invertedControl;

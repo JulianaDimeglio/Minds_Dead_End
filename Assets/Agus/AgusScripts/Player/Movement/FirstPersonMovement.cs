@@ -63,14 +63,23 @@ public class FirstPersonMovement : MonoBehaviour
     float rotation_x_axis;
     float rotation_y_axis;
 
+    private bool _mouseInitialized = false;
+    [SerializeField] private Transform cameraWrapper;
+    [SerializeField] private float cameraTiltAmplitude = 1f;
+    [SerializeField] private float cameraTiltSpeed = 6f;
+    private float currentTiltZ = 0f;
+
+    [Header("Footstep Audio")]
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private List<AudioClip> footstepClips;
+    [SerializeField] private float tiltThreshold = 0.1f; // Valor cercano a 0 para detectar el paso
+    private bool hasStepped = false;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
 
         cameraInitialPos = playerCamera.localPosition;
-
-        cameraCap = playerCamera.localEulerAngles.x;
-        if (cameraCap > 180f) cameraCap -= 360f;
 
         if (cursorLock)
         {
@@ -86,19 +95,28 @@ public class FirstPersonMovement : MonoBehaviour
         HandleHeadBob();
     }
 
+    private void ResetMouseDelta()
+    {
+        Input.GetAxis("Mouse X");
+        Input.GetAxis("Mouse Y");
+
+        currentMouseDelta = Vector2.zero;
+        currentMouseDeltaVelocity = Vector2.zero;
+    }
+
     void UpdateMouse()
     {
         Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
 
         cameraCap -= currentMouseDelta.y * mouseSensitivity;
         cameraCap = Mathf.Clamp(cameraCap, -90f, 90f);
 
-
         Quaternion cameraTargetRotation = Quaternion.Euler(cameraCap, 0f, 0f);
         playerCamera.localRotation = cameraTargetRotation;
         Quaternion handTargetRotation = Quaternion.Euler(cameraCap, 0f, 0f);
-        hand.localRotation = Quaternion.Lerp(hand.localRotation, handTargetRotation, Time.deltaTime * handRotationSpeed);
+        hand.localRotation = Quaternion.Lerp(hand.localRotation, handTargetRotation, handRotationSpeed);
 
         transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
     }
@@ -132,7 +150,7 @@ public class FirstPersonMovement : MonoBehaviour
         }
         else
         {
-            // Se detiene en seco
+            // Se detiene en sec
             currentDir = Vector2.zero;
         }
         controller.Move(velocity * Time.deltaTime);
@@ -144,17 +162,19 @@ public class FirstPersonMovement : MonoBehaviour
 
     void HandleHeadBob()
     {
-        bool isMoving = currentDir.magnitude > 0.1f && isGrounded;
+        bool isMoving = currentDir.magnitude > 0.1f;
 
         if (isMoving)
         {
+            float targetTilt = Mathf.Sin(bobTimer) * cameraTiltAmplitude;
+            currentTiltZ = Mathf.Lerp(currentTiltZ, targetTilt, Time.deltaTime * cameraTiltSpeed);
+            Debug.Log(currentTiltZ);
             bobTimer += Time.deltaTime * bobFrequency;
 
             float horizontalBob = Mathf.Cos(bobTimer) * bobHorizontalAmplitude;
 
             float sinValue = Mathf.Sin(bobTimer * 2f);
             float verticalBob;
-
             if (sinValue < 0)
             {
                 verticalBob = sinValue * sinValue * -1f;
@@ -166,25 +186,26 @@ public class FirstPersonMovement : MonoBehaviour
 
             verticalBob *= bobVerticalAmplitude;
 
-            // Nuevo: inclinación en Z según pie de apoyo
-            float footTilt = sinValue * footTiltAmplitude;
-
             // Aplicar posición
             Vector3 bobOffset = new Vector3(horizontalBob, verticalBob, 0f);
             Vector3 targetPosition = cameraInitialPos + bobOffset;
+            // Detectar si estamos cerca de 0 y aún no pisamos
+            if (Mathf.Abs(currentTiltZ) <= tiltThreshold && !hasStepped)
+            {
+                PlayFootstepSound();
+                hasStepped = true;
+            }
+            else if (Mathf.Abs(currentTiltZ) > tiltThreshold)
+            {
+                hasStepped = false;
+            }
             playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, targetPosition, Time.deltaTime * bobTransitionSpeed);
-
-            // Aplicar rotación final combinada
-            Quaternion targetRotation = Quaternion.Euler(cameraCap, 0f, footTilt);
-            playerCamera.localRotation = Quaternion.Slerp(playerCamera.localRotation, targetRotation, Time.deltaTime * bobTransitionSpeed);
+            cameraWrapper.localRotation = Quaternion.Euler(0f, 0f, currentTiltZ);
         }
         else
         {
-            // Reset dinámico (no hard reset)
-            whipVelocity = 0f;
-            whipTilt = Mathf.Lerp(whipTilt, 0f, Time.deltaTime * whipDampSpeed);
-            stepRotVelocity = 0f;
-            stepRotAngle = Mathf.Lerp(stepRotAngle, 0f, Time.deltaTime * stepRotDamp);
+            currentTiltZ = Mathf.Lerp(currentTiltZ, 0f, Time.deltaTime * cameraTiltSpeed);
+            cameraWrapper.localRotation = Quaternion.Euler(0f, 0f, currentTiltZ);
 
             // Respira suavemente
             breathTimer += Time.deltaTime * breathFrequency;
@@ -199,5 +220,14 @@ public class FirstPersonMovement : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(cameraCap + stepRotAngle, 0f, breathTiltZ);
             playerCamera.localRotation = Quaternion.Slerp(playerCamera.localRotation, targetRotation, Time.deltaTime * bobTransitionSpeed);
         }
+    }
+
+    void PlayFootstepSound()
+    {
+        if (footstepClips.Count == 0 || footstepSource == null)
+            return;
+
+        int index = Random.Range(0, footstepClips.Count);
+        footstepSource.PlayOneShot(footstepClips[index]);
     }
 }
