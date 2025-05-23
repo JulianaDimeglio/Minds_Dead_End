@@ -13,7 +13,7 @@ namespace Game.Mediators.Implementations
     {
         [Header("Enemy References")]
         [SerializeField] private MotherEnemy mother;
-        [SerializeField] private ShadowEnemy shadow;
+        //[SerializeField] private ShadowEnemy shadow;
         //[SerializeField] private MirrorLadyEnemy mirrorLady;
         [SerializeField] private ChildEnemy child;
     
@@ -28,7 +28,7 @@ namespace Game.Mediators.Implementations
         void Start()
         {
             mother.Configure(this);
-            shadow.Configure(this, environmentMediator);  
+            //shadow.Configure(this, environmentMediator);  
             child.Configure(this);
         }
 

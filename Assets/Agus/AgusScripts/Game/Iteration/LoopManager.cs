@@ -56,15 +56,13 @@ public class LoopManager : MonoBehaviour
         if (_conditionMet)
         {
             CurrentIteration++;
-            _conditionMet = false;
             Debug.Log($"[LoopManager] Advancing to iteration {CurrentIteration}");
         }
         else
         {
             Debug.Log($"[LoopManager] Repeating iteration {CurrentIteration}");
+            return;
         }
-
-        _conditionMet = false;
 
         // Notify all systems that the loop has (re)started
         OnLoopChanged?.Invoke(CurrentIteration);

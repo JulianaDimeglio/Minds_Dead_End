@@ -21,7 +21,7 @@ public class Door : MonoBehaviour, IInteraction
     {
         _doorSoundManager = DoorSoundManager.Instance;
 
-        DoorManager.Instance?.RegisterDoor(this);
+        DoorManager.Instance.RegisterDoor(this);
         animator = gameObject.GetComponent<Animator>();
 
     }

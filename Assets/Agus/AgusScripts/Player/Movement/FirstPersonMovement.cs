@@ -168,7 +168,6 @@ public class FirstPersonMovement : MonoBehaviour
         {
             float targetTilt = Mathf.Sin(bobTimer) * cameraTiltAmplitude;
             currentTiltZ = Mathf.Lerp(currentTiltZ, targetTilt, Time.deltaTime * cameraTiltSpeed);
-            Debug.Log(currentTiltZ);
             bobTimer += Time.deltaTime * bobFrequency;
 
             float horizontalBob = Mathf.Cos(bobTimer) * bobHorizontalAmplitude;

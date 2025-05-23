@@ -83,3 +83,7 @@ crashlytics-build.properties
 /[Aa]ssets/Arte/modular_house_package.meta
 # Downloaded Assets
 /[Aa]ssets/DownloadedAssets
+# Objects
+/[Aa]ssets/Objects
+/[Aa]ssets/Objects.meta
+

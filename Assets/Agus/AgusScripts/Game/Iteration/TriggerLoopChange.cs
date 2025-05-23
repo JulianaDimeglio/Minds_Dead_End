@@ -8,7 +8,6 @@ public class TriggerLoopChange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            LoopManager.Instance.SetConditionMet(true);
             LoopManager.Instance.TryAdvanceLoop();
         }
     }

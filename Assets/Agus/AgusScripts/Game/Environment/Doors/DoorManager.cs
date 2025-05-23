@@ -29,12 +29,11 @@ public class DoorManager : MonoBehaviour
 
     public void RegisterDoor(Door door)
     {
-        Debug.Log($"REGISTERED DOOR {door.Id}");
         if (door == null || string.IsNullOrEmpty(door.Id)) return;
 
         if (!_doors.ContainsKey(door.Id))
         {
-            Debug.Log($"REGISTERED DOOasdasdR {door.Id}");
+            Debug.Log($"REGISTERED DOOR {door.Id}");
             _doors.Add(door.Id, door);
         }
         else
