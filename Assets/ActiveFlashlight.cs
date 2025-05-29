@@ -6,6 +6,7 @@ public class FlashlightToggle : MonoBehaviour
     [SerializeField] private KeyCode toggleKey = KeyCode.F;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip toggleSound;
+    [SerializeField] private string flashlightItemId = "flashlight";
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class FlashlightToggle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (Input.GetKeyDown(toggleKey) && InventoryManager.Instance.HasItem(flashlightItemId))
         {
             if (flashlight != null)
             {

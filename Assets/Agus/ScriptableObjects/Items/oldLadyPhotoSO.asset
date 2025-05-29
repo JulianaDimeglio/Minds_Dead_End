@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: oldLadyPhotoSO
   m_EditorClassIdentifier: 
   itemID: edithPhoto
-  displayName: Torn old lady photo piece
-  description: "A torn section of an old photograph. A woman in a dark vintage dress
-    stares slightly off-camera. Her age is hard to place\u2014somewhere between youth
-    and old age. The photo is faded and worn, with rough edges where it was torn."
+  displayName: Fragmento rasgado de foto de una mujer mayor
+  description: "Un fragmento rasgado de una fotograf\xEDa antigua. Una mujer con
+    un vestido oscuro de \xE9poca mira ligeramente fuera de c\xE1mara. Es dif\xEDcil
+    precisar su edad\u2014est\xE1 en alg\xFAn punto entre la juventud y la vejez.
+    La foto est\xE1 descolorida y gastada, con bordes irregulares donde fue rasgada."
   modelPrefab: {fileID: 5499035393523232226, guid: 0a6ee6471fdc3804881e14d41540fed5, type: 3}
   initialRotationEuler: {x: 360, y: 0, z: 270}
   initialScaleEuler: {x: 56.8, y: -79.7, z: 0.1}

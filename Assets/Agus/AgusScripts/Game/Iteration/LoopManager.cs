@@ -20,9 +20,11 @@ public class LoopManager : MonoBehaviour
     /// Event fired whenever the loop restarts or advances to a new iteration.
     /// Passes the current iteration number to all listeners.
     /// </summary>
-    public event Action<int> OnLoopChanged;
+    public event Action<int, LoopContextProvider> OnLoopChanged;
 
-    private bool _conditionMet = false;
+    private bool _conditionMet = true;
+
+    [SerializeField] private LoopContextProvider contextProvider;
 
     private void Awake()
     {
@@ -65,6 +67,6 @@ public class LoopManager : MonoBehaviour
         }
 
         // Notify all systems that the loop has (re)started
-        OnLoopChanged?.Invoke(CurrentIteration);
+        OnLoopChanged?.Invoke(CurrentIteration, contextProvider);
     }
 }

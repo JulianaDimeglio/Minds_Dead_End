@@ -17,6 +17,7 @@ namespace Game.Puzzles
 
         private HashSet<string> insertedItems = new();
         private bool isSolved = false;
+        private int touchCount = 0;
 
         public bool IsSolved => isSolved;
 
@@ -35,7 +36,14 @@ namespace Game.Puzzles
         public void Activate()
         {
             if (isSolved) return;
-
+            touchCount++;
+            if (touchCount == 1)
+            {
+                // initialize a strings door id list
+                List<string> doorIDs = new List<string> { "main_bedroom_door", "bathroom_door" };
+                DoorManager.Instance.UnlockDoors(doorIDs);
+                DoorManager.Instance.OpenDoors(doorIDs);
+            }
             Debug.Log($"[Puzzle] {puzzleID} activado. Inserta los fragmentos...");
             UIStateManager.Instance.SetState(UIState.Inventory);
             InventoryCarouselUI.Instance.Open();

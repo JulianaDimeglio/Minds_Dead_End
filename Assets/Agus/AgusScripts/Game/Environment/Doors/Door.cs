@@ -51,6 +51,7 @@ public class Door : MonoBehaviour, IInteraction
         if (_isLocked)
         {
             Debug.Log($"Door '{Id}' is locked.");
+            _doorSoundManager.PlayDoorLocked(transform.position);
             return;
         }
         if ( !_isAnimating)

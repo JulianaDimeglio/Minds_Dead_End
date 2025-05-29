@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: SamPhotoSO
   m_EditorClassIdentifier: 
   itemID: samPhoto
-  displayName: Torn Sam photo piece
-  description: "A torn piece of an old photograph. It shows a boy\u2014maybe ten
-    years old\u2014with a faint, familiar smile. He wears suspenders and stands tall,
-    as if trying to seem older than he is. The more you look, the harder it is to
-    deny: this is you. Why are you in this picture? Why can\u2019t you remember it?"
+  displayName: Fragmento rasgado de una foto tuya
+  description: "Un pedazo rasgado de una fotograf\xEDa antigua. Muestra a un ni\xF1o
+    \u2014de unos diez a\xF1os\u2014 con una leve sonrisa familiar. Lleva tiradores
+    y se mantiene erguido, como si intentara parecer mayor de lo que es. Cuanto m\xE1s
+    lo miro, m\xE1s dif\xEDcil es negarlo: soy yo. \xBFPor qu\xE9 estoy en esta foto?
+    \xBFPor qu\xE9 no puedo recordarlo?"
   modelPrefab: {fileID: 6639368479937839814, guid: 30b1a2e5e1567974fad26473aed0628b, type: 3}
   initialRotationEuler: {x: 360, y: 0, z: 270}
   initialScaleEuler: {x: 56.8, y: -79.7, z: 0.1}

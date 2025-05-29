@@ -6,6 +6,7 @@ public class DoorSoundManager : MonoBehaviour
 
     [SerializeField] private AudioClip openClip;
     [SerializeField] private AudioClip closeClip;
+    [SerializeField] private AudioClip doorLocked;
     [SerializeField] private AudioClip lockedClip;
 
     private void Awake()
@@ -32,5 +33,11 @@ public class DoorSoundManager : MonoBehaviour
     {
         if (lockedClip != null)
             AudioSource.PlayClipAtPoint(lockedClip, position);
+    }
+
+    public void PlayDoorLocked(Vector3 position)
+    {
+        if (doorLocked != null)
+            AudioSource.PlayClipAtPoint(doorLocked, position);
     }
 }

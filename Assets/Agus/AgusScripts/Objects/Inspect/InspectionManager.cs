@@ -189,8 +189,17 @@ public class InspectionManager : MonoBehaviour
             return;
         }
 
-        // Guardar ID en el inventario
-        InventoryManager.Instance.AddItem(itemData.itemID);
+        if (itemData.itemID == "edithPhoto")
+        {
+            //activate box collider of JumscareOldLady
+            var jumpScare = FindObjectOfType<JumpscareOldLady>();
+            if (jumpScare != null)
+            {
+                jumpScare.gameObject.GetComponent<BoxCollider>().enabled = true;
+            }
+        }
+            // Guardar ID en el inventario
+            InventoryManager.Instance.AddItem(itemData.itemID);
 
         // Resetear estado
         isInspecting = false;

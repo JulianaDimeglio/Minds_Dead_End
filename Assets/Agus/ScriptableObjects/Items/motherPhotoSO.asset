@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: motherPhotoSO
   m_EditorClassIdentifier: 
   itemID: margaretPhoto
-  displayName: Torn young woman photo piece
-  description: A torn photograph fragment. It captures a smiling woman with short
-    hair and a light-colored dress, standing close to someone outside the frame.
-    Her expression is full of warmth, and for a moment, the image feels like a glimpse
-    into a happy family memory. The photo is old, its corners worn and edges torn
-    unevenly.
+  displayName: Fragmento rasgado de foto de una mujer joven
+  description: "Un fragmento rasgado de una fotograf\xEDa. Muestra a una mujer sonriente,
+    de cabello corto y con un vestido claro, de pie junto a alguien que ha quedado
+    fuera del encuadre. Su expresi\xF3n transmite calidez, y por un instante, la
+    imagen parece una ventana a un recuerdo familiar feliz. La foto es antigua, con
+    las esquinas desgastadas y los bordes rasgados de forma irregular."
   modelPrefab: {fileID: 3723342774385125686, guid: 36d090fb7d13e45468c12fda04092b0a, type: 3}
   initialRotationEuler: {x: 360, y: 0, z: 270}
   initialScaleEuler: {x: 56.8, y: -79.7, z: 0.1}

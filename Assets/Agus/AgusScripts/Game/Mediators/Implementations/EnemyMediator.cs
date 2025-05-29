@@ -15,7 +15,7 @@ namespace Game.Mediators.Implementations
         [SerializeField] private MotherEnemy mother;
         //[SerializeField] private ShadowEnemy shadow;
         //[SerializeField] private MirrorLadyEnemy mirrorLady;
-        [SerializeField] private ChildEnemy child;
+        //[SerializeField] private ChildEnemy child;
     
 
         [Header("Environment Mediator")]
@@ -29,7 +29,7 @@ namespace Game.Mediators.Implementations
         {
             mother.Configure(this);
             //shadow.Configure(this, environmentMediator);  
-            child.Configure(this);
+            //child.Configure(this);
         }
 
         public void NotifyChildFound()
@@ -72,7 +72,7 @@ namespace Game.Mediators.Implementations
             Debug.Log("[Mediator] Mother hunt finished.");
 
             environmentMediator?.TriggerMotherOut();
-            child.StartHiding();
+            //child.StartHiding();
             //environmentMediator?.ResetAmbientSound("scare_static");
             //environmentMediator?.CloseDoor("living_room_door");
         }

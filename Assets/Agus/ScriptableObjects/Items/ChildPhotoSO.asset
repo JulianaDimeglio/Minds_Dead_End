@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ChildPhotoSO
   m_EditorClassIdentifier: 
   itemID: tommyPhoto
-  displayName: Torn child photo piece
-  description: "A torn piece of an old photograph. It shows a young boy holding a
-    teddy bear. The colors are faded, and the paper is yellowed with age\u2014likely
-    taken decades ago. The edges suggest it was ripped from a larger image"
+  displayName: "Parte de una foto vieja con un ni\xF1o"
+  description: "Un pedazo rasgado de una fotograf\xEDa antigua. Muestra a un ni\xF1o
+    peque\xF1o sosteniendo un oso de peluche. Los colores est\xE1n desvanecidos y
+    el papel amarillento por el paso del tiempo\u2014probablemente tomada hace d\xE9cadas.
+    Los bordes irregulares sugieren que fue arrancada de una imagen m\xE1s grande."
   modelPrefab: {fileID: 810191446863994258, guid: 8aef825beb0138f44965d8fa25c2b52b, type: 3}
   initialRotationEuler: {x: 360, y: 0, z: 270}
   initialScaleEuler: {x: 56.8, y: -79.7, z: 0.1}

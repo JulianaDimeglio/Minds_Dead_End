@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class LoopStateBase : ILoopState
 {
     public abstract void Configure();
+    public abstract void CleanIteration();
 
     protected void Disable(string objectName)
     {

@@ -22,7 +22,7 @@ public class AudioBackground : MonoBehaviour
         audioSource.loop = true;
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 0f; // 2D (global)
-        audioSource.volume = 1f;
+        audioSource.volume = 0.322f;
         audioSource.Play();
     }
 }

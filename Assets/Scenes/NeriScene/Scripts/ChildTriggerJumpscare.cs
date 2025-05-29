@@ -58,13 +58,13 @@ public class ChildTriggerJumpscare : MonoBehaviour
             // Check if arrived
             if (Vector3.Distance(childInstance.transform.position, destinationPoint.position) < 0.1f)
             {
-                anim?.Play("Idle"); // optional stop animation
-
                 audioSource.Stop();
                 isRunning = false;
 
                 Destroy(childInstance, 0.5f);
+                // deactivate this object
                 Debug.Log("Child destroyed after reaching destination.");
+                gameObject.SetActive(false);
             }
         }
     }

@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
     public event OnItemChanged ItemChanged;
 
     public Action<string> OnItemUsedExternally;
-    
+
     public InventoryItemData CurrentItem
     {
         get
@@ -66,6 +66,11 @@ public class InventoryManager : MonoBehaviour
     public bool HasItems()
     {
         return ownedItemIds.Count > 0;
+    }
+
+    public bool HasItem(string itemId)
+    {
+        return ownedItemIds.Contains(itemId);
     }
 
     public List<string> GetAllOwnedItemIds()

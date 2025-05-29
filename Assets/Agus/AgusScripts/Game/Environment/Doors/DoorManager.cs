@@ -47,4 +47,69 @@ public class DoorManager : MonoBehaviour
         _doors.TryGetValue(id, out var door);
         return door;
     }
+
+    // close multiple doors given a list of ids
+    public void CloseDoors(List<string> ids)
+    {
+        foreach (var id in ids)
+        {
+            Door door = GetDoorById(id);
+            if (door)
+            {
+                door.Close();
+            }
+            else
+            {
+                Debug.LogWarning($"[DoorManager] Door with ID '{id}' not found.");
+            }
+        }
+    }
+
+    public void OpenDoors(List<string> ids)
+    {
+        foreach (var id in ids)
+        {
+            Door door = GetDoorById(id);
+            if (door)
+            {
+                door.Open();
+            }
+            else
+            {
+                Debug.LogWarning($"[DoorManager] Door with ID '{id}' not found.");
+            }
+        }
+    }
+
+    public void LockDoors(List<string> ids)
+    {
+        foreach (var id in ids)
+        {
+            Door door = GetDoorById(id);
+            if (door)
+            {
+                door.Lock();
+            }
+            else
+            {
+                Debug.LogWarning($"[DoorManager] Door with ID '{id}' not found.");
+            }
+        }
+    }
+
+    public void UnlockDoors(List<string> ids)
+    {
+        foreach (var id in ids)
+        {
+            Door door = GetDoorById(id);
+            if (door)
+            {
+                door.Unlock();
+            }
+            else
+            {
+                Debug.LogWarning($"[DoorManager] Door with ID '{id}' not found.");
+            }
+        }
+    }
 }

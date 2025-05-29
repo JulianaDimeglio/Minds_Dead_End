@@ -25,7 +25,7 @@ public class TransformResetter : MonoBehaviour
             LoopManager.Instance.OnLoopChanged -= ResetTransform;
     }
 
-    private void ResetTransform(int currentIteration)
+    private void ResetTransform(int currentIteration, LoopContextProvider provider)
     {
         transform.position = _originalPosition;
         transform.rotation = _originalRotation;
