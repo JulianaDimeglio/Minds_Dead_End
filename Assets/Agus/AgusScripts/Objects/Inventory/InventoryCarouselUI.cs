@@ -1,16 +1,16 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
+using UnityEngine.UI;
 
 public class InventoryCarouselUI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Transform inspectionContainer; // Reutilizado del sistema de inspección
+    [SerializeField] private Transform inspectionContainer;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemDescriptionText;
     [SerializeField] private TextMeshProUGUI useText;
+    [SerializeField] private Image useImage;
 
     private GameObject currentModel;
     private bool isOpen = false;
@@ -33,9 +33,7 @@ public class InventoryCarouselUI : MonoBehaviour
 
     private void Update()
     {
-        if (!gameObject.activeSelf) return;
-
-        if (!isOpen) return;
+        if (!gameObject.activeSelf || !isOpen) return;
 
         if (Input.GetKeyDown(KeyCode.A))
             InventoryManager.Instance.PreviousItem();
@@ -54,7 +52,12 @@ public class InventoryCarouselUI : MonoBehaviour
     {
         gameObject.SetActive(true);
         isOpen = true;
-        // Ya no reposicionamos el container
+
+        // Activar desenfoque
+        BlurManager blur = FindObjectOfType<BlurManager>();
+        if (blur != null)
+            blur.ShowInventory();
+
         InventoryManager.Instance.ItemChanged += UpdateUI;
         UpdateUI(InventoryManager.Instance.CurrentItem);
     }
@@ -65,6 +68,12 @@ public class InventoryCarouselUI : MonoBehaviour
         ClearModel();
         gameObject.SetActive(false);
         isOpen = false;
+
+        // Desactivar desenfoque
+        BlurManager blur = FindObjectOfType<BlurManager>();
+        if (blur != null)
+            blur.HideInventory();
+
         if (UIStateManager.Instance.CurrentState == UIState.Inventory)
             UIStateManager.Instance.SetState(UIState.None);
     }
@@ -83,31 +92,26 @@ public class InventoryCarouselUI : MonoBehaviour
         currentModel = Instantiate(data.modelPrefab, inspectionContainer);
         SetLayerRecursively(currentModel.transform, LayerMask.NameToLayer("UI"));
 
-        // Calcular el centro visual del modelo
         Vector3 visualCenter = GetRendererCenter(currentModel);
         Vector3 pivot = currentModel.transform.position;
         Vector3 offset = visualCenter - pivot;
 
-        // Aplicar posición para que el centro visual quede en el origen del contenedor
         currentModel.transform.localPosition = -inspectionContainer.InverseTransformVector(offset);
-
-        // Aplicar rotación desde el ScriptableObject o una por defecto
         currentModel.transform.localRotation = data.InitialRotation;
-
-
-        // Escalar de forma uniforme
         currentModel.transform.localScale = data.InitialScale;
 
-        // Mostrar textos
         itemNameText.text = data.displayName;
         itemDescriptionText.text = data.description;
+
         if (data.isUsable)
         {
-            useText.text = "(Space) Use";
+            useText.text = "Usar";
+            useImage.enabled = true;
         }
         else
         {
             useText.text = "";
+            useImage.enabled = false;
         }
     }
 

@@ -94,4 +94,6 @@ public class Door : MonoBehaviour, IInteraction
     {
         DoorSoundManager.Instance?.PlayClose(transform.position);
     }
+    public bool IsLocked => _isLocked;
+    public bool IsOpen => _isOpen;
 }
