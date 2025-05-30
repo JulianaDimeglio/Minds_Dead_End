@@ -1,17 +1,20 @@
 using UnityEngine;
 using Game.Environment.Lights;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class LightSwitch : MonoBehaviour
 {
     [Header("Configuration")]
-    [SerializeField] private HauntedLight linkedLight;
+    [SerializeField] private List<HauntedLight> linkedLights;
     [SerializeField] private bool startOn = false;
 
     [Header("Audio")]
     [SerializeField] private AudioClip switchOnSound;
     [SerializeField] private AudioClip switchOffSound;
     [SerializeField] private AudioClip blockedSound;
+
+    [SerializeField]private Animator _animator;
 
     private AudioSource _audioSource;
     private bool _isOn;
@@ -34,6 +37,15 @@ public class LightSwitch : MonoBehaviour
     public void Toggle()
     {
         _isOn = !_isOn;
+
+        // Animación de palanca
+        if (_animator != null)
+        {
+            _animator.ResetTrigger("On");
+            _animator.ResetTrigger("Off");
+            _animator.SetTrigger(_isOn ? "On" : "Off");
+        }
+
         ApplyCurrentState();
     }
 
@@ -43,11 +55,24 @@ public class LightSwitch : MonoBehaviour
     /// </summary>
     private void ApplyCurrentState()
     {
-        bool executed = linkedLight.ApplySwitchState(_isOn);
+        bool atLeastOneSuccess = false;
+        bool atLeastOneBlocked = false;
 
-        if (!executed && blockedSound != null)
+        for (int i = 0; i < linkedLights.Count; i++)
+        {
+
+            HauntedLight light = linkedLights[i];
+            if (light == null) continue;
+            bool executed = light.ApplySwitchState(_isOn);
+            if (executed)
+                atLeastOneSuccess = true;
+            else
+                atLeastOneBlocked = true;
+        }
+
+        if (atLeastOneBlocked && blockedSound != null)
             _audioSource.PlayOneShot(blockedSound);
-        else
+        else if (atLeastOneSuccess)
             _audioSource.PlayOneShot(_isOn ? switchOnSound : switchOffSound);
     }
 
@@ -56,7 +81,17 @@ public class LightSwitch : MonoBehaviour
     /// </summary>
     public void ForceOff()
     {
-        linkedLight.TurnOff();
+        for(int i = 0; i < linkedLights.Count; i++)
+        {
+            HauntedLight linkedLight = linkedLights[i];
+            linkedLight.TurnOff();
+        }
+    }
+
+    public void ForceOn()
+    {
+        foreach (var light in linkedLights)
+            light.TurnOn();
     }
 
     /// <summary>

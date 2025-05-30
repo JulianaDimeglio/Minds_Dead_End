@@ -89,3 +89,11 @@ crashlytics-build.properties
 # Objects
 /[Aa]ssets/Objects
 /[Aa]ssets/Objects.meta
+
+# Sounds
+/[Aa]ssets/HorrorBundleSfx
+/[Aa]ssets/HorrorBundleSfx.meta
+
+# Switches
+/[Aa]ssets/SocketsAndSwitches
+/[Aa]ssets/SocketsAndSwitches.meta

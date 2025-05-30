@@ -14,17 +14,17 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
     public List<Transform> spawnPoints;
 
     [Header("Behavior Settings")]
-    public float waitTimeBeforeAppear = 5f;
+    public float waitTimeBeforeAppear = 20f;
     public float lookThreshold = 5f;
 
     private float _lookTimer = 0f;
     private float _timeSinceLastSeen = 0f;
     private float _timeToReset = 1f;
     private bool _wasSeenThisFrame = false;
-    
+
     public AudioClip appearSound;
     [HideInInspector] public AudioSource AudioSource;
-    
+
     [Header("Death Settings")]
     public GameObject deathScreamerObject;
     public AudioClip deathSound;
@@ -125,22 +125,10 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
     // Called when the player sees the enemy
     public void OnSeenByPlayer()
     {
+
         _wasSeenThisFrame = true;
         _currentState?.OnSeenByPlayer(this);
 
-        _lookTimer += Time.deltaTime;
-
-        // Increase visual effects based on how long the player looks
-        float intensity = Mathf.Clamp01(_lookTimer / lookThreshold);
-        _environmentMediator.ApplyVisualEffects(intensity);
-
-        // Kill the player if they stare too long
-        if (_lookTimer >= lookThreshold)
-        {
-            Debug.Log("[ShadowEnemy] Player stared too long. PLAYER DEAD.");
-            StartCoroutine(HandlePlayerDeath());
-            _lookTimer = 0f;
-        }
     }
 
     public void ResetLookTimer()
@@ -178,27 +166,5 @@ public class ShadowEnemy : BaseEnemy, IDetectableByPlayer
             Vector3 lookPos = new Vector3(Target.position.x, transform.position.y, Target.position.z);
             transform.LookAt(lookPos);
         }
-    }
-
-    private IEnumerator HandlePlayerDeath()
-    {
-        if (deathSound != null && _audioSource != null)
-        {
-            _audioSource.PlayOneShot(deathSound);
-        }
-
-  
-        if (deathScreamerObject != null)
-        {
-            deathScreamerObject.SetActive(true);
-        }
-
-        yield return new WaitForSeconds(delayBeforeRestart);
-
-        _environmentMediator?.ResetVisualEffects();
-
-        Disappear();
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

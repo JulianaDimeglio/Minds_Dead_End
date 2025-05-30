@@ -22,4 +22,6 @@ public class InventoryItemData : ScriptableObject
 
     // Si en el futuro algunos ítems son consumibles
     public bool isUsable = false;
+
+    public bool isCollectable = false;
 }

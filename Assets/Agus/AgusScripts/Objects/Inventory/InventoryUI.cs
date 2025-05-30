@@ -65,7 +65,7 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        descriptionText.text = item.GetDescription();
+        descriptionText.text = item.Description;
         ClearCurrentModel();
 
         GameObject model = Instantiate(((MonoBehaviour)item).gameObject, modelContainer);

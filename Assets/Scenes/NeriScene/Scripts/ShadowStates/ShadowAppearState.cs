@@ -42,6 +42,11 @@ public class ShadowAppearState : IEnemyState
 
     public void OnSeenByPlayer(BaseEnemy enemy)
     {
+        Debug.Log("SEEEN BY PLAYA");
+        // get component ShadowSounds of enemy
+        var shadowSounds = enemy.GetComponent<ShadowSounds>();
+        shadowSounds?.PlayEncounter();
+        enemy.SwitchState(new ShadowDormantState());
         // Logic for when the player sees the Shadow can be added here
     }
 }

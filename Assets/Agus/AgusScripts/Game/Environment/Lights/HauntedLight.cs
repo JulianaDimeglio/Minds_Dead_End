@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Game.Environment.Lights;
+using System.Collections.Generic;
 
 public enum LightGroup
 {
@@ -12,7 +13,7 @@ public enum LightState
     On, Off, Broken
 }
 
-[RequireComponent(typeof(Light), typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
 public class HauntedLight : MonoBehaviour
 {
     [Header("Identificación")]
@@ -38,10 +39,15 @@ public class HauntedLight : MonoBehaviour
     public int maxFlicksBeforeBreak = 50;
     public AudioClip breakSound;
 
+    [Header("Visuals")]
+    private Renderer _renderer;
+    private Light _light;
+    private List<Material> _emissiveMaterials = new();
+    private List<Color> _originalEmissionColors = new();
+
     [Header("Audio")]
     public AudioClip flickerSound;
 
-    private Light _light;
     private AudioSource _audioSource;
 
     private Coroutine _flickerRoutine;
@@ -57,11 +63,25 @@ public class HauntedLight : MonoBehaviour
 
     private void Awake()
     {
-        _light = GetComponent<Light>();
+        _light = GetComponentInChildren<Light>();
         _audioSource = GetComponent<AudioSource>();
         _originalIntensity = _light.intensity;
 
-        TurnOff();
+        // Buscar todos los Renderer en este objeto y sus hijos
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+        foreach (var rend in renderers)
+        {
+            foreach (var mat in rend.materials)
+            {
+                if (mat.HasProperty("_EmissionColor"))
+                {
+                    _emissiveMaterials.Add(mat);
+                    _originalEmissionColors.Add(mat.GetColor("_EmissionColor"));
+                    mat.EnableKeyword("_EMISSION");
+                }
+            }
+        }
     }
 
     public void SetLocked(bool locked)
@@ -72,10 +92,16 @@ public class HauntedLight : MonoBehaviour
     public void TurnOn()
     {
         if (_currentState == LightState.Broken || _isLocked || !LightingManager.Instance.IsPowerOn) return;
-        Debug.Log(_light);
+
         _light.enabled = true;
         _light.intensity = _originalIntensity;
         _currentState = LightState.On;
+
+        for (int i = 0; i < _emissiveMaterials.Count; i++)
+        {
+            _emissiveMaterials[i].SetColor("_EmissionColor", _originalEmissionColors[i]);
+            _emissiveMaterials[i].EnableKeyword("_EMISSION");
+        }
     }
 
     public void TurnOff()
@@ -84,6 +110,12 @@ public class HauntedLight : MonoBehaviour
 
         _light.enabled = false;
         _currentState = LightState.Off;
+
+        foreach (var mat in _emissiveMaterials)
+        {
+            mat.SetColor("_EmissionColor", Color.black);
+            mat.EnableKeyword("_EMISSION"); // Para asegurarse de que sigue activa
+        }
     }
 
     public void StartFlicker()

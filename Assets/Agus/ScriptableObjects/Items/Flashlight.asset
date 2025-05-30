@@ -20,3 +20,4 @@ MonoBehaviour:
   initialScaleEuler: {x: 0.17, y: 0.17, z: 0.17}
   icon: {fileID: 0}
   isUsable: 0
+  isCollectable: 1

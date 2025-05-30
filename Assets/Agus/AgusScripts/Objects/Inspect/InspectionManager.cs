@@ -79,7 +79,7 @@ public class InspectionManager : MonoBehaviour
         currentMoveCoroutine = StartCoroutine(MoveToInspection(itemTransform, targetLocalPos));
 
         if (inspectionUI != null)
-            inspectionUI.Show(item.GetDescription(), item.GetDisplayName(), item.CanBeCollected);
+            inspectionUI.Show(item.Description, item.Name, item.CanBeCollected);
     }
 
     public void StopInspect()
@@ -91,10 +91,10 @@ public class InspectionManager : MonoBehaviour
         inspectionUI?.Hide();
         Transform itemTransform = ((MonoBehaviour)currentItem).transform;
 
-        Vector3 targetPos = currentItem.GetOriginalWorldPosition();
-        Quaternion targetRot = currentItem.GetOriginalWorldRotation();
-        Transform originalParent = currentItem.GetOriginalParent();
-        int originalLayer = currentItem.GetOriginalLayer();
+        Vector3 targetPos = currentItem.OriginalWorldPosition;
+        Quaternion targetRot = currentItem.OriginalWorldRotation;
+        Transform originalParent = currentItem.OriginalParent;
+        int originalLayer = currentItem.OriginalLayer;
 
         currentMoveCoroutine = StartCoroutine(MoveBackToWorld(itemTransform, targetPos, targetRot, originalParent, originalLayer));
         if (UIStateManager.Instance.CurrentState == UIState.Inspecting)
@@ -163,18 +163,18 @@ public class InspectionManager : MonoBehaviour
 
     private IEnumerator MoveTransform(Transform target, Vector3 startPos, Quaternion startRot, Vector3 endPos, Quaternion endRot, float duration)
     {
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
-            target.position = Vector3.Lerp(startPos, endPos, t);
-            target.rotation = Quaternion.Slerp(startRot, endRot, t);
-            yield return null;
-        }
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+                target.position = Vector3.Lerp(startPos, endPos, t);
+                target.rotation = Quaternion.Slerp(startRot, endRot, t);
+                yield return null;
+            }
 
-        target.position = endPos;
-        target.rotation = endRot;
+            target.position = endPos;
+            target.rotation = endRot;
     }
 
     private void TryStoreItem()
@@ -182,14 +182,8 @@ public class InspectionManager : MonoBehaviour
         if (currentItem == null || !currentItem.CanBeCollected)
             return;
 
-        var itemData = currentItem.GetItemData();
-        if (itemData == null)
-        {
-            Debug.LogWarning("Tried to store item, but no InventoryItemData assigned.");
-            return;
-        }
 
-        if (itemData.itemID == "edithPhoto")
+        if (currentItem.Id == "edithPhoto")
         {
             //activate box collider of JumscareOldLady
             var jumpScare = FindObjectOfType<JumpscareOldLady>();
@@ -199,7 +193,7 @@ public class InspectionManager : MonoBehaviour
             }
         }
             // Guardar ID en el inventario
-            InventoryManager.Instance.AddItem(itemData.itemID);
+            InventoryManager.Instance.AddItem(currentItem.Id);
 
         // Resetear estado
         isInspecting = false;
@@ -207,6 +201,8 @@ public class InspectionManager : MonoBehaviour
 
         inspectionUI?.Hide();
 
+        var action = currentItem.GetComponent<ICollectable>();
+        action?.OnCollect();
         // Remover objeto del mundo
         Destroy(((MonoBehaviour)currentItem).gameObject);
         currentItem = null;

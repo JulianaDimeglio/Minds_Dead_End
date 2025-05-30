@@ -27,7 +27,6 @@ public class FirstIterationState : LoopStateBase
 
     public override void CleanIteration()
     {
-        context.flashlight.SetActive(false);
         context.childJumpscareTrigger.SetActive(false);
         Debug.Log("[FirstIterationState] Cleaning iteration...");
     }
