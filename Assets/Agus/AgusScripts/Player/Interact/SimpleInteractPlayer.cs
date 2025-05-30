@@ -19,7 +19,7 @@ public class SimpleInteractPlayer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(OpenClose) && UIStateManager.Instance.CurrentState == UIState.None) // Open and close action
+        if (Input.GetKeyDown(OpenClose) && UIStateManager.Instance.CurrentState == UIState.None)
         {
             RaycastCheck();
         }
@@ -49,9 +49,6 @@ public class SimpleInteractPlayer : MonoBehaviour
             {
                 hit.collider.gameObject.BroadcastMessage("ObjectClicked");
             }
-
-
         }
     }
-
 }

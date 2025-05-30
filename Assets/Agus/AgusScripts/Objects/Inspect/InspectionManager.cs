@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class InspectionManager : MonoBehaviour
@@ -8,7 +8,6 @@ public class InspectionManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform inspectionContainer;
     [SerializeField] private InspectionUI inspectionUI;
-
 
     [Header("Settings")]
     [SerializeField] private float moveDuration = 5f;
@@ -49,6 +48,7 @@ public class InspectionManager : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y");
         float rotationSpeed = 2.5f;
         if (!canRotate) return;
+
         inspectionContainer.Rotate(Vector3.up, -mouseX * rotationSpeed, Space.World);
         inspectionContainer.Rotate(Vector3.right, mouseY * rotationSpeed, Space.World);
     }
@@ -59,23 +59,19 @@ public class InspectionManager : MonoBehaviour
         isInspecting = true;
         currentItem = item;
 
-
         inspectionContainer.localRotation = Quaternion.identity;
-
         currentItem.OnInspect();
 
         Transform itemTransform = ((MonoBehaviour)item).transform;
-        
 
-        // Calculate offset to center object visually
         Vector3 visualCenter = GetRendererCenter(itemTransform.gameObject);
         Vector3 pivot = itemTransform.position;
         Vector3 offset = visualCenter - pivot;
         Vector3 targetLocalPos = -inspectionContainer.InverseTransformVector(offset);
 
-        // Start transition
         if (currentMoveCoroutine != null)
             StopCoroutine(currentMoveCoroutine);
+
         currentMoveCoroutine = StartCoroutine(MoveToInspection(itemTransform, targetLocalPos));
 
         if (inspectionUI != null)
@@ -88,7 +84,9 @@ public class InspectionManager : MonoBehaviour
 
         if (currentMoveCoroutine != null)
             StopCoroutine(currentMoveCoroutine);
+
         inspectionUI?.Hide();
+
         Transform itemTransform = ((MonoBehaviour)currentItem).transform;
 
         Vector3 targetPos = currentItem.GetOriginalWorldPosition();
@@ -97,6 +95,7 @@ public class InspectionManager : MonoBehaviour
         int originalLayer = currentItem.GetOriginalLayer();
 
         currentMoveCoroutine = StartCoroutine(MoveBackToWorld(itemTransform, targetPos, targetRot, originalParent, originalLayer));
+
         if (UIStateManager.Instance.CurrentState == UIState.Inspecting)
             UIStateManager.Instance.SetState(UIState.None);
     }
@@ -109,9 +108,11 @@ public class InspectionManager : MonoBehaviour
         Vector3 targetWorldPos = inspectionContainer.TransformPoint(targetLocalPos);
         Quaternion targetRot = inspectionContainer.rotation;
 
-        item.SetParent(null); // keep in world space
+        item.SetParent(null);
         yield return StartCoroutine(MoveTransform(item, startPos, startRot, targetWorldPos, targetRot, moveDuration));
-        canRotate = true; // allow rotation after the move is done
+
+        canRotate = true;
+
         item.gameObject.layer = LayerMask.NameToLayer("InspectedObject");
 
         item.SetParent(inspectionContainer);
@@ -129,14 +130,11 @@ public class InspectionManager : MonoBehaviour
 
         item.gameObject.layer = originalLayer;
         yield return StartCoroutine(MoveTransform(item, startPos, startRot, targetPosition, targetRotation, moveDuration));
-        item.SetParent(originalParent);
 
+        item.SetParent(originalParent);
         currentItem = null;
         isInspecting = false;
-        
     }
-
-
 
     private Vector3 GetRendererCenter(GameObject obj)
     {
@@ -189,27 +187,30 @@ public class InspectionManager : MonoBehaviour
             return;
         }
 
+        // 👉 MOSTRAR MENSAJE SOLO PARA LA LINTERNA
+        if (itemData.itemID == "flashlight_item")
+        {
+            if (SubtitleManager.Instance != null)
+                SubtitleManager.Instance.ShowSubtitle("Presiona F para encender la linterna");
+        }
+
         if (itemData.itemID == "edithPhoto")
         {
-            //activate box collider of JumscareOldLady
             var jumpScare = FindObjectOfType<JumpscareOldLady>();
             if (jumpScare != null)
-            {
                 jumpScare.gameObject.GetComponent<BoxCollider>().enabled = true;
-            }
         }
-            // Guardar ID en el inventario
-            InventoryManager.Instance.AddItem(itemData.itemID);
 
-        // Resetear estado
+        InventoryManager.Instance.AddItem(itemData.itemID);
+
         isInspecting = false;
         canRotate = false;
 
         inspectionUI?.Hide();
 
-        // Remover objeto del mundo
         Destroy(((MonoBehaviour)currentItem).gameObject);
         currentItem = null;
+
         if (UIStateManager.Instance.CurrentState == UIState.Inspecting)
             UIStateManager.Instance.SetState(UIState.None);
     }

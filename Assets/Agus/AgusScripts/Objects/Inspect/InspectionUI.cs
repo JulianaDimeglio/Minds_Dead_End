@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class InspectionUI : MonoBehaviour
 {
     [Header("UI Components")]
-    [SerializeField] private GameObject panel; // El panel principal
+    [SerializeField] private GameObject panel;
     [SerializeField] private TextMeshProUGUI descriptionText;
-    [SerializeField] private TextMeshProUGUI nameText; // Nombre del objeto
+    [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI storeText;
 
     private void Awake()
@@ -20,22 +20,25 @@ public class InspectionUI : MonoBehaviour
     /// </summary>
     public void Show(string description, string displayName, bool canBeCollected)
     {
-
         panel.SetActive(true);
+
+        // Activar desenfoque
+        BlurManager blur = FindObjectOfType<BlurManager>();
+        if (blur != null)
+            blur.ShowInspection();
+
         descriptionText.text = description;
         nameText.text = displayName;
-        if (canBeCollected)
-        {
-            storeText.enabled = true;
-        }
-        else
-        {
-            storeText.enabled = false;
-        }
+        storeText.enabled = canBeCollected;
     }
 
     public void Hide()
     {
         panel.SetActive(false);
+
+        // Desactivar desenfoque
+        BlurManager blur = FindObjectOfType<BlurManager>();
+        if (blur != null)
+            blur.HideInspection();
     }
 }
