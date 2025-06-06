@@ -22,15 +22,25 @@ public class SubtitleManager : MonoBehaviour
         Instance = this;
     }
 
+    // Opción A: duración fija (displayDuration)
     public void ShowSubtitle(string message)
     {
         if (subtitleCoroutine != null)
             StopCoroutine(subtitleCoroutine);
 
-        subtitleCoroutine = StartCoroutine(FadeInOut(message));
+        subtitleCoroutine = StartCoroutine(FadeInOut(message, displayDuration));
     }
 
-    private IEnumerator FadeInOut(string message)
+    // Opción B: duración personalizada
+    public void ShowSubtitle(string message, float customDuration)
+    {
+        if (subtitleCoroutine != null)
+            StopCoroutine(subtitleCoroutine);
+
+        subtitleCoroutine = StartCoroutine(FadeInOut(message, customDuration));
+    }
+
+    private IEnumerator FadeInOut(string message, float duration)
     {
         subtitleText.text = message;
 
@@ -48,8 +58,8 @@ public class SubtitleManager : MonoBehaviour
             yield return null;
         }
 
-        // Wait
-        yield return new WaitForSeconds(displayDuration);
+        // Wait for duration
+        yield return new WaitForSeconds(duration);
 
         // Fade out
         t = 0f;
