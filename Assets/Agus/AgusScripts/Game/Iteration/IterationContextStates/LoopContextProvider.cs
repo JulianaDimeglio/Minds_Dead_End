@@ -8,7 +8,7 @@ public class LoopContextProvider : MonoBehaviour
     [Header("Contexto Iteración 2")]
     public SecondIterationContextMono secondIterationContext;
 
-    [Header("Contexto Iteración 2")]
+    [Header("Contexto Iteración 3")]
     public ThirdIterationContextMono thirdIterationContext;
 
     // Aquí podrás agregar otros contextos en el futuro

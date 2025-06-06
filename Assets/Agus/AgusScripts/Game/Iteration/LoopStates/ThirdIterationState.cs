@@ -13,16 +13,22 @@ public class ThirdIterationState : LoopStateBase
 
     public override void Configure()
     {
+        context.triggerTvOn.SetActive(true);
+        context.triggerTvLook.SetActive(true);
+        context.margaret.SetActive(false);
         DoorManager.Instance.UnlockDoors(context.doorsToUnlockIDs);
         DoorManager.Instance.LockDoors(context.doorsToLockIDs);
         DoorManager.Instance.CloseDoors(context.doorsToCloseIDs);
         DoorManager.Instance.OpenDoors(context.doorsToOpenIDs);
 
-        Debug.Log("[SecondIterationState] Iteration configured.");
+        Debug.Log("[ThirdIterationState] Iteration configured.");
     }
 
     public override void CleanIteration()
     {
-        Debug.Log("[SecondIterationState] Cleaning iteration...");
+        context.margaret.SetActive(false);
+        context.triggerTvOn.SetActive(false);
+        context.triggerTvLook.SetActive(false);
+        Debug.Log("[ThirdIterationState] Cleaning iteration...");
     }
 }

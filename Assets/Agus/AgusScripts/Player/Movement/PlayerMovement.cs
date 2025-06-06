@@ -1,56 +1,66 @@
-// PlayerMovement.cs
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float walkSpeed = 3f;
-    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float speed = 6f;
+    [SerializeField] float gravity = -30f;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask groundMask;
+    [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
 
-    private CharacterController _controller;
-    private IPlayerInput _input;
+    private float originalSpeed;
+    private CharacterController controller;
+    private float velocityY;
+    private bool isGrounded;
+    private Vector2 currentDir;
+    private Vector2 currentDirVelocity;
 
-    private Vector3 _velocity;
-    [SerializeField] Transform _camTransform;
-
-    private void Awake()
+    public Vector2 MoveDirection => currentDir;
+    public float Speed
     {
-        _controller = GetComponent<CharacterController>();
-        _input = GetComponent<IPlayerInput>();
+        get => speed;
+        set => speed = value;
+    }
 
-        if (_input == null)
-        {
-            Debug.LogError("[PlayerMovement] IPlayerInput not found.");
-        }
+    public float OriginalSpeed
+    {
+        get => originalSpeed;
+        set => originalSpeed = value;
     }
 
     private void Start()
     {
+        originalSpeed = speed;
+        controller = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-        HandleMovement();
-    }
-
-    private void HandleMovement()
-    {
-        Vector2 input = _input.GetMovementInput();
-
-        // Convert input to world direction based on camera orientation
-        Vector3 move = _camTransform.right * input.x + _camTransform.forward * input.y;
-        move.y = 0f; // Prevent moving up/down
-
-        _controller.Move(move * walkSpeed * Time.deltaTime);
-
-        // Apply gravity
-        if (_controller.isGrounded && _velocity.y < 0)
+        if (PlayerInputBlocker.Instance != null && PlayerInputBlocker.Instance.BlockMovement)
         {
-            _velocity.y = -2f; // Keep grounded
+            currentDir = Vector2.zero;
+            return;
         }
 
-        _velocity.y += gravity * Time.deltaTime;
-        _controller.Move(_velocity * Time.deltaTime);
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
+
+        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        targetDir.Normalize();
+        currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
+
+        velocityY += gravity * Time.deltaTime;
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;
+
+        if (targetDir.magnitude > 0.01f)
+            currentDir = Vector2.Lerp(currentDir, targetDir, Time.deltaTime * (1f / moveSmoothTime));
+        else
+            currentDir = Vector2.zero;
+
+        controller.Move(velocity * Time.deltaTime);
+
+        if (!isGrounded && controller.velocity.y < -1f)
+            velocityY = -8f;
     }
 }

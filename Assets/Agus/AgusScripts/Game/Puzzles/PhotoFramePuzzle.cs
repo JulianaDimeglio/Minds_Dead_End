@@ -13,7 +13,8 @@ namespace Game.Puzzles
         [Tooltip("Cada fragmento en el cuadro (ya colocado) debe estar en esta lista, su nombre debe coincidir con su ID")]
         [SerializeField] private List<GameObject> framePieces; // uno por ID
 
-
+        [SerializeField] private AudioClip solvedMusic;
+        private AudioSource _audioSource;
 
         private HashSet<string> insertedItems = new();
         private bool isSolved = false;
@@ -24,6 +25,11 @@ namespace Game.Puzzles
         private void Start()
         {
             PuzzleManager.Instance.RegisterPuzzle(puzzleID, this);
+
+            // Inicializar AudioSource
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.playOnAwake = false;
+            _audioSource.spatialBlend = 1f; // Si querés sonido 3D, 0 si querés 2D
 
             // Asegurarse de que todos los fragmentos empiecen ocultos
             foreach (var piece in framePieces)
@@ -96,6 +102,13 @@ namespace Game.Puzzles
             {
                 isSolved = true;
                 LoopManager.Instance.SetConditionMet(true);
+
+                if (solvedMusic != null && _audioSource != null)
+                {
+                    _audioSource.clip = solvedMusic;
+                    _audioSource.Play();
+                }
+
                 Debug.Log($"Puzzle '{puzzleID}' completado.");
                 InventoryManager.Instance.OnItemUsedExternally = null;
             }

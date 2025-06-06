@@ -5,7 +5,12 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private InventoryCarouselUI inventoryUI;
-    [SerializeField] private FirstPersonMovement player;
+    [SerializeField] private PlayerMovement movement;
+    [SerializeField] private FPCameraEffects cameraEffects;
+    [SerializeField] private RaycastInteractionManager raycastManager;
+    [SerializeField] private FlashlightToggle flashlight;
+    [SerializeField] private KeyCode flashlightKey = KeyCode.F;
+    [SerializeField] private KeyCode interactKey = KeyCode.Mouse0;
 
     private void Update()
     {
@@ -18,21 +23,32 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                inventoryUI.Open(); // Esto activa el objeto y ejecuta Awake()
+                inventoryUI.Open();
                 UIStateManager.Instance.SetState(UIState.Inventory);
             }
         }
+        if (Input.GetKeyDown(interactKey))
+        {
+            raycastManager.TryInteract();
+        }
+
+        if (Input.GetKeyDown(flashlightKey))
+        {
+            flashlight.ToggleFlashLight();
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
-            player.originalSpeed = player.speed;
-            player.originalbobFrequency = player.bobFrequency;
-            player.speed *= 1.7f;
-            player.bobFrequency *= 2f;
+            movement.OriginalSpeed = movement.Speed;
+            cameraEffects.OriginalBobFrequency = cameraEffects.BobFrequency;
+
+            movement.Speed *= 1.3f;
+            cameraEffects.BobFrequency *= 1.5f;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
         {
-            player.speed = player.originalSpeed;
-            player.bobFrequency = player.originalbobFrequency;
+            movement.Speed = movement.OriginalSpeed;
+            cameraEffects.BobFrequency = cameraEffects.OriginalBobFrequency;
         }
     }
 }

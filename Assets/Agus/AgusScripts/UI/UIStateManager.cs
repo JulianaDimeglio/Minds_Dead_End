@@ -9,7 +9,6 @@ public enum UIState
 
 public class UIStateManager : MonoBehaviour
 {
-    [SerializeField] private FirstPersonMovement playerMovement;
     public static UIStateManager Instance { get; private set; }
 
     public UIState CurrentState { get; private set; } = UIState.None;
@@ -29,9 +28,13 @@ public class UIStateManager : MonoBehaviour
 
     public void SetState(UIState newState)
     {
+        if (newState != UIState.None && !PlayerInputBlocker.Instance.canOpenUI)
+        {
+            return;
+        }
         if (newState != UIState.None)
         {
-            LockPlayer();
+            PlayerInputBlocker.Instance?.BlockAll();
         }
         if (isTransitioning || CurrentState == newState)
             return;
@@ -39,6 +42,7 @@ public class UIStateManager : MonoBehaviour
 
         isTransitioning = true;
         // Cerrar el estado anterior
+
         switch (CurrentState)
         {
             case UIState.Inspecting:
@@ -57,25 +61,8 @@ public class UIStateManager : MonoBehaviour
         isTransitioning = false;
         if (newState == UIState.None)
         {
-            UnlockPlayer();
+            PlayerInputBlocker.Instance?.UnblockAll();
         }
-    }
-    private void LockPlayer()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        if (playerMovement != null)
-            playerMovement.enabled = false;
-    }
-
-    private void UnlockPlayer()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        if (playerMovement != null)
-            playerMovement.enabled = true;
     }
     public bool IsAnyUIOpen => CurrentState != UIState.None;
 }

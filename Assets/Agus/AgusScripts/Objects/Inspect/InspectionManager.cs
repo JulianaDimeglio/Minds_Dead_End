@@ -181,14 +181,14 @@ public class InspectionManager : MonoBehaviour
             return;
 
 
-        // 👉 MOSTRAR MENSAJE SOLO PARA LA LINTERNA
-        if (itemData.itemID == "flashlight_item")
+        // MOSTRAR MENSAJE SOLO PARA LA LINTERNA
+        if (currentItem.Id == "flashlight_item")
         {
             if (SubtitleManager.Instance != null)
                 SubtitleManager.Instance.ShowSubtitle("Presiona F para encender la linterna");
         }
 
-        if (itemData.itemID == "edithPhoto")
+        if (currentItem.Id == "edithPhoto")
         {
             var jumpScare = FindObjectOfType<JumpscareOldLady>();
             if (jumpScare != null)
@@ -197,7 +197,7 @@ public class InspectionManager : MonoBehaviour
             // Guardar ID en el inventario
             InventoryManager.Instance.AddItem(currentItem.Id);
 
-        InventoryManager.Instance.AddItem(itemData.itemID);
+        InventoryManager.Instance.AddItem(currentItem.Id);
 
         isInspecting = false;
         canRotate = false;

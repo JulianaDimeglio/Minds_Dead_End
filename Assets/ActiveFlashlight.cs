@@ -8,6 +8,9 @@ public class FlashlightToggle : MonoBehaviour
     [SerializeField] private AudioClip toggleSound;
     [SerializeField] private string flashlightItemId = "flashlight";
 
+    private bool isFlashlightOn = false;
+    private bool isFlashlightBeingHaunted = false;
+
     private void Start()
     {
         if (flashlight == null)
@@ -21,18 +24,23 @@ public class FlashlightToggle : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void ToggleFlashLight()
     {
-        if (Input.GetKeyDown(toggleKey) && InventoryManager.Instance.HasItem(flashlightItemId))
+        if (InventoryManager.Instance.HasItem(flashlightItemId))
         {
             if (flashlight != null)
             {
-                flashlight.enabled = !flashlight.enabled;
                 PlayToggleSound();
+                if (isFlashlightBeingHaunted)
+                {
+                    // If the flashlight is being haunted, do not toggle it
+                    return;
+                }
+                isFlashlightOn = !isFlashlightOn;
+                flashlight.enabled = isFlashlightOn;
             }
         }
     }
-
     private void PlayToggleSound()
     {
         if (audioSource != null && toggleSound != null)

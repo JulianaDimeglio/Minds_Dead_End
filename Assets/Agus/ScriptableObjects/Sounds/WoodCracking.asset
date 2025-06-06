@@ -18,8 +18,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1ddf27849dc7d8647b0045caef1f590a, type: 3}
   - {fileID: 8300000, guid: f43213b6d1f5dd54482c077bb9b67cf6, type: 3}
   - {fileID: 8300000, guid: 38918b1dec43a0544be013e7bbf151d0, type: 3}
-  minInterval: 8
-  maxInterval: 22
+  - {fileID: 8300000, guid: 396f11cc9938be64dafa2d3ac6d09940, type: 3}
+  - {fileID: 8300000, guid: 77134c055d4e88f4780f212b4626c702, type: 3}
+  - {fileID: 8300000, guid: 9a2a973ea8c373342b13416a671371d0, type: 3}
+  minInterval: 7
+  maxInterval: 16
   pitchMin: 0.95
   pitchMax: 1.05
   volumeMin: 0.651

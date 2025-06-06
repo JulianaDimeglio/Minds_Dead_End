@@ -23,13 +23,13 @@ public class HauntedLight : MonoBehaviour
     [Header("Flicker Settings")]
     public float minInterval = 0.02f;
     public float maxInterval = 0.3f;
-    public float minOffDuration = 0.01f;
-    public float maxOffDuration = 0.2f;
+    public float minOffDuration = .3f;
+    public float maxOffDuration = 2f;
 
     [Header("Low Voltage Settings")]
     public bool allowVoltageDrop = true;
     [Range(0f, 1f)] public float lowVoltageIntensity = 0.3f;
-    public float voltageDropChance = 0.1f;
+    public float voltageDropChance = .8f;
     public float minDropDuration = 0.5f;
     public float maxDropDuration = 2f;
 
@@ -120,7 +120,7 @@ public class HauntedLight : MonoBehaviour
 
     public void StartFlicker()
     {
-        //Debug.Log($"light {name}, isFlickering: {_isFlickering}, currentState: _currentState, isLocked: {_isLocked}, PowerOn: {LightingManager.Instance.IsPowerOn}");
+        Debug.Log($"light {name}, isFlickering: {_isFlickering}, currentState: _currentState, isLocked: {_isLocked}, PowerOn: {LightingManager.Instance.IsPowerOn}");
         if (_isFlickering || _currentState == LightState.Broken || _isLocked || !LightingManager.Instance.IsPowerOn)
             return;
 

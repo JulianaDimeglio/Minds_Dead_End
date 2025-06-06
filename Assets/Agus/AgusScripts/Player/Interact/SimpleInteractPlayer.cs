@@ -32,7 +32,11 @@ public class SimpleInteractPlayer : MonoBehaviour
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out hit, 2.3f, raycastMask))
         {
             Debug.Log("Hit: " + hit.collider.gameObject.name);
-            if (hit.collider.gameObject.GetComponent<LightSwitch>() != null) { 
+            if (hit.collider.gameObject.GetComponent<IInteractable>() != null)
+            {
+                hit.collider.gameObject.GetComponent<IInteractable>().Interact();
+            }
+            else if (hit.collider.gameObject.GetComponent<LightSwitch>() != null) { 
                 hit.collider.gameObject.GetComponent<LightSwitch>().Toggle();
             }
             else if (hit.collider.gameObject.GetComponent<PhotoFramePuzzle>() && UIStateManager.Instance.CurrentState == UIState.None)

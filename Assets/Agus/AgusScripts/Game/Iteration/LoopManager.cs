@@ -10,11 +10,11 @@ using UnityEngine.SceneManagement;
 public class LoopManager : MonoBehaviour
 {
     public static LoopManager Instance { get; private set; }
-
+    [SerializeField] private IterationRoomManager iterationRoomManager;
     /// <summary>
     /// The current loop iteration (starts at 1).
     /// </summary>
-    public int CurrentIteration { get; private set; } = 0;
+    public int CurrentIteration = 0;
 
     /// <summary>
     /// Event fired whenever the loop restarts or advances to a new iteration.
@@ -25,6 +25,8 @@ public class LoopManager : MonoBehaviour
     private bool _conditionMet = true;
 
     [SerializeField] private LoopContextProvider contextProvider;
+
+    public bool ConditionMet => _conditionMet;
 
     private void Awake()
     {
@@ -55,6 +57,7 @@ public class LoopManager : MonoBehaviour
     /// </summary>
     public void TryAdvanceLoop()
     {
+        iterationRoomManager.sequenceStarted = false;
         if (_conditionMet)
         {
             CurrentIteration++;
