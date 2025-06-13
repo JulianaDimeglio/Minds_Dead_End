@@ -111,6 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515762314007442849}
+  - component: {fileID: 4057589740576238287}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -134,6 +135,19 @@ Transform:
   - {fileID: 5762883305202069501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4057589740576238287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6931623093907771515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2678d851a211921498f5952e8416cb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interanctableIcon: {fileID: 7988161199867139999}
 --- !u!1 &7988161199867139999
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,16 +4,16 @@ public class ProximityDetectionIcons : MonoBehaviour
 {
     public float maxDistance = 3f;
     public LayerMask interactableLayer;
-    private Interactable currentTarget;
-    public Transform player; // Tu cámara o cabeza del jugador
+    private InteractableIcon currentTarget;
+    public Transform player;
 
     void Update()
     {
-        Interactable[] allInteractables = FindObjectsOfType<Interactable>();
-        Interactable closest = null;
+        InteractableIcon[] allInteractables = FindObjectsOfType<InteractableIcon>();
+        InteractableIcon closest = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (Interactable i in allInteractables)
+        foreach (InteractableIcon i in allInteractables)
         {
             float distance = Vector3.Distance(player.position, i.transform.position);
             if (distance < maxDistance && distance < closestDistance)

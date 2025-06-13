@@ -3,6 +3,7 @@ using UnityEngine;
 public class InspectableItem : MonoBehaviour, IInspectable
 {
     [SerializeField] private InventoryItemData itemData;
+    public InteractableIcon interactableIcon;
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
@@ -23,6 +24,7 @@ public class InspectableItem : MonoBehaviour, IInspectable
     public bool CanBeUsed => itemData.isUsable;
     public void OnInspect()
     {
+        interactableIcon?.HideIcons();
         // Guardamos estado global (posición y rotación)
         originalParent = transform.parent;
         originalPosition = transform.position;

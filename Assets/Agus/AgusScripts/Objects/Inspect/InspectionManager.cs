@@ -87,15 +87,12 @@ public class InspectionManager : MonoBehaviour
 
         inspectionUI?.Hide();
 
-        Transform itemTransform = ((MonoBehaviour)currentItem).transform;
-
         Vector3 targetPos = currentItem.OriginalWorldPosition;
         Quaternion targetRot = currentItem.OriginalWorldRotation;
         Transform originalParent = currentItem.OriginalParent;
         int originalLayer = currentItem.OriginalLayer;
 
-        currentMoveCoroutine = StartCoroutine(MoveBackToWorld(itemTransform, targetPos, targetRot, originalParent, originalLayer));
-
+        currentMoveCoroutine = StartCoroutine(MoveBackToWorld(currentItem, targetPos, targetRot, originalParent, originalLayer));
         if (UIStateManager.Instance.CurrentState == UIState.Inspecting)
             UIStateManager.Instance.SetState(UIState.None);
     }
@@ -120,18 +117,20 @@ public class InspectionManager : MonoBehaviour
         item.localRotation = Quaternion.identity;
     }
 
-    private IEnumerator MoveBackToWorld(Transform item, Vector3 targetPosition, Quaternion targetRotation, Transform originalParent, int originalLayer)
+    private IEnumerator MoveBackToWorld(InspectableItem currentItem, Vector3 targetPosition, Quaternion targetRotation, Transform originalParent, int originalLayer)
     {
+        Transform itemTransform = ((MonoBehaviour)currentItem).transform;
         canRotate = false;
-        item.SetParent(null);
+        itemTransform.SetParent(null);
 
-        Vector3 startPos = item.position;
-        Quaternion startRot = item.rotation;
+        Vector3 startPos = itemTransform.position;
+        Quaternion startRot = itemTransform.rotation;
 
-        item.gameObject.layer = originalLayer;
-        yield return StartCoroutine(MoveTransform(item, startPos, startRot, targetPosition, targetRotation, moveDuration));
+        itemTransform.gameObject.layer = originalLayer;
+        yield return StartCoroutine(MoveTransform(itemTransform, startPos, startRot, targetPosition, targetRotation, moveDuration));
 
-        item.SetParent(originalParent);
+        itemTransform.SetParent(originalParent);
+        currentItem.interactableIcon?.ShowIcons();
         currentItem = null;
         isInspecting = false;
     }
@@ -194,8 +193,6 @@ public class InspectionManager : MonoBehaviour
             if (jumpScare != null)
                 jumpScare.gameObject.GetComponent<BoxCollider>().enabled = true;
         }
-            // Guardar ID en el inventario
-            InventoryManager.Instance.AddItem(currentItem.Id);
 
         InventoryManager.Instance.AddItem(currentItem.Id);
 

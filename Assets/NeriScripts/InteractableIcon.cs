@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Interactable : MonoBehaviour
+public class InteractableIcon : MonoBehaviour
 {
-    public GameObject eyeIcon;
-    public GameObject earIcon;
-    public bool canObserve = false;
-    public bool canListen = false;
+    [SerializeField] GameObject interanctableIcon;
 
     private bool isDisabled = false; 
 
@@ -14,38 +11,28 @@ public class Interactable : MonoBehaviour
     {
         if (isDisabled) return;
 
-        FaceCameraIfActive(eyeIcon);
-        FaceCameraIfActive(earIcon);
+        FaceCameraIfActive(interanctableIcon);
     }
 
     private void FaceCameraIfActive(GameObject icon)
     {
         if (icon != null && icon.activeSelf && Camera.main != null)
         {
-            Vector3 direction = Camera.main.transform.position - icon.transform.position;
-            direction.y = 0;
-            icon.transform.rotation = Quaternion.LookRotation(-direction);
+            gameObject.transform.LookAt(Camera.main.transform);
         }
     }
 
     public void ShowIcons()
     {
         if (isDisabled) return;
-
-        if (canObserve && eyeIcon != null)
-            StartCoroutine(FadeIcon(eyeIcon, true));
-
-        if (canListen && earIcon != null)
-            StartCoroutine(FadeIcon(earIcon, true));
+        if (interanctableIcon != null)
+            StartCoroutine(FadeIcon(interanctableIcon, true));
     }
 
     public void HideIcons()
     {
-        if (eyeIcon != null)
-            StartCoroutine(FadeIcon(eyeIcon, false));
-
-        if (earIcon != null)
-            StartCoroutine(FadeIcon(earIcon, false));
+        if (interanctableIcon != null)
+            StartCoroutine(FadeIcon(interanctableIcon, false));
     }
 
     private IEnumerator FadeIcon(GameObject icon, bool fadeIn)
@@ -78,8 +65,7 @@ public class Interactable : MonoBehaviour
     {
         isDisabled = true;
         HideIcons();
-        if (eyeIcon != null) eyeIcon.SetActive(false);
-        if (earIcon != null) earIcon.SetActive(false);
+        if (interanctableIcon != null) interanctableIcon.SetActive(false);
         this.enabled = false; // Opcional: para desactivar completamente el script
     }
 }
