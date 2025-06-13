@@ -583,12 +583,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: ShadowLp
+  m_Name: ShadowLp.cs
   m_EditorClassIdentifier: Unity.Timeline:UnityEngine.Timeline:TimelineAsset
   m_Version: 0
-  m_Tracks:
-  - {fileID: -7124514786627424227}
-  - {fileID: -3377626780426940853}
+  m_Tracks: []
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60

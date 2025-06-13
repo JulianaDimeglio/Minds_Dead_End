@@ -19,7 +19,7 @@ public class ClockAnimate : MonoBehaviour
     private int currentHour = 0;
 
     private bool isLowTick = false;
-    private bool isBroken = true;
+    private bool isBroken = false;
 
     private bool movedBrokenClockHands = false;
 
