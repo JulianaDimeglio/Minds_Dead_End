@@ -1,123 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9095834479920400779
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: un monstruo....
---- !u!114 &-8834470826386920025
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip
-  m_EditorClassIdentifier: 
-  subtitleText: "Hab\xEDa una vez..."
---- !u!114 &-8182331117614600649
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: "Dicen que la oscuridad lo devor\xF3 por completo."
---- !u!114 &-7844818420175745991
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: "porque eligi\xF3 no escuchar los gritos."
---- !u!114 &-7304494806842253453
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: "que olvid\xF3 c\xF3mo encontrarla."
---- !u!114 &-4454453106101054874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: "que se dej\xF3 caer."
---- !u!114 &-4397241893669831267
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip
-  m_EditorClassIdentifier: 
-  subtitleText: Te voy a contar una historia
---- !u!114 &-4389989893486324410
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: porque nunca dijo la verdad.
---- !u!114 &-1127477538573866024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: Pero yo creo...
---- !u!114 &-1103287534937232838
+--- !u!114 &-8905068973284479178
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,56 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
   m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  subtitleText: "No ten\xEDa boca..."
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: IntroTimeline2
-  m_EditorClassIdentifier: 
-  m_Version: 0
-  m_Tracks:
-  - {fileID: 6464988627063593174}
-  - {fileID: 710708695223668142}
-  m_FixedDuration: 0
-  m_EditorSettings:
-    m_Framerate: 60
-    m_ScenePreview: 1
-  m_DurationMode: 0
-  m_MarkerTrack: {fileID: 0}
---- !u!114 &129125708695796147
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: "No ten\xEDa ojos..."
---- !u!114 &309853977232717216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  subtitleText: "porque no pod\xEDa soportar ver lo que hab\xEDa hecho."
---- !u!114 &710708695223668142
+  subtitleText: "Seg\xFAn fuentes cercanas al caso,"
+--- !u!114 &-8283648408163785593
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,14 +33,83 @@ MonoBehaviour:
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children: []
-  m_Clips: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 0
+    m_ClipIn: 0
+    m_Asset: {fileID: -2518924486266293120}
+    m_Duration: 105.62498866213151
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -8283648408163785593}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: newss
   m_Markers:
     m_Objects: []
   m_TrackProperties:
     volume: 1
     stereoPan: 0
     spatialBlend: 0
---- !u!114 &2674600383481934344
+--- !u!114 &-7892952760509889964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,10 +119,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  subtitleText: "porque la enterr\xF3 tan profundo..."
---- !u!114 &2979814254984328691
+  subtitleText: "La familia permanece en el lugar, acompa\xF1ada por autoridades
+    y vecinos."
+--- !u!114 &-6783570353541897996
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,10 +133,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  subtitleText: 
---- !u!114 &4035243548257361202
+  subtitleText: "Thomas fue visto por \xFAltima vez "
+--- !u!114 &-5127431896415590668
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,10 +146,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  subtitleText: "No ten\xEDa orejas..."
---- !u!114 &4232630167841105990
+  subtitleText: ' en las afueras de Redville.'
+--- !u!114 &-3867529272347289272
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,10 +159,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
-  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  subtitleText: "Y no ten\xEDa alma"
---- !u!114 &6464988627063593174
+  subtitleText: "Iremos actualizando a medida que haya m\xE1s informaci\xF3n disponible."
+--- !u!114 &-3438284331818981603
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: Hasta el momento, no se han encontrado pistas concretas.
+--- !u!114 &-2518924486266293120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
+  m_Name: AudioPlayableAsset
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 8300000, guid: c755204e02f5b0049b728b1e5d5fa308, type: 3}
+  m_Loop: 0
+  m_bufferingTime: 0.1
+  m_ClipProperties:
+    volume: 1
+--- !u!114 &-2497643939817166982
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,12 +214,12 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 5.183333333333334
+    m_Start: 2.283333333333333
     m_ClipIn: 0
-    m_Asset: {fileID: -4397241893669831267}
-    m_Duration: 2.450000000000001
+    m_Asset: {fileID: -161699645690387752}
+    m_Duration: 1.15
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -348,12 +283,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 10.55
+    m_Start: 4.133333333333334
     m_ClipIn: 0
-    m_Asset: {fileID: -8834470826386920025}
-    m_Duration: 1.5833333333333321
+    m_Asset: {fileID: 2371460369465657319}
+    m_Duration: 3.3
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -417,12 +352,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 12.933333333333334
+    m_Start: 7.433333333333334
     m_ClipIn: 0
-    m_Asset: {fileID: -9095834479920400779}
-    m_Duration: 1.4999999999999982
+    m_Asset: {fileID: 3177217536802898610}
+    m_Duration: 4.566666666666666
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -486,12 +421,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 15.633333333333333
+    m_Start: 12
     m_ClipIn: 0
-    m_Asset: {fileID: 129125708695796147}
-    m_Duration: 1.7166666666666686
+    m_Asset: {fileID: -5127431896415590668}
+    m_Duration: 2.216666666666667
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -555,12 +490,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 17.766666666666666
+    m_Start: 14.75
     m_ClipIn: 0
-    m_Asset: {fileID: 309853977232717216}
-    m_Duration: 3.0500000000000007
+    m_Asset: {fileID: -8905068973284479178}
+    m_Duration: 2.216666666666665
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -624,12 +559,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 22.3
+    m_Start: 16.966666666666665
     m_ClipIn: 0
-    m_Asset: {fileID: -1103287534937232838}
-    m_Duration: 1.5999999999999979
+    m_Asset: {fileID: -6783570353541897996}
+    m_Duration: 1.0833333333333357
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -693,12 +628,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 23.9
+    m_Start: 18.05
     m_ClipIn: 0
-    m_Asset: {fileID: -4389989893486324410}
-    m_Duration: 2.1333333333333364
+    m_Asset: {fileID: 8734507407394417578}
+    m_Duration: 3.3000000000000007
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -762,12 +697,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 27.15
+    m_Start: 21.866666666666667
     m_ClipIn: 0
-    m_Asset: {fileID: 4035243548257361202}
-    m_Duration: 1.6166666666666671
+    m_Asset: {fileID: 2950013626098440639}
+    m_Duration: 2.783333333333333
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -831,12 +766,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 29.35
+    m_Start: 24.666666666666668
     m_ClipIn: 0
-    m_Asset: {fileID: -7844818420175745991}
-    m_Duration: 3.133333333333333
+    m_Asset: {fileID: 6036727323596865899}
+    m_Duration: 4.616666666666667
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -900,12 +835,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 33.63333333333333
+    m_Start: 29.283333333333335
     m_ClipIn: 0
-    m_Asset: {fileID: 4232630167841105990}
-    m_Duration: 1.4833333333333343
+    m_Asset: {fileID: 8618895079060783739}
+    m_Duration: 2.099999999999998
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -969,12 +904,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 35.31666666666667
+    m_Start: 31.383333333333333
     m_ClipIn: 0
-    m_Asset: {fileID: 2674600383481934344}
-    m_Duration: 2.1999999999999957
+    m_Asset: {fileID: -3438284331818981603}
+    m_Duration: 2.6000000000000014
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -1038,12 +973,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 37.86666666666667
+    m_Start: 33.983333333333334
     m_ClipIn: 0
-    m_Asset: {fileID: -7304494806842253453}
-    m_Duration: 2.133333333333333
+    m_Asset: {fileID: -7892952760509889964}
+    m_Duration: 3.75
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -1107,12 +1042,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 40.65
+    m_Start: 37.75
     m_ClipIn: 0
-    m_Asset: {fileID: -8182331117614600649}
-    m_Duration: 3.5333333333333314
+    m_Asset: {fileID: 1983317388425784656}
+    m_Duration: 6.016666666666666
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -1176,150 +1111,12 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleClip
   - m_Version: 1
-    m_Start: 47.81666666666667
+    m_Start: 43.766666666666666
     m_ClipIn: 0
-    m_Asset: {fileID: -1127477538573866024}
-    m_Duration: 2.9499999999999957
+    m_Asset: {fileID: -3867529272347289272}
+    m_Duration: 3.81666666666667
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: -1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: SubtitleClip
-  - m_Version: 1
-    m_Start: 52.15
-    m_ClipIn: 0
-    m_Asset: {fileID: -4454453106101054874}
-    m_Duration: 2.4166666666666714
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: -1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: SubtitleClip
-  - m_Version: 1
-    m_Start: 60.86666666666667
-    m_ClipIn: 0
-    m_Asset: {fileID: 2979814254984328691}
-    m_Duration: 0.4615419501133786
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 6464988627063593174}
+    m_ParentTrack: {fileID: -2497643939817166982}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -1384,3 +1181,133 @@ MonoBehaviour:
     m_DisplayName: SubtitleClip
   m_Markers:
     m_Objects: []
+--- !u!114 &-161699645690387752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip
+  m_EditorClassIdentifier: 
+  subtitleText: Buenas noches.
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: tv
+  m_EditorClassIdentifier: Unity.Timeline:UnityEngine.Timeline:TimelineAsset
+  m_Version: 0
+  m_Tracks:
+  - {fileID: -2497643939817166982}
+  - {fileID: -8283648408163785593}
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 0}
+--- !u!114 &1983317388425784656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: "El clima y el paso del tiempo juegan en contra, pero la b\xFAsqueda
+    contin\xFAa."
+--- !u!114 &2371460369465657319
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: "La intensa b\xFAsqueda contin\xFAa por Thomas Beckett, "
+--- !u!114 &2950013626098440639
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: 'Desde entonces, equipos de rescate, personal policial y decenas
+    de voluntarios '
+--- !u!114 &3177217536802898610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: "un ni\xF1o de 8 a\xF1os que desapareci\xF3 ayer por la tarde cerca
+    del Bosque Hillcreek, "
+--- !u!114 &6036727323596865899
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: "La intensa b\xFAsqueda contin\xFAa por Tom\xE1s Beckett, "
+--- !u!114 &8618895079060783739
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: "han estado recorriendo incansablemente el \xE1rea."
+--- !u!114 &8734507407394417578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dd700da28f90e41bb69c6b09bff2a9, type: 3}
+  m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  subtitleText: "jugando con otro ni\xF1o del vecindario antes de adentrarse en la
+    zona boscosa"

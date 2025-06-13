@@ -409,6 +409,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758289374}
   m_CullTransparentMesh: 1
+--- !u!1 &1024513351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1984519950694126355, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
+  m_PrefabInstance: {fileID: 2536969584493486402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1065245355
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,15 +848,23 @@ PrefabInstance:
     - target: {fileID: 5894816532254902270, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
       propertyPath: m_PlayableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f57e89bc6042ad34c80e02e607fe6530, type: 2}
+      objectReference: {fileID: 11400000, guid: 18eb0f90c536b4a4485aeb949f6e7b4f, type: 2}
     - target: {fileID: 5894816532254902270, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5894816532254902270, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
       propertyPath: m_SceneBindings.Array.data[2].key
       value: 
       objectReference: {fileID: 6464988627063593174, guid: f57e89bc6042ad34c80e02e607fe6530, type: 2}
+    - target: {fileID: 5894816532254902270, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].key
+      value: 
+      objectReference: {fileID: 7721275126025768161, guid: 18eb0f90c536b4a4485aeb949f6e7b4f, type: 2}
+    - target: {fileID: 5894816532254902270, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].key
+      value: 
+      objectReference: {fileID: 4101848628635368650, guid: 18eb0f90c536b4a4485aeb949f6e7b4f, type: 2}
     - target: {fileID: 5894816532254902270, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
@@ -864,6 +877,10 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
       objectReference: {fileID: 603484229}
+    - target: {fileID: 5894816532254902270, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].value
+      value: 
+      objectReference: {fileID: 1024513351}
     - target: {fileID: 8063838911503988362, guid: 06847172d52134c4cbc1d3391737ae90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
