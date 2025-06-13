@@ -30,4 +30,9 @@ public class InspectableItem : MonoBehaviour, IInspectable
         originalLayer = gameObject.layer;
     }
 
+    public virtual void OnGrab()
+    {
+        return;
+    }
+
 }

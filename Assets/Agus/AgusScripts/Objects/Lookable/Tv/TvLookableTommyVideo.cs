@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Playables;
 using System.Collections;
 
 public class TVLookableTommyVideo : MonoBehaviour, ILookableInteractable
 {
     [SerializeField] private Transform focusPoint;
-    [SerializeField] private TVVideoController tvVideoController;
     [SerializeField] private TVController tvController;
+    [SerializeField] private TVVideoController tvVideoController;
     [SerializeField] private LightDrainSequence lightDrainSequence;
     [SerializeField] private GameObject margaret;
 
@@ -14,6 +15,8 @@ public class TVLookableTommyVideo : MonoBehaviour, ILookableInteractable
     public IEnumerator PlayInteraction(System.Action onComplete)
     {
         tvController.TurnOn();
+
+
         tvVideoController.PlayMainVideo(() =>
         {
             tvVideoController.PlayStaticVideo();
@@ -21,12 +24,12 @@ public class TVLookableTommyVideo : MonoBehaviour, ILookableInteractable
                 margaret.SetActive(true);
             LoopManager.Instance.SetConditionMet(true);
         });
-
         lightDrainSequence.StartDrainSequence();
-
+        // Esperar a que termine la timeline
         while (tvVideoController.IsMainVideoPlaying)
             yield return null;
 
+        LoopManager.Instance.SetConditionMet(true);
         onComplete?.Invoke();
         Destroy(this);
     }
