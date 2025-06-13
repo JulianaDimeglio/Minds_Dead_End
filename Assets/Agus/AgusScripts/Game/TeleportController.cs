@@ -18,13 +18,6 @@ public class TeleportController : MonoBehaviour
                 other.transform.position = TeleportZoneObject.TransformPoint(localOffset);
                 other.transform.rotation = relativeRotation * other.transform.rotation;
                 cc.enabled = true;
-
-                // Notificar manualmente
-                var arrivalManager = TeleportZoneObject.GetComponentInChildren<IterationRoomManager>();
-                if (arrivalManager != null)
-                {
-                    arrivalManager.PlayerEntered(); // Simula OnTriggerEnter
-                }
             }
         }
     }

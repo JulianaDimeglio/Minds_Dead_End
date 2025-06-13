@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (UIStateManager.Instance.CurrentState == UIState.Inventory)
@@ -26,6 +27,36 @@ public class InputManager : MonoBehaviour
                 inventoryUI.Open();
                 UIStateManager.Instance.SetState(UIState.Inventory);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            string message = $"Next Iteration will be Iteration 0";
+            LoopManager.Instance?.SetCurrentIterationDebug(0);
+            SubtitleManager.Instance.ShowSubtitle(message);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            string message = $"Next Iteration will be Iteration 1";
+            LoopManager.Instance?.SetCurrentIterationDebug(1);
+            SubtitleManager.Instance.ShowSubtitle(message);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            string message = $"Next Iteration will be Iteration 2";
+            LoopManager.Instance?.SetCurrentIterationDebug(2);
+            SubtitleManager.Instance.ShowSubtitle(message);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            string message = $"Next Iteration will be Iteration 3";
+            LoopManager.Instance?.SetCurrentIterationDebug(3);
+            SubtitleManager.Instance.ShowSubtitle(message);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            string message = $"Next Iteration will be Iteration 4";
+            LoopManager.Instance?.SetCurrentIterationDebug(4);
+            SubtitleManager.Instance.ShowSubtitle(message);
         }
         if (Input.GetKeyDown(interactKey))
         {

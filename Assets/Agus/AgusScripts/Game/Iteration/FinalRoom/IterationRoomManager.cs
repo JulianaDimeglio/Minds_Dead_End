@@ -10,6 +10,7 @@ public class IterationRoomManager : MonoBehaviour
     [SerializeField] private GameObject triggerZone;
 
     public bool sequenceStarted = false;
+    public bool hasBeenTriggered = false;
 
     
     public bool playerIsInRoom { get; private set; } = false;
@@ -18,6 +19,7 @@ public class IterationRoomManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+
             IterationRoomEvents.PlayerEntered();
             PlayerEntered();
         }
@@ -38,10 +40,16 @@ public class IterationRoomManager : MonoBehaviour
         playerIsInRoom = true;
         entryDoor.GetComponent<Door>().Close();
         entryDoor.GetComponent<Door>().Lock();
+        bool shouldAdvance = LoopManager.Instance.ConditionMet;
+        if (!shouldAdvance) {
+            StartCoroutine(PhoneSequence());
+        }
+        if (hasBeenTriggered) return;
         StartCoroutine(PhoneSequence());
+        hasBeenTriggered = true;
     }
 
-    private IEnumerator PhoneSequence()
+    public IEnumerator PhoneSequence()
     {
         yield return new WaitForSeconds(waitBeforePhoneRings);
 
@@ -51,7 +59,6 @@ public class IterationRoomManager : MonoBehaviour
 
     private void OnPhoneInteractionFinished()
     {
-        exitDoor.GetComponent<Door>().Open();
         exitDoor.GetComponent<Door>().Unlock();
         triggerZone.SetActive(true);
         LoopManager.Instance.TryAdvanceLoop();

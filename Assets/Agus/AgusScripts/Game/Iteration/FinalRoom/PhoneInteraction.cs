@@ -8,7 +8,8 @@ public class PhoneInteraction : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip ringClip;
     [SerializeField] private AudioClip hangupClip;
     [SerializeField] private List<AudioClip> ghostDialogues;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource ringAudioSource;
+    [SerializeField] private AudioSource callAudioSource;
 
     private bool isRinging = false;
     private bool shouldPlayDialogue = false;
@@ -20,9 +21,9 @@ public class PhoneInteraction : MonoBehaviour, IInteractable
         this.onInteractionFinished = onFinished;
         isRinging = true;
 
-        audioSource.clip = shouldPlayDialogue ? ringClip : hangupClip;
-        audioSource.loop = shouldPlayDialogue; // solo hacer loop si es ringClip
-        audioSource.Play();
+        ringAudioSource.clip = shouldPlayDialogue ? ringClip : hangupClip;
+        ringAudioSource.loop = shouldPlayDialogue; // solo hacer loop si es ringClip
+        ringAudioSource.Play();
 
         if (!shouldPlayDialogue)
         {
@@ -34,7 +35,7 @@ public class PhoneInteraction : MonoBehaviour, IInteractable
     {
         if (!isRinging || !shouldPlayDialogue) return;
 
-        audioSource.Stop();
+        ringAudioSource.Stop();
         isRinging = false;
         int nextIteration = LoopManager.Instance.CurrentIteration;
         if (nextIteration <= ghostDialogues.Count)
@@ -50,9 +51,9 @@ public class PhoneInteraction : MonoBehaviour, IInteractable
 
     private IEnumerator PlayDialogue(AudioClip clip)
     {
-        audioSource.loop = false;
-        audioSource.clip = clip;
-        audioSource.Play();
+        callAudioSource.loop = false;
+        callAudioSource.clip = clip;
+        callAudioSource.Play();
         yield return new WaitForSeconds(clip.length);
         onInteractionFinished?.Invoke();
     }

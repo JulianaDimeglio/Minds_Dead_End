@@ -48,6 +48,24 @@ public class LoopManager : MonoBehaviour
     public void SetConditionMet(bool value)
     {
         _conditionMet = value;
+        if (value)
+        {
+            StartCoroutine(iterationRoomManager.PhoneSequence());
+        }
+    }
+
+    public void SetCurrentIterationDebug(int number)
+    {
+        if (number < 0)
+        {
+            Debug.LogError("Iteration number cannot be negative.");
+            return;
+        }
+        CurrentIteration = number - 1;
+        if (iterationRoomManager.hasBeenTriggered)
+        {
+            SetConditionMet(true);
+        }
     }
 
     /// <summary>
