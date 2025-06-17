@@ -16,6 +16,7 @@ public class FourthIterationState : LoopStateBase
         context.calendar.SetActive(true);
         context.padlock.SetActive(true);
         context.margaret.SetActive(false);
+        context.tommyNote.SetActive(true);
         context.clock.setClockBroken(true);
         DoorManager.Instance.UnlockDoors(context.doorsToUnlockIDs);
         DoorManager.Instance.LockDoors(context.doorsToLockIDs);
@@ -31,6 +32,7 @@ public class FourthIterationState : LoopStateBase
         context.clock.setClockBroken(false);
         context.padlock.SetActive(false);
         context.calendar.SetActive(false);
+        context.tommyNote.SetActive(false);
         Debug.Log("[ThirdIterationState] Cleaning iteration...");
     }
 }

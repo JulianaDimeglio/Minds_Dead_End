@@ -6,10 +6,7 @@ using UnityEngine;
 public class SimpleInteractPlayer : MonoBehaviour
 {
     public GameObject mainCamera;
-    private GameObject objectClicked;
-    public GameObject flashlight;
     public KeyCode OpenClose = KeyCode.Mouse0;
-    public KeyCode Flashlight = KeyCode.F;
     public LayerMask raycastMask;
 
     void Start()

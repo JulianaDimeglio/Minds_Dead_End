@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1275f39281427bf4f86ae380f03d0fd9, type: 3}
+  m_Name: TommyRiddleSO
+  m_EditorClassIdentifier: 
+  itemID: tommy_riddle
+  displayName: Acertijo de Tommy
+  description: "\"El d\xEDa que desaparec\xED esta marcado. Mi edad no ha cambiado
+    desde entonces, y Mam\xE1... Mam\xE1 dice que nunca olvidar\xE1 la hora en la
+    que su tiempo se congel\xF3. Tres piezas de m\xED que a\xFAn siguen aqu\xED.\"\nA
+    Tommy siempre le gustaron los acertijos."
+  modelPrefab: {fileID: 8263253422235072786, guid: 47ecda9a6b909a844bad9a1da59194e7, type: 3}
+  initialRotationEuler: {x: 0, y: 270, z: 0}
+  initialScaleEuler: {x: 5, y: 5, z: 5}
+  icon: {fileID: 0}
+  isUsable: 0
+  isCollectable: 1

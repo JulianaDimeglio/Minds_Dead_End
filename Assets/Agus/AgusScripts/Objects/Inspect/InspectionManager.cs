@@ -49,8 +49,8 @@ public class InspectionManager : MonoBehaviour
         float rotationSpeed = 2.5f;
         if (!canRotate) return;
 
-        inspectionContainer.Rotate(Vector3.up, -mouseX * rotationSpeed, Space.World);
-        inspectionContainer.Rotate(Vector3.right, mouseY * rotationSpeed, Space.World);
+        inspectionContainer.Rotate(Vector3.right, mouseX * rotationSpeed, Space.World);
+        inspectionContainer.Rotate(Vector3.forward, mouseY * rotationSpeed, Space.World);
     }
 
     public void StartInspect(InspectableItem item)
@@ -180,7 +180,6 @@ public class InspectionManager : MonoBehaviour
             return;
 
 
-        // MOSTRAR MENSAJE SOLO PARA LA LINTERNA
         if (currentItem.Id == "flashlight_item")
         {
             if (SubtitleManager.Instance != null)

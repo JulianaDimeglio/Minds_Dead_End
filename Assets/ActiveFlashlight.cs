@@ -3,7 +3,6 @@ using UnityEngine;
 public class FlashlightToggle : MonoBehaviour
 {
     [SerializeField] private Light flashlight;
-    [SerializeField] private KeyCode toggleKey = KeyCode.F;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip toggleSound;
     [SerializeField] private string flashlightItemId = "flashlight";
@@ -26,7 +25,7 @@ public class FlashlightToggle : MonoBehaviour
 
     public void ToggleFlashLight()
     {
-        if (InventoryManager.Instance.HasItem(flashlightItemId))
+        if (true)//InventoryManager.Instance.HasItem(flashlightItemId))
         {
             if (flashlight != null)
             {

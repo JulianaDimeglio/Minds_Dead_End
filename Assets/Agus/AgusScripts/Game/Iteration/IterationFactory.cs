@@ -14,6 +14,7 @@ public static class IterationFactory
             case 1: return new FirstIterationState(provider.firstIterationContext?.ToPlain());
             case 2: return new SecondIterationState(provider.secondIterationContext?.ToPlain());
             case 3: return new ThirdIterationState(provider.thirdIterationContext?.ToPlain());
+            case 4: return new FourthIterationState(provider.fourthIterationContext?.ToPlain());
             default: return new FirstIterationState(provider.firstIterationContext?.ToPlain());
         }
     }
