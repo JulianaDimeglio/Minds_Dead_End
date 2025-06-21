@@ -97,3 +97,11 @@ crashlytics-build.properties
 # Switches
 /[Aa]ssets/SocketsAndSwitches
 /[Aa]ssets/SocketsAndSwitches.meta
+
+# Banshee
+/[Aa]ssets/Dary_Palasky
+/[Aa]ssets/Dary_Palasky.meta
+
+# Nature Manufacture
+/[Aa]ssets/NatureManufacture\ Assets
+/[Aa]ssets/NatureManufacture\ Assets.meta
