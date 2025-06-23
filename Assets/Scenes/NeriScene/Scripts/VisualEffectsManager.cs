@@ -24,7 +24,7 @@ public class VisualEffectsManager : MonoBehaviour
     {
         if (volume == null)
         {
-            Debug.LogError("[VisualEffectsManager] PostProcessVolume not assigned.");
+            Debug.LogWarning("[VisualEffectsManager] PostProcessVolume not assigned.");
             return;
         }
 
