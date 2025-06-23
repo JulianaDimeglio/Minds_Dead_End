@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012150359, g: 0.01991696, b: 0.028437804, a: 1}
+  m_IndirectSpecularColor: {r: 0.012316214, g: 0.018946514, b: 0.02894846, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6763,8 +6763,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Siguiente
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e0de051b9e2f7084a9b8f78dc92e9a5e, type: 2}
-  m_sharedMaterial: {fileID: 8783865710470814565, guid: e0de051b9e2f7084a9b8f78dc92e9a5e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8800,8 +8800,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e0de051b9e2f7084a9b8f78dc92e9a5e, type: 2}
-  m_sharedMaterial: {fileID: 8783865710470814565, guid: e0de051b9e2f7084a9b8f78dc92e9a5e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9158,8 +9158,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e0de051b9e2f7084a9b8f78dc92e9a5e, type: 2}
-  m_sharedMaterial: {fileID: 8783865710470814565, guid: e0de051b9e2f7084a9b8f78dc92e9a5e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25690,7 +25690,7 @@ Camera:
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 45056
+    m_Bits: 45088
   m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
