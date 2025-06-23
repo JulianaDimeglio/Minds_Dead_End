@@ -71,46 +71,38 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# Atmospheric House
-/[Aa]ssets/AtmosphericHouse
-/[Aa]ssets/AtmosphericHouse.meta
-
-# Mirror
-/[Aa]ssets/AK Studio Art/
-/[Aa]ssets/AK Studio Art.meta
-# Modular House
-/[Aa]ssets/Arte/modular_house_package
-/[Aa]ssets/Arte/modular_house_package.meta
 # Downloaded Assets
-/[Aa]ssets/DownloadedAssets
-/[Aa]ssets/DownloadedAssets.meta
-
-
-# Objects
-/[Aa]ssets/Objects
-/[Aa]ssets/Objects.meta
+/[Aa]ssets/DownloadedAssets/Classic_Female_Ghost\ 1
+/[Aa]ssets/DownloadedAssets/Classic_Female_Ghost\ 1.meta
+/[Aa]ssets/DownloadedAssets/Demon_Anims\ 1
+/[Aa]ssets/DownloadedAssets/Demon_Anims\ 1.meta
+/[Aa]ssets/DownloadedAssets/Ghost_Creature_Anims\ 1
+/[Aa]ssets/DownloadedAssets/Ghost_Creature_Anims\ 1.meta
+/[Aa]ssets/HorrorBundleSfx1
+/[Aa]ssets/HorrorBundleSfx1.meta
 
 # Sounds
-/[Aa]ssets/HorrorBundleSfx
-/[Aa]ssets/HorrorBundleSfx.meta
+/[Aa]ssets/HorrorBundleSfx1
+/[Aa]ssets/HorrorBundleSfx1.meta
 
-# Switches
-/[Aa]ssets/SocketsAndSwitches
-/[Aa]ssets/SocketsAndSwitches.meta
-
-# Banshee
-/[Aa]ssets/Dary_Palasky
-/[Aa]ssets/Dary_Palasky.meta
-
-# Nature Manufacture
-/[Aa]ssets/NatureManufacture\ Assets
-/[Aa]ssets/NatureManufacture\ Assets.meta
 **/FR2_Cache.asset*
 
 # FR2
 /[Aa]ssets/FindReference2
 /[Aa]ssets/FindReference2.meta
 
-ResizePro
+# ResizePro
 /[Aa]ssets/Amazing\ Assets
 /[Aa]ssets/Amazing\ Assets.meta
+/[Rr]esize\ Pro\ Backup
+/[Rr]esize\ Pro\ Backup.meta
+
+# Asset Hunter Pro
+/[Pp]ackages/com.heurekagames.assethunterpro
+/[Pp]ackages/com.heurekagames.assethunterpro.meta
+/[Pp]ackages/com.heurekagames.utils
+/[Pp]ackages/com.heurekagames.utils.meta
+
+# Serialized Build Info
+/[Ss]erializedBuildInfo
+/[Ss]erializedBuildInfo.meta

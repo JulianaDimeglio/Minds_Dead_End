@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Banshee_Head_Built-in
+  m_Shader: {fileID: 4800000, guid: 3ea1fa4bf8dbf8b40924610aea0b7c73, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: fa65e822f67491d4b965e7cb49269cce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColor_1:
+        m_Texture: {fileID: 2800000, guid: ab3ebb23d11eb9e41aa7e158bcd3d464, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColor_2:
+        m_Texture: {fileID: 2800000, guid: efb44dca2eeb03543b2cf825b8c3e23c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColor_3:
+        m_Texture: {fileID: 2800000, guid: 1d9c924b970c7cb43a9ff73b33ad6efb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BloodMask:
+        m_Texture: {fileID: 2800000, guid: ca3a27a3b8a84f7469bc1cba45b1c1ce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DirtMask:
+        m_Texture: {fileID: 2800000, guid: 1572bc3bdc327834fa3e3a1224d24c01, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionTexture:
+        m_Texture: {fileID: 2800000, guid: 8bfcc6fdeddb3644bba701c24dd9d310, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_1:
+        m_Texture: {fileID: 2800000, guid: c83daba56a860df459a2e93eb85ad2fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_2:
+        m_Texture: {fileID: 2800000, guid: 9dd75743d84b7b7498302b52eabbe8c6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_3:
+        m_Texture: {fileID: 2800000, guid: 6efb423a0fba2f143946161cef28643a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Roughness:
+        m_Texture: {fileID: 2800000, guid: c3326606f2518a94e8c4647da752be3b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Transformmask_1:
+        m_Texture: {fileID: 2800000, guid: 2d7aeea627bb2bc438783b16e91f7bf1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Transformmask_2:
+        m_Texture: {fileID: 2800000, guid: f4ee241f9329e0840893d5cb07ae7daf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Banshee: 0
+    - _BansheeRoughness: 5.63
+    - _Banshee_Roughness: 1.51
+    - _Blood: 0
+    - _BloodRoughness: 0.587
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _Dirt: 0.839
+    - _DirtRoughness: 0
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HumanRoughness: 5.58
+    - _Human_Roughness: 10
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Transform: 1.392
+    - _Transform_Roughness: 10
+    - _UVSec: 0
+    - _Veins: 0.478
+    - _VeinsRoughness: 0.737
+    - _Veins_Roughness: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _BansheeDissolveColor: {r: 0.49056602, g: 0, b: 0, a: 0}
+    - _BloodColor: {r: 0.22745097, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSkin_Banshee: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorSkin_Human: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorSkin_Human0: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorSkin_Human1: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorSkin_Human3: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorSkin_Transform: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorSkin_Veins: {r: 1, g: 1, b: 1, a: 0}
+    - _DirtColor: {r: 0.22352937, g: 0.13725486, b: 0.0470588, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TransformDissolveColor: {r: 0.25471696, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

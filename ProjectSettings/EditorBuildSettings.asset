@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NeriScene.unity
     guid: 2f2e085a020bf0e479c734ce1f556907
-  - enabled: 1
-    path: Assets/Scenes/NeriScene2.unity
-    guid: 5493614ff0357ad46ac489ced8002b2e
   m_configObjects: {}

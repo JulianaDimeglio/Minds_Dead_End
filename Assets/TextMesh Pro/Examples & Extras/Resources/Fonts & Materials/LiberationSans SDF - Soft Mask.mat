@@ -32,12 +32,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 28684132378477856, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        m_Texture: {fileID: 28684132378477856, guid: a4be151e38b13f2459f6df0968784fde,
           type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: 10c49fcd9c64421db7c0133e61e55f97, type: 3}
+        m_Texture: {fileID: 2800000, guid: 062e289a4c2f692469779f31078b21fd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
