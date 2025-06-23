@@ -27,7 +27,7 @@ namespace Game.Mediators.Implementations
 
         void Start()
         {
-            mother.Configure(this);
+            //mother.Configure(this);
             shadow.Configure(this, environmentMediator);  
             //child.Configure(this);
         }

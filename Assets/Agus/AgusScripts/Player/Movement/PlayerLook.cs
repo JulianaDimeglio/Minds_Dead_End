@@ -31,7 +31,7 @@ public class PlayerLook : MonoBehaviour
             cameraCap = Mathf.Clamp(cameraCap, -90f, 90f);
 
             transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
-            // Esta línea se ejecuta siempre, pero con la rotación ya calculada
+
             playerCamera.localRotation = Quaternion.Euler(cameraCap, 0f, 0f);
 
             Quaternion handTargetRotation = Quaternion.Euler(cameraCap, 0f, 0f);

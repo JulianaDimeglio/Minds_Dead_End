@@ -105,3 +105,12 @@ crashlytics-build.properties
 # Nature Manufacture
 /[Aa]ssets/NatureManufacture\ Assets
 /[Aa]ssets/NatureManufacture\ Assets.meta
+**/FR2_Cache.asset*
+
+# FR2
+/[Aa]ssets/FindReference2
+/[Aa]ssets/FindReference2.meta
+
+ResizePro
+/[Aa]ssets/Amazing\ Assets
+/[Aa]ssets/Amazing\ Assets.meta
